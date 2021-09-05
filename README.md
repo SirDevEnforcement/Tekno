@@ -1,30 +1,37 @@
-# __**Tekno**__
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](https://commitizen.github.io/cz-cli/)
+
+![logo](https://media.discordapp.net/attachments/845327057465507885/881107857645395998/unknown.png)
+
+## 📝 Features & Commands
+
+> Note: The prefix is `t!`
+
+* `Commands are below`:
+> `t!help` - Just do this command in your server, I cant be bothered to write all the commands
 
 
-> 🔧 **Moderation**
+* `Features`:
 
-Sort out them pesky buggers and teach 'em a lesson!
+> Auto Moderation
 
-> 🛠️ **Auto-Moderation**
+> Fun
 
-Mods call it quits? Let Tekno take care of the server for you!
+> Image Generation
 
-> 🎉 **Fun**
+> Moderation
 
-Server getting bored? Entertain them with our fleet of fun commands!
+> Economy `[BETA]`
 
-> ⛏️ **Utility**
+> Informaton
 
-Someone bugging you for information? Use our many utility commands to get the information you so well seek!
+> Utility
 
-
-> 🖼️ **Images**
-
-Want to see a blurpe version of your profile picture? No? Well too bad!
+> General
 
 
 
 
-### [**Invite Tekno Now**](https://dsc.gg/tekno)
+## 📝 Credits
 
-### [**Visit the Website**](https://tekno-the-bot.repl.co)
+* [Scorprian / Vetrilox](https://github.com/ScorprianDev)
+* [Mirabellier / Kanna](https://github.com/MiraBellierr)
