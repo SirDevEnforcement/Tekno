@@ -2,9 +2,7 @@ const { MessageEmbed } = require('discord.js');
 
 module.exports = {
   name: "lock",
-  category: "Moderation",
-  description: "lock down all channels!",
-  usage: "t!lock <on/off>",
+  category: "🛠️ Moderation",
   timeout: 5000,
   run: async (client, message, args) => {
     if (!message.member.hasPermission("MANAGE_CHANNELS")) return message.channel.send('You do not have the correct permissions! Permission needed: \`MANAGE_CHANNELS\`')

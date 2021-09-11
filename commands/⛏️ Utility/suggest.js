@@ -3,7 +3,7 @@ const { MessageEmbed } = require('discord.js');
 module.exports = {
   name: "suggest",
   timeout: 5000,
-  category: "Utility",
+  category: "⛏️ Utility",
   run: async (client, message, args) => {
     message.author.send('Your suggestion has been sent to our __Support Server__ for the community to vote on. Support Server; https://discord.gg/dTEjcVFDgj')
 

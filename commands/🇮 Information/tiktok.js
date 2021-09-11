@@ -3,7 +3,7 @@ const tiktok = require('tiktok-scraper')
 
 module.exports = {
   name: "tiktok",
-  category: 'Information',
+  category: '🇮 Information',
   run: async (client, message, args) => {
   if (!args[0]) {
      return message.channel.send(`Please provide a user! \`t!tiktok <username>\``);

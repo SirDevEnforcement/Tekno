@@ -2,9 +2,7 @@ const { MessageEmbed } = require("discord.js");
 
 module.exports = {
   name: "vote",
-  category: "General",
-  description: "Get the links to vote for Tekno!",
-  usage: "t!vote",
+  category: "📖 General",
   timeout: 5000,
   run: async (client, message, args) => {
 

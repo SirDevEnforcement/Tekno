@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 
 module.exports = {
 	name: 'servericon',
-  category: 'Information',
+  category: '🇮 Information',
 	run: (client, message) => {
 		const embeduser = new Discord.MessageEmbed()
 			.setAuthor(message.author.username, message.author.displayAvatarURL({ dynamic: true }))

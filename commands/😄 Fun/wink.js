@@ -3,7 +3,7 @@ const axios = require('axios');
 
 module.exports = {
     name: "wink",
-    category: 'Fun',
+    category: '😄 Fun',
     timeout: 5000,
     run: async (client, message, args) => {
 

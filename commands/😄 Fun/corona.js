@@ -3,9 +3,7 @@ const { MessageEmbed } = require('discord.js')
 
 module.exports = {
     name: "corona",
-    category: "Fun",
-    description: "Check the corona-virus stats for your country!",
-    usage: "t!corona <country>",
+    category: "😄 Fun",
     timeout: 5000,
     run: async (client, message, args) => {
 

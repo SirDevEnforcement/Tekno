@@ -2,7 +2,7 @@ const { MessageEmbed } = require('discord.js');
 
 module.exports = {
   name: "credits",
-  category: 'General',
+  category: '📖 General',
   run: async (client, message, args) => {
     const embed = new MessageEmbed()
     .setTitle('Thank you!')

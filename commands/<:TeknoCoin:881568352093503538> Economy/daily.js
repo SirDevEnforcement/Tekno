@@ -4,7 +4,7 @@ const db = require('quick.db');
 
 module.exports = {
   name: "daily",
-  category: 'Economy',
+  category: '<:TeknoCoin:881568352093503538> Economy',
   timeout: 8.64e+7,
   run: async (client, message, args) => {
 

@@ -4,7 +4,7 @@ const db = require('quick.db');
 module.exports = {
   name: "messages",
   timeout: 5000,
-  category: 'General',
+  category: '📖 General',
   run: async (client, message, args) => {
 
     let member = message.mentions.members.first() || message.member

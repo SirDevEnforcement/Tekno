@@ -1,9 +1,7 @@
 const { MessageEmbed } = require('discord.js')
 module.exports = {
     name: "clear",
-    category: "Utility",
-    description: "Clear messages!",
-    usage: "t!clear <message count>",
+    category: "⛏️ Utility",
     timeout: 5000,
     run: async (client, message, args) => {
         if (!message.member.permissions.has("MANAGE_MESSAGES")) 

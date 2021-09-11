@@ -3,9 +3,7 @@ const axios = require('axios');
 
 module.exports = {
     name: "binary",
-    category: "Fun",
-    description: "Convert text to binary!",
-    usage: "t!binary <text>",
+    category: "😄 Fun",
     timeout: 5000,
     run: async (client, message, args) => {
 

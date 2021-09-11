@@ -4,7 +4,7 @@ const { getMember, formatDate } = require('../../functions.js');
 
 module.exports = {
   name: 'whois',
-  category: 'Information',
+  category: '🇮 Information',
   run: async (client, message, args) => {
     const member = await getMember(message, args.join(' ')) || message.member;
 

@@ -3,7 +3,7 @@ const fetch = require('node-fetch')
 
 module.exports = {
   name: "deepfry",
-  category: 'Image',
+  category: '📷 Image',
   timeout: 5000,
   run: async (client, message, args) => {
 

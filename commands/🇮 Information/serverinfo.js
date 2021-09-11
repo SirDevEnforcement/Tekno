@@ -26,7 +26,7 @@ let region = {
 };
 module.exports = {
   name: "serverinfo",
-  category: 'Information',
+  category: '🇮 Information',
   run: async (client, message, args) => {
 
     const owner = await client.users.fetch(message.guild.ownerID)

@@ -4,7 +4,7 @@ const stripIndents = require("common-tags")
 
 module.exports = {
   name: 'urban',
-  category: 'Information',
+  category: '🇮 Information',
   run: async (client, message, args) => {
 
     if(!message.channel.nsfw) return message.channel.send('Please run this command in an NSFW Channel')

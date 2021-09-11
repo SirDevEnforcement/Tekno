@@ -2,9 +2,7 @@ const { MessageEmbed } = require('discord.js');
 
 module.exports = {
   name: "sponsors",
-  category: "General",
-  description: "Check out the server's Tekno sponsors!",
-  usage: "t!sponsors",
+  category: "📖 General",
   timeout: 5000,
   run: async (client, message, args) => {
         const embed = new MessageEmbed()

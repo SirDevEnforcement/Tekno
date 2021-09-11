@@ -2,7 +2,7 @@ const { MessageEmbed } = require('discord.js');
 module.exports = {
   name: "ping",
   timeout: 5000,
-  category: "Utility",
+  category: "⛏️ Utility",
   run: async (client, message, args) => {
     const msg = await message.channel.send("Pinging...");
     if (client.ws.ping < 100) {

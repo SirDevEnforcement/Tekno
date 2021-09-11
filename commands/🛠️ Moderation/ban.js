@@ -4,7 +4,7 @@ const Discord = require('discord.js');
 module.exports = {
 	name: 'ban',
   timout: 60000,
-  category: 'Moderation',
+  category: '🛠️ Moderation',
 	run: async (client, message, args) => {
 		if (!message.member.permissions.has('BAN_MEMBERS')) return message.reply('Sorry you don\'t have ban permission to use this command.');
 		if (!message.guild.me.permissions.has('BAN_MEMBERS')) return message.reply('I don\'t have ban permission. Please enable it for me to be able to ban members');

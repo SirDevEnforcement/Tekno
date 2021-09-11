@@ -4,7 +4,7 @@ const { getMember } = require('../../functions');
 
 module.exports = {
 	name: 'avatar',
-  category: 'Information',
+  category: '🇮 Information',
 	run: async (client, message, args) => {
 
 		const member = await getMember(message, args.join(' ')) || message.member;

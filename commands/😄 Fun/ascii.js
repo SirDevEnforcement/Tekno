@@ -3,7 +3,7 @@ const figlet = require("figlet");
 
 module.exports = {
   name: "ascii",
-  category: 'Fun',
+  category: '😄 Fun',
   run: async (client, message, args) => {
 
     let text = args.join(" ");

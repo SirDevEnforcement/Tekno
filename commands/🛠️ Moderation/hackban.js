@@ -3,7 +3,7 @@ const { MessageEmbed } = require('discord.js');
 module.exports = {
   name: "hackban",
   timeout: 5000,
-  category: 'Moderation',
+  category: '🛠️ Moderation',
   run: async (client, message, args) => {
     const embed = new MessageEmbed()
     .setTitle('Incorrect Permissions')

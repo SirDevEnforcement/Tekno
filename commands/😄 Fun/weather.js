@@ -4,7 +4,7 @@ const { MessageEmbed } = require("discord.js");
 
 module.exports = {
  name: "weather",
- category: 'Fun',
+ category: '😄 Fun',
  run: async (client, message, args) => {
  
  

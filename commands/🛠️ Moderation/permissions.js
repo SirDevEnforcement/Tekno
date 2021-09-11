@@ -2,7 +2,7 @@ const { MessageEmbed } = require('discord.js');
 
 module.exports = {
   name: "permissions",
-  category: 'Moderation',
+  category: '🛠️ Moderation',
   run: async (client, message, args) => {
   let user = message.mentions.members.first() || message.member;
     const perms = []

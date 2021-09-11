@@ -3,7 +3,7 @@ const { MessageEmbed } = require('discord.js');
 
 module.exports = {
   name: "meme",
-  category: 'Fun',
+  category: '😄 Fun',
   timeout: 5000,
   run: async (client, message, args) => {
 

@@ -3,7 +3,7 @@ const { getDuck, getDuckFacts } = require('shitapi-wrapper');
 
 module.exports = {
   name: "duck",
-  category: 'Animals',
+  category: '🐕 Animals',
   run: async (client, message, args) => {
 
     const image = await getDuck(`3YLQ3c8FMSwGPCRV`)

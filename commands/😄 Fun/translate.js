@@ -2,7 +2,7 @@ const translate = require('@iamtraction/google-translate');
 const Discord = require('discord.js')
 module.exports = {
   name: 'translate',
-  category: 'Fun',
+  category: '😄 Fun',
   run: async (client, message, args) => {
 
     const query = args.slice(1).join(" ");

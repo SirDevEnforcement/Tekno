@@ -19,7 +19,7 @@ const regex2 = new RegExp(/[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([
 client.on('ready', () => {
   const status = [
     `t!help ・ ${client.guilds.cache.size} servers!`,
-    `t!help ・ ${client.users.cache.size} users!`,
+    `t!help ・ ${client.guilds.cache.map(c => c.memberCount).reduce((a, b) => a + b)} users!`,
     `t!help ・ ${client.channels.cache.size} channels!`
   ]
   const multi = Math.floor(Math.random() * status.length);
@@ -38,6 +38,7 @@ client.on('guildDelete', guild => {
 })
 
 client.on('message', async message => {
+  const blacklisted = db.get(`blacklisted`)
   const Timeout = new Set();
   let prefix = client.prefix
   if (message.author.bot) return;

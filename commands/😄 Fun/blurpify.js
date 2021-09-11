@@ -3,9 +3,7 @@ const fetch = require('node-fetch')
 
 module.exports = {
   name: "blurpify",
-  category: "Fun",
-  description: "Blurpify your profile picture!",
-  usage: "t!blurpify",
+  category: "😄 Fun",
   timeout: 5000,
   run: async (client, message, args) => {
 

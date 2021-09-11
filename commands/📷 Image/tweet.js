@@ -5,7 +5,7 @@ const Discord = require('discord.js')
 module.exports = {
   name: "tweet",
   timeout: 5000,
-  category: 'Image',
+  category: '📷 Image',
   run: async (client, message, args) => {
 
   const text = args.join(" ")

@@ -4,7 +4,7 @@ const ms = require("ms");
 
 module.exports = {
   name: "timer",
-  category: "Utility",
+  category: "⛏️ Utility",
   timeout: 5000,
   run: async (client, message, args) => {
     let Timer = args[0];

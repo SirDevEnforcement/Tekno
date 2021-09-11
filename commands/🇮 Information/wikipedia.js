@@ -2,7 +2,7 @@ const { MessageEmbed } = require('discord.js');
 
 module.exports = {
   name: "wikipedia",
-  category: 'Information',
+  category: '🇮 Information',
   run: async (client, message, args) => {
   const fetch = require("node-fetch")
      const body = await fetch(

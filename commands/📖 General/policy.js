@@ -2,7 +2,7 @@ const { MessageEmbed } = require('discord.js');
 
 module.exports = {
   name: "policy",
-  category: 'General',
+  category: '📖 General',
   timeout: 5000,
   run: async (client, message, args) => {
 

@@ -2,29 +2,14 @@ const { MessageEmbed } = require('discord.js');
 const { stripIndents } = require('common-tags');
 
 module.exports = {
-	name: 'help',
-  category: 'General',
-	run: async (client, message, args) => {
-		if (!args[0]) return getAll(client, message);
-	},
-};
+  name: 'help',
+  category: '📖 General',
+  run: async (client, message, args) => {
 
-function getAll(client, message) {
-	const embed = new MessageEmbed()
-  .setDescription()
-
-	const commands = (category) => client.commands
-		.filter((cmd) => cmd.category === category)
-		.map((cmd) => `\`${cmd.name}\``)
-		.join('  ');
-
-	const info = client.categories
-		.map(
-			(cat) => stripIndents` \n**${cat[0].toUpperCase() + cat.slice(1)}**  \n${commands(
-				cat,
-			)}`,
-		)
-		.reduce((string, category) => `${string}\n${category}`);
-	embed.setFooter(`There are ${client.commands.size} commands!`, message.author.displayAvatarURL());
-	return message.channel.send(embed.setDescription(info));
+    const embed = new MessageEmbed()
+      .setAuthor('Help Menu')
+      .setDescription(` \`\`\`Prefix: t! \nDeveloper: DevEnforcement#0001\`\`\` \n Do \`t!commands\` for all the commands!`)
+      .addField(`Statistics`, `Servers: \`${client.guilds.cache.size}\`\nUsers: \`${client.guilds.cache.map(c => c.memberCount).reduce((a, b) => a + b)}\`\nChannels: \`${client.channels.cache.size}\``)
+      message.channel.send(embed)
+  }
 }

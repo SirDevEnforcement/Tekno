@@ -2,9 +2,7 @@ const { MessageEmbed } = require('discord.js');
 
 module.exports = {
   name: "bugreport",
-  category: "Utility",
-  description: "Report a bug to the support server!",
-  usage: "t!bugreport <report>",
+  category: "⛏️ Utility",
   timeout: 3.6e+6,
   run: async (client, message, args) => {
     const avatar = "https://cdn.discordapp.com/avatars/" + message.author.id + "/" + message.author.avatar + ".jpeg"

@@ -2,7 +2,7 @@ const { MessageEmbed } = require('discord.js');
 
 module.exports = {
   name: "stats",
-  category: 'Information',
+  category: '🇮 Information',
   run: async (client, message, args) => {
 
   let { version } = require("discord.js");
@@ -41,7 +41,7 @@ module.exports = {
 	  .setAuthor('Tekno')
           .setColor('RANDOM')
           .setThumbnail(client.user.displayAvatarURL())
-          .addField("\`   General   \`", `Name: \`${client.user.username}\`\nDiscriminator: \`${client.user.discriminator}\`\nPrefix: \`t!\``)
+          .addField("\`   General   \`", `Name: \`${client.user.username}\`\nDiscriminator: \`${client.user.discriminator}\`\nPrefix: \`t!\`\nUptime: \`${uptime}\``)
           .addField('\`   Statistics   \`', `Guilds: \`${client.guilds.cache.size}\`\nUsers: \`${client.guilds.cache.map(c => c.memberCount).reduce((a, b) => a + b)}\`\nChannels: \`${client.channels.cache.size}\` `)
           .setFooter('Tekno', client.user.displayAvatarURL())
     message.channel.send(clientembed);

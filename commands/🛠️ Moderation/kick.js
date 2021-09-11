@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 
 module.exports = {
 	name: 'kick',
-  category: 'Moderation',
+  category: '🛠️ Moderation',
   run: async (client, message, args) => {
 		if (!message.member.permissions.has('KICK_MEMBERS')) return message.reply('Sorry you don\'t have kick members permission to use this command.');
 		if (!message.guild.me.permissions.has('KICK_MEMBERS')) return message.reply('I don\'t have kick members permission. Please enable it for me to be able to kick members');

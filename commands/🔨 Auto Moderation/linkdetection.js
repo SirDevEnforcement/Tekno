@@ -3,7 +3,7 @@ const db = require('quick.db');
 
 module.exports = {
   name: "linkdetection",
-  category: 'Auto Moderation',
+  category: '🔨 Auto Moderation',
   run: async (client, message, args) => {
 
         if (message.member.hasPermission(`ADMINISTRATOR`) || message.author.id === '585835814743834661') {
