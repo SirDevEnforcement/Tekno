@@ -7,6 +7,7 @@ const db = require('quick.db');
 const { Collection } = require('discord.js');
 client.commands = new Collection();
 client.prefix = process.env['prefix']
+client.snipes = new Map();
 client.categories = fs.readdirSync('./commands/');
 
 ['command'].forEach((handler) => {
@@ -71,6 +72,15 @@ client.on('guildMemberUpdate', (oldMember, newMember, member) => {
     }
   }
 });
+
+client.on('messageDelete', message => {
+  client.snipes.set(message.channel.id, {
+    content: message.content,
+    author: message.author.tag,
+    member: message.author.member,
+    image: message.attachments.first() ? message.attachments.first().proxyURL : null
+  })
+})
 
 client.on('message', async message => {
   db.add(`globalMessages_${message.author.id}`, 1)

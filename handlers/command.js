@@ -1,18 +1,29 @@
-const glob = require('fast-glob');
-const { resolve } = require('path');
+const { readdirSync } = require('fs');
 
-module.exports = async (client) => {
-	const commandFiles = await glob(`${__dirname}/../commands/**/*.js`);
-	for (const commandFile of commandFiles) {
-		const command = require(resolve(commandFile));
+const ascii = require('ascii-table');
 
-		if (!command.name) {
-			throw Error(`${command} is missing a name key`);
-		}
-		if (!command.run || (typeof command.run !== 'function')) {
-			throw Error(`${command.name} is missing a run function`);
-		}
+const table = new ascii('Commands');
+table.setHeading('Command', 'Load status');
 
-		client.commands.set(command.name, command);
-	}
+module.exports = (client) => {
+  readdirSync('./commands/').forEach(dir => {
+    const commands = readdirSync(`./commands/${dir}/`).filter(file => file.endsWith('.js'));
+
+    for (const file of commands) {
+      const pull = require(`../commands/${dir}/${file}`);
+
+      if (pull.name) {
+        client.commands.set(pull.name, pull);
+        table.addRow(file, '✅');
+      }
+      else {
+        table.addRow(file, '❎ -> missing a help.name, or help.name is not a string.');
+        continue;
+      }
+
+      if (pull.aliases && Array.isArray(pull.aliases)) pull.aliases.forEach(alias => client.aliases.set(alias, pull.name));
+    }
+  });
+
+  console.log(table.toString());
 };
