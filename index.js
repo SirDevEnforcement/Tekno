@@ -55,6 +55,7 @@ client.on('message', async message => {
   if (cmd.length === 0) return;
 
   let command = client.commands.get(cmd);
+  if (!command) return message.channel.send(`<:cross:881238098871201802> \`|\` Command \`${message.content}\` was not found!`)
 
   if (command) {
     command.run(client, message, args)
@@ -123,7 +124,7 @@ client.on('messageDelete', message => {
   const db = require('quick.db')
   const ping = db.get(`ping_${message.guild.id}`)
   if (message.mentions.members.first()) {
-    if (!ping === true);
+    if (ping !== true);
 
     const member = message.mentions.members.first()
     message.channel.send(`${message.author.tag} just ghost pinged ${member.user.tag}`)
@@ -136,7 +137,7 @@ client.on('messageUpdate', function(oldMessage, newMessage) {
   const db = require('quick.db')
   const ping = db.get(`ping_${oldMessage.guild.id}`)
   if (oldMessage.mentions.members.first() !== undefined && newMessage.mentions.members.first() === undefined) {
-    if (!ping === true);
+    if (ping !== true);
     const member = oldMessage.mentions.members.first()
     newMessage.channel.send(`${newMessage.author.tag} just ghost pinged ${member.user.tag}`)
   }

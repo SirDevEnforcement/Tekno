@@ -1,11 +1,19 @@
 {
   "files": {
+    "commands/General/help.js": [
+      {
+        "id": "e658aee6-f4d9-4053-8132-88b75e600549",
+        "line": 16,
+        "version": 868,
+        "index": 347
+      }
+    ],
     "commands/General/messages.js": [
       {
         "id": "1ece1742-6449-4e18-9274-0290abfd19f5",
-        "line": 19,
-        "version": 30,
-        "index": 664
+        "line": 20,
+        "version": 33,
+        "index": 689
       }
     ]
   }
