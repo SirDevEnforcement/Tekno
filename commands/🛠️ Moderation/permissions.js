@@ -12,7 +12,7 @@ module.exports = {
     if(user.hasPermission("KICK_MEMBERS")) perms[2] = "Kick Members"
     if(user.hasPermission("BAN_MEMBERS")) perms[3] = "Ban Members"
     if(user.hasPermission("MANAGE_CHANNELS")) perms[4] = "Manage Channels"
-    if(user.hasPermission("MANAGE_GUILD")) perms[5] = "Manage Guild`"
+    if(user.hasPermission("MANAGE_GUILD")) perms[5] = "Manage Guild"
     if(user.hasPermission("ADD_REACTIONS")) perms[6] = "Add Reactions"
     if(user.hasPermission("VIEW_AUDIT_LOG")) perms[7] = "View Audit Log"
     if(user.hasPermission("PRIORITY_SPEAKER")) perms[8] = "Priority Speaker"
@@ -41,7 +41,7 @@ module.exports = {
     permsString = perms.join('\n')
     
     const embed = new MessageEmbed()
-    .addField(`${user}'s Permissions`, permsString)
+    .setDescription(permsString)
     message.channel.send(embed)
   
 }}    
