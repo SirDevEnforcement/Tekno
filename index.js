@@ -2,7 +2,7 @@ const mySecret = process.env['token'];
 const Discord = require("discord.js");
 const fs = require("fs");
 const { Client } = require('discord.js');
-const client = new Client({ ws: { intents: ['GUILDS', 'GUILD_MESSAGES'] } });
+const client = new Client({ ws: { intents: ['GUILDS', 'GUILD_MESSAGES', 'GUILD_VOICE_STATES'] } });
 const db = require('quick.db');
 const { Collection } = require('discord.js');
 client.commands = new Collection();
@@ -33,6 +33,22 @@ client.on('ready', () => {
   console.log('Sup')
 })
 
+const Distube = require('distube')
+client.distube = new Distube(client, { searchSongs: false, emitNewSongOnly: true })
+client.distube
+  .on("playSong", (message, queue, song) => {
+    const embed = new Discord.MessageEmbed()
+      .setDescription(`Playing \`${song.name}\`.\nDuration: \`${song.formattedDuration}\``)
+      .setFooter(`Requested by ${message.author.username}#${message.author.discriminator}`)
+    message.channel.send(embed)
+  })
+  .on("addSong", (message, queue, song) => {
+    const embed = new Discord.MessageEmbed()
+      .setDescription(`Added \`${song.name}\` to the queue.\nDuration: \`${song.formattedDuration}\`\nQueue Length: ${queue.length}`)
+      .setFooter(`Requested by ${message.author.username}#${message.author.discriminator}`)
+    message.channel.send(embed)
+  })
+
 
 client.on('guildDelete', guild => {
   client.channels.cache.get('863650833531011092').setName(`Servers: ${client.guilds.cache.size}`)
@@ -41,7 +57,7 @@ client.on('guildDelete', guild => {
 client.on('message', async message => {
   const Timeout = new Set();
   let prefix = db.get(`prefix_${message.guild.id}`)
-  if(!prefix) {
+  if (!prefix) {
     prefix = 't!'
   }
   if (message.author.bot) return;
@@ -75,11 +91,11 @@ client.on('guildMemberUpdate', (oldMember, newMember, member) => {
   }
 });
 
-client.on('messageDelete', message => {
+client.on("messageDelete", (message) => {
   client.snipes.set(message.channel.id, {
     content: message.content,
     author: message.author.tag,
-    member: message.author.member,
+    member: message.member,
     image: message.attachments.first() ? message.attachments.first().proxyURL : null
   })
 })

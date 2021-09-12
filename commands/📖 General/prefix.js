@@ -4,6 +4,7 @@ const db = require('quick.db')
 
 module.exports = {
   name: "prefix",
+  category: "📖 General", 
   run: async (client, message, args) => {
     let prefix = db.get(`prefix_${message.guild.id}`)
     if (!prefix) {
