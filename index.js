@@ -39,9 +39,11 @@ client.on('guildDelete', guild => {
 })
 
 client.on('message', async message => {
-  const blacklisted = db.get(`blacklisted`)
   const Timeout = new Set();
-  let prefix = client.prefix
+  let prefix = db.get(`prefix_${message.guild.id}`)
+  if(!prefix) {
+    prefix = 't!'
+  }
   if (message.author.bot) return;
   if (!message.content.toLowerCase().startsWith(prefix)) return;
 
@@ -51,7 +53,7 @@ client.on('message', async message => {
 
   if (!message.guild) return;
 
-  const args = message.content.slice(client.prefix.length).trim().split(/ +/g);
+  const args = message.content.slice(prefix.length).trim().split(/ +/g);
   const cmd = args.shift().toLowerCase();
 
   if (cmd.length === 0) return;
@@ -135,7 +137,6 @@ client.on('messageDelete', message => {
   const db = require('quick.db')
   const ping = db.get(`ping_${message.guild.id}`)
   if (message.mentions.members.first()) {
-    if (ping !== true);
 
     const member = message.mentions.members.first()
     message.channel.send(`${message.author.tag} just ghost pinged ${member.user.tag}`)
@@ -148,7 +149,6 @@ client.on('messageUpdate', function(oldMessage, newMessage) {
   const db = require('quick.db')
   const ping = db.get(`ping_${oldMessage.guild.id}`)
   if (oldMessage.mentions.members.first() !== undefined && newMessage.mentions.members.first() === undefined) {
-    if (ping !== true);
     const member = oldMessage.mentions.members.first()
     newMessage.channel.send(`${newMessage.author.tag} just ghost pinged ${member.user.tag}`)
   }
