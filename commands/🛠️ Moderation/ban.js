@@ -19,13 +19,6 @@ module.exports = {
 		if (member.user.id === message.author.id) return message.reply('Seems like you can\'t ban yourself');
 		if (member.roles.highest.position > message.member.roles.highest.position && message.guild.owner.user.id !== message.author.id) return message.reply('Please make sure your role is higher than the person you want to ban.');
 
-		if (!logsetting[message.guild.id]) {
-			logsetting[message.guild.id] = {
-				checker: 1,
-			};
-		}
-		const values = logsetting[message.guild.id].checker;
-
 
 		const reason = args.slice(1).join(' ');
 
@@ -40,10 +33,6 @@ module.exports = {
 		member.send(`You have been banned in **${message.guild.name}** for **${res}**`).catch((err) => (console.log(err)));
 		await member.ban({ reason: reason, days: 7 }).catch(e => console.log(`[WARN] ${e.message} in ${e.filename} [${e.lineNumber}, ${e.columnNumber}]`));
 		message.reply(`Successfully banned **${member.user.username}** for a reason **${res}**, by **${message.author.username}**.`);
-
-		if (values === undefined) return;
-		if (values === 0) return;
-		if (values === 1) {
 			const embed = new Discord.MessageEmbed()
 				.setAuthor('Member Banned', member.user.displayAvatarURL({ dynamic: true }))
 				.setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
@@ -57,6 +46,6 @@ module.exports = {
 				.setFooter(`ID: ${member.user.id}`);
 
 			message.channel.send(embed)
-		}
+		
 	},
 };

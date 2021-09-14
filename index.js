@@ -34,7 +34,7 @@ client.on('ready', () => {
 })
 
 const Distube = require('distube')
-client.distube = new Distube(client, { searchSongs: false, emitNewSongOnly: true })
+client.distube = new Distube(client, { searchSongs: false, emitNewSongOnly: false })
 client.distube
   .on("playSong", (message, queue, song) => {
     const embed = new Discord.MessageEmbed()
@@ -81,15 +81,6 @@ client.on('message', async message => {
     command.run(client, message, args)
   }
 })
-
-client.on('guildMemberUpdate', (oldMember, newMember, member) => {
-  if (newMember.username && oldMember.username !== newMember.username) {
-    if (newMember.user.customStatus.includes('')) {
-      const Role1 = member.guild.roles.cache.get("686177831998193694");
-      member.roles.add(Role1).catch(console.error);
-    }
-  }
-});
 
 client.on("messageDelete", (message) => {
   client.snipes.set(message.channel.id, {
@@ -168,8 +159,83 @@ client.on('messageUpdate', function(oldMessage, newMessage) {
     const member = oldMessage.mentions.members.first()
     newMessage.channel.send(`${newMessage.author.tag} just ghost pinged ${member.user.tag}`)
   }
-
 })
+
+client.on('ready', () => {
+  console.log('Slash Commands Ready');
+
+  client.api.applications(client.user.id).guilds('845327056987619358').commands.post({
+    data: {
+      name: "invite",
+      description: "Invite Tekno!"
+    }
+  });
+
+  client.api.applications(client.user.id).guilds('845327056987619358').commands.post({
+    data: {
+      name: "help",
+      description: "See all my comands!",
+    }
+
+  });
+
+  client.ws.on('INTERACTION_CREATE', async interaction => {
+    const command = interaction.data.name.toLowerCase();
+    const args = interaction.data.options;
+
+    if (command == "invite") {
+      const embed = new Discord.MessageEmbed()
+        .setAuthor(interaction.member.user.username)
+        .setDescription(`Invite me using **this** invite: [\` Here \`](https://tekno-the-bot.repl.co/invite.html)`)
+        .setAuthor(interaction.member.user.username);
+
+      client.api.interactions(interaction.id, interaction.token).callback.post({
+        data: {
+          type: 4,
+          data: await createAPIMessage(interaction, embed)
+        }
+      });
+    }
+
+    if (command == "help") {
+      const { stripIndents } = require('common-tags');
+      const embed = new Discord.MessageEmbed()
+        .addField(`Links`, `[\` Invite \`](https://tekno-the-bot.repl.co/invite.html)  [\` Website \`](https://tekno-the-bot.repl.co/invite.html)  [\` Support Server \`](https://discord.gg/keykNcVDn3)`)
+        .addField(`Information`, `  \`\`\`Developer: DevEnforcement#0001 ( 585835814743834661 )\nServers: ${client.guilds.cache.size}\nUsers: ${client.guilds.cache.map(c => c.memberCount).reduce((a, b) => a + b)}\`\`\` `)
+
+      const commands = (category) => client.commands
+        .filter((cmd) => cmd.category === category)
+        .map((cmd) => `\`${cmd.name}\``)
+        .join('  ');
+
+      const info = client.categories
+        .map(
+          (cat) => stripIndents` \n**${cat[0].toUpperCase() + cat.slice(1)}**  \n${commands(
+            cat,
+          )}`,
+        )
+        .reduce((string, category) => `${string}\n${category}`);
+      embed.setDescription(info)
+      embed.setFooter(`There are ${client.commands.size} commands!`);
+
+      client.api.interactions(interaction.id, interaction.token).callback.post({
+        data: {
+          type: 4,
+          data: await createAPIMessage(interaction, embed)
+        }
+      })
+    }
+  })
+})
+
+async function createAPIMessage(interaction, content) {
+  const apiMessage = await Discord.APIMessage.create(client.channels.resolve(interaction.channel_id), content)
+    .resolveData()
+    .resolveFiles();
+
+  return { ...apiMessage.data, files: apiMessage.files };
+}
+
 
 
 
