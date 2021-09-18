@@ -4,7 +4,7 @@
 
 ## 📝 Features & Commands
 
-> Note: The prefix is `t!`
+> Note: The default prefix is `t!`
 
 * `Commands are below`:
 > `t!help` - Just do this command in your server, I cant be bothered to write all the commands

@@ -3,7 +3,7 @@ const db = require('quick.db');
 
 module.exports = {
   name: "bal",
-  category: '<:TeknoCoin:881568352093503538> Economy',
+  category: '💰 Economy',
   run: async (client, message, args) => {
 
     const money = db.get(`balance_${message.author.id}`);

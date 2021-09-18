@@ -35,19 +35,30 @@ client.on('ready', () => {
 
 const Distube = require('distube')
 client.distube = new Distube(client, { searchSongs: false, emitNewSongOnly: false })
+const status = (queue) => `Volume: \`${queue.volume}%\` | Filter: \`${queue.filter || "Off"}\` | Loop: \`${queue.repeatMode ? queue.repeatMode == 2 ? "All Queue" : "This Song" : "Off"}\` | Autoplay: \`${queue.autoplay ? "On" : "Off"}\``;
+
 client.distube
   .on("playSong", (message, queue, song) => {
     const embed = new Discord.MessageEmbed()
-      .setDescription(`Playing \`${song.name}\`.\nDuration: \`${song.formattedDuration}\``)
+      .setDescription(`Playing \`${song.name}\`.\nDuration: \`${song.formattedDuration}\`\n${status(queue)}`)
       .setFooter(`Requested by ${message.author.username}#${message.author.discriminator}`)
     message.channel.send(embed)
   })
   .on("addSong", (message, queue, song) => {
     const embed = new Discord.MessageEmbed()
-      .setDescription(`Added \`${song.name}\` to the queue.\nDuration: \`${song.formattedDuration}\`\nQueue Length: ${queue.length}`)
+      .setDescription(`Added \`${song.name}\` to the queue.\nDuration: \`${song.formattedDuration}\`\n${status(queue)}`)
       .setFooter(`Requested by ${message.author.username}#${message.author.discriminator}`)
     message.channel.send(embed)
+
+      .on('error', (channel, error) => {
+        client.channels.cache.get('869646554087186453').send(`An error encoutered: ${error.slice(0, 1979)}`)
+      })
+
+
+
+
   })
+
 
 
 client.on('guildDelete', guild => {
@@ -55,11 +66,17 @@ client.on('guildDelete', guild => {
 })
 
 client.on('message', async message => {
-  const Timeout = new Set();
+
   let prefix = db.get(`prefix_${message.guild.id}`)
   if (!prefix) {
     prefix = 't!'
   }
+
+  const args = message.content.slice(prefix.length).trim().split(/ +/g);
+
+
+  // Message Handling
+  const Timeout = new Set();
   if (message.author.bot) return;
   if (!message.content.toLowerCase().startsWith(prefix)) return;
 
@@ -69,7 +86,6 @@ client.on('message', async message => {
 
   if (!message.guild) return;
 
-  const args = message.content.slice(prefix.length).trim().split(/ +/g);
   const cmd = args.shift().toLowerCase();
 
   if (cmd.length === 0) return;
@@ -235,6 +251,42 @@ async function createAPIMessage(interaction, content) {
 
   return { ...apiMessage.data, files: apiMessage.files };
 }
+// Spam Detection
+
+const AntiSpam = require('discord-anti-spam');
+const antiSpam = new AntiSpam({
+  warnThreshold: 4,
+  kickThreshold: 5,
+  banThreshold: 6,
+  maxInterval: 1000,
+  warnMessage: '{@user}, please stop spamming!',
+  kickMessage: '**{user_tag}** has been kicked for spamming.',
+  banMessage: '**{user_tag}** has been banned for spamming.',
+  maxDuplicatesWarning: 7,
+  maxDuplicatesKick: 10,
+  maxDuplicatesBan: 12,
+  exemptPermissions: ['ADMINISTRATOR'],
+  ignoreBots: true,
+  verbose: true,
+  ignoredUsers: ['815878862075985971', '585835814743834661'],
+});
+
+client.on('message', async message => {
+  antiSpam.message(message)
+
+  // Anti Ping
+  const mentionedMember = message.mentions.members.first()
+  const role = db.get(`antirole_${message.guild.id}`)
+  const devrole = message.guild.roles.cache.get('845327057013178380')
+
+  if (mentionedMember) {
+    if (mentionedMember.roles.cache.has(role.id || devrole.id)) {
+      const noEmbed = new Discord.MessageEmbed()
+        .setDescription(`${message.author.tag}, please do not ping this user/role.`)
+      message.channel.send(noEmbed)
+    }
+  }
+})
 
 
 
