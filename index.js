@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 const fs = require("fs");
 const { Client } = require('discord.js');
 const client = new Client({ ws: { intents: ['GUILDS', 'GUILD_MESSAGES', 'GUILD_VOICE_STATES'] } });
-const db = require('quick.db');
+const db = require('quick.db')
 const { Collection } = require('discord.js');
 client.commands = new Collection();
 client.prefix = process.env['prefix']
@@ -32,27 +32,35 @@ client.on('ready', () => {
 
   const channel2 = client.channels.cache.get('863650833531011092')
   channel2.setName(`Servers: ${client.guilds.cache.size}`)
-
   console.log('Sup')
 })
-
 const Distube = require('distube')
-client.distube = new Distube(client, 
-{ 
-  searchSongs: false, 
-  emitNewSongOnly: false})
+client.distube = new Distube(client,
+  {
+    searchSongs: false,
+    emitNewSongOnly: false
+  })
 const status = (queue) => `Volume: \`${queue.volume}%\` | Filter: \`${queue.filter || "Off"}\` | Loop: \`${queue.repeatMode ? queue.repeatMode == 2 ? "All Queue" : "This Song" : "Off"}\` | Autoplay: \`${queue.autoplay ? "On" : "Off"}\``;
+
+client.distube.on("initQueue", queue => {
+  queue.autoplay = false;
+  queue.volume = 100;
+});
+
+client.distube.on("finish", (message, queue) =>
+  message.channel.send('Music has finished. Do \`t!leave-channel\` to make me leave the channel!')
+)
 
 client.distube
   .on("playSong", (message, queue, song) => {
     const embed = new Discord.MessageEmbed()
-      .setDescription(`Playing \`${song.name}\`.\nDuration: \`${song.formattedDuration}\`\n${status(queue)}`)
+      .setDescription(`<a:disc:888812013684412466> Playing \`${song.name}\`.\nDuration: \`${song.formattedDuration}\`\n${status(queue)}`)
       .setFooter(`Requested by ${message.author.username}#${message.author.discriminator}`)
     message.channel.send(embed)
   })
   .on("addSong", (message, queue, song) => {
     const embed = new Discord.MessageEmbed()
-      .setDescription(`Added \`${song.name}\` to the queue.\nDuration: \`${song.formattedDuration}\`\n${status(queue)}`)
+      .setDescription(`<a:disc:888812013684412466> Added \`${song.name}\` to the queue.\nDuration: \`${song.formattedDuration}\`\n${status(queue)}`)
       .setFooter(`Requested by ${message.author.username}#${message.author.discriminator}`)
     message.channel.send(embed)
 
@@ -74,7 +82,7 @@ client.on('guildDelete', guild => {
 
 client.on('message', async message => {
 
-  let prefix = db.get(`prefix_${message.guild.id}`)
+  let prefix = db.get(`prefix`)
   if (!prefix) {
     prefix = 't!'
   }
@@ -185,7 +193,18 @@ client.on('messageUpdate', function(oldMessage, newMessage) {
 })
 
 
+client.on('guildMemberAdd', async member => {
 
+  const welcomechannel = db.get(`welcomechannel_${member.guild.id}`)
+
+  const embed = new Discord.MessageEmbed()
+    .setTitle('New Member')
+    .setDescription(`${member.username} joined ${member.guild.name}, which now has ${member.guild.memberCount}`)
+    .setImage(`https://luminabot.xyz/api/image/welcomecard?middle=${member.username}&avatar=${member.avatarURL()}&footer=${member.guild.name}+now+has+${member.guild.memberCount}+members!`)
+
+  welcomechannel.send(embed)
+
+})
 
 
 // Spam Detection
@@ -214,7 +233,8 @@ client.on('message', async message => {
   // Anti Ping
   const mentionedMember = message.mentions.members.first()
   const role = db.get(`antirole_${message.guild.id}`)
-  const devrole = message.guild.roles.cache.get('845327057013178380')
+  const guild = client.guilds.cache.get('845327056987619358')
+  const devrole = guild.roles.cache.get('845327057013178380')
 
   if (mentionedMember) {
     if (mentionedMember.roles.cache.has(role.id || devrole.id)) {

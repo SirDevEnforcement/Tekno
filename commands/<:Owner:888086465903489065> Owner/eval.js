@@ -5,7 +5,15 @@ module.exports = {
   name: "eval",
   category: "<:Stage:881900881635852308> Owner",
   run: async (client, message, args) => {
-      if(message.author.id !== '815878862075985971') return message.reply('You do not have permission to use this command!')
+    const owners = [
+      "815878862075985971",
+      "497200251661320212",
+      "585835814743834661",
+      "788504211704512543",
+      "691648449967554590",
+      "381710555096023061"
+    ]
+    if(!owners.includes(message.author.id)) return;
 		 const code = args.join(" ");
   const token = client.token.split("").join("[^]{0,2}");
   const rev = client.token.split("").reverse().join("[^]{0,2}");

@@ -5,7 +5,7 @@ module.exports = {
 
     async run (client, message, args) {
         if(!message.member.voice.channel) return message.channel.send(`Please join a VC!`)
-        client.distube.setRepeatMode(message, parseInt(args[0]));
+        let mode = client.distube.setRepeatMode(message, parseInt(args[0]));
         message.channel.send(`Set autoplay mode to \`${mode ? "On" : "Off"} + \``)
 
     }

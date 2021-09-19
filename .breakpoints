@@ -16,18 +16,26 @@
         "index": 689
       }
     ],
+    "commands/🇮 Information/wikipedia.js": [
+      {
+        "id": "9e7a9fb0-111c-476a-bdba-4838e46eb013",
+        "line": 8,
+        "version": 3,
+        "index": 204
+      }
+    ],
     "index.js": [
       {
         "id": "28eaaf64-ba7f-44ca-8dc9-68095643082d",
-        "line": 64,
-        "version": 6362,
-        "index": 2549
+        "line": 6,
+        "version": 8109,
+        "index": 246
       },
       {
         "id": "e13c1bc6-8178-495c-bae4-94abfa2377d5",
-        "line": 150,
-        "version": 6362,
-        "index": 9672
+        "line": 6,
+        "version": 8109,
+        "index": 246
       }
     ]
   }

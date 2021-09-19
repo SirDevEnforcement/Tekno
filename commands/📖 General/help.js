@@ -1,6 +1,5 @@
 const { MessageEmbed } = require('discord.js');
 const { stripIndents } = require('common-tags');
-const db = require('quick.db')
 
 
 module.exports = {
@@ -19,7 +18,7 @@ function getAll(client, message) {
   const embed = new MessageEmbed()
     .setAuthor(`Tekno - Help Menu`, client.user.avatarURL())
     .addField(`Links`, `[\` Invite \`](https://tekno-the-bot.repl.co/invite.html)  [\` Website \`](https://tekno-the-bot.repl.co)  [\` Support Server \`](https://discord.gg/keykNcVDn3)`)
-    .addField(`Information`,`  \`\`\`Prefix: ${prefix} \nDeveloper: DevEnforcement#0001 ( 585835814743834661 )\nServers: ${client.guilds.cache.size}\nUsers: ${client.guilds.cache.map(c => c.memberCount).reduce((a, b) => a + b)}\`\`\` `)
+    .addField(`Information`,`  \`\`\`Prefix: ${prefix} \nDeveloper: DevEnforcement#9925 ( 585835814743834661 )\nServers: ${client.guilds.cache.size}\nUsers: ${client.guilds.cache.map(c => c.memberCount).reduce((a, b) => a + b)}\`\`\` `)
 
   const commands = (category) => client.commands
     .filter((cmd) => cmd.category === category)
