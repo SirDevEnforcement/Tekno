@@ -1,5 +1,6 @@
 const { MessageEmbed } = require('discord.js');
 const { stripIndents } = require('common-tags');
+const db = require('quick.db');
 
 
 module.exports = {
