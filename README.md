@@ -1,37 +1,51 @@
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](https://commitizen.github.io/cz-cli/)
-
-![logo](https://media.discordapp.net/attachments/845327057465507885/881107857645395998/unknown.png)
-
-## 📝 Features & Commands
-
-> Note: The default prefix is `t!`
-
-* `Commands are below`:
-> `t!help` - Just do this command in your server, I cant be bothered to write all the commands
-
-
-* `Features`:
-
-> Auto Moderation
-
-> Fun
-
-> Image Generation
-
-> Moderation
-
-> Economy `[BETA]`
-
-> Informaton
-
-> Utility
-
-> General
+# Tekno
+> Tekno is the `only` multi-feature bot you will ever need!
 
 
 
+![](https://discord.com/api/guilds/845327056987619358/widget.png)
 
-## 📝 Credits
+## Installation
 
-* [Scorprian / Vetrilox](https://github.com/ScorprianDev)
-* [Mirabellier / Kanna](https://github.com/MiraBellierr)
+```
+git clone https://github.com/SirDevEnforcement/Tekno
+```
+
+## Setup
+
+```sh
++ npm install (installs all packages needed)
++ node index.js (runs the bot)
+```
+
+## Release History
+
+[None as of creating readme.md]
+
+## Contact Me
+
+> [Discord](https://discord.gg/keykNcVDn3)
+
+> [Create an issue](https://github.com/SirDevEnforcement/Tekno/issues/new)
+
+[https://github.com/SirDevEnforcement/Tekno](https://github.com/SirDevEnforcement/Tekno)
+
+## Support Tekno
+
+**__You__** can support `Tekno` by:
+
+> [`Voting`](https://radarbotdirectory.xyz/bot/888732127586316289/vote)
+> 
+> [`Submitting an issue`](https://github.com/SirDevEnforcement/Tekno/issues/new)
+> 
+> [`Joining the support server`](https://discord.gg/keykNcVDn3)
+> 
+> [`Inviting it`](https://dsc.gg/tekno)
+
+## Important Information
+
+> The default prefix, when using the bot, is `t!`. You can change this by doing: `t!prefix <your desired prefix>`
+> 
+> Please post some credit (in the help embed), otherwise the owner (https://github.com/SirDevEnforcement) may take some action.
+> 
+  > If you would like to be excused from adding credit, join the [support server](https://discord.gg/keykNcVDn3) and contacting the owner
