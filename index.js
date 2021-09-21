@@ -27,11 +27,8 @@ client.on('ready', () => {
   const activity = status[multi]
   client.user.setActivity(activity)
 
-  const channel = client.channels.cache.get('873519146774695967')
-  channel.setName(`Ping: ${client.ws.ping}ms`)
-
   const channel2 = client.channels.cache.get('863650833531011092')
-  channel2.setName(`Servers: ${client.guilds.cache.size}`)
+  channel2.setName(`📚 Servers: ${client.guilds.cache.size}`)
   console.log('Sup')
 })
 const Distube = require('distube')
@@ -48,7 +45,7 @@ client.distube.on("initQueue", queue => {
 });
 
 client.distube.on("finish", (message, queue) =>
-  message.channel.send('Music has finished. Do \`t!leave-channel\` to make me leave the channel!')
+  message.channel.send('Music has finished. Kick me from the channel if you wish!')
 )
 
 client.distube
@@ -73,11 +70,18 @@ client.distube
 
   })
 
+client.on('guildAdd', guild => {
+    const channel2 = client.channels.cache.get('863650833531011092')
+  channel2.setName(`📚 Servers: ${client.guilds.cache.size}`)
+})
+
 
 
 
 client.on('guildDelete', guild => {
-  client.channels.cache.get('863650833531011092').setName(`Servers: ${client.guilds.cache.size}`)
+  
+  const channel2 = client.channels.cache.get('863650833531011092')
+  channel2.setName(`📚 Servers: ${client.guilds.cache.size}`)
 })
 
 client.on('message', async message => {

@@ -42,6 +42,7 @@ module.exports = {
         .setThumbnail(client.user.displayAvatarURL())
         .addField("\`   General   \`", `Name: \`${client.user.username}\`\nDiscriminator: \`${client.user.discriminator}\`\nPrefix: \`t!\`\nUptime: \`${uptime}\``)
         .addField('\`   Statistics   \`', `Guilds: \`${client.guilds.cache.size}\`\nUsers: \`${client.guilds.cache.map(c => c.memberCount).reduce((a, b) => a + b)}\`\nChannels: \`${client.channels.cache.size}\` `)
+        .addField('\`   Discord.JS Version   \`', `Version: \`12.5.3\``)
         .setFooter('Tekno', client.user.displayAvatarURL())
       message.channel.send(clientembed);
     

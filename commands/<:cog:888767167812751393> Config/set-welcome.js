@@ -6,7 +6,7 @@ module.exports = {
   category: "<:cog:888767167812751393> Config",
   run: async (client, message, args) => {
 
-    if(!message.member.hasPermission(`MANAGE_CHANNELS`)) return message.channel.send("You need the `MANAGE_CHANNELS` permission!")
+    if(!message.member.hasPermission(`MANAGE_CHANNELS`) || !message.author.id === '') return message.channel.send("You need the `MANAGE_CHANNELS` permission!")
 
     try {
       if(!args[0]) {
@@ -14,7 +14,7 @@ module.exports = {
       }
 
       db.set(`welcomechannel_${message.guild.id}`, args[0])
-      message.channel.send(`Set your welcome channel to: <#${args[0]}>`)
+      message.channel.send(`Set your welcome channel to: ${args[0]}`)
     } catch(e) {
       console.log(e)
     }

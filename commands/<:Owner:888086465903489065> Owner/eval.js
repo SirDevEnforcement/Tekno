@@ -26,7 +26,7 @@ module.exports = {
     if (output.length < 1950) {
 		const outputembed = new Discord.MessageEmbed()
 		.setTitle('Evaluation Successful')
-		.setDescription('**Argument**\n\`\`\`' + args[0] + '\`\`\`\n\n**Output**\n\`\`\`' + output + '\`\`\`')
+		.setDescription('**Argument**\n\`\`\`' + code + '\`\`\`\n\n**Output**\n\`\`\`' + output + '\`\`\`')
 		.setFooter('Tekno', client.user.displayAvatarURL())
       message.channel.send(outputembed);
     }
