@@ -14,12 +14,6 @@ client.categories = fs.readdirSync('./commands/');
 ['command'].forEach((handler) => {
   require(`./handlers/${handler}`)(client);
 });
-// RBD
-const radarbotdirectoryxyz = require('./radarbotdirectory.xyz');
-setInterval(function() {
-  radarbotdirectoryxyz(client);
-
-}, 1.8e+6);
 const regex = new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/)
 const regex2 = new RegExp(/[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/)
 
@@ -211,11 +205,29 @@ client.on('guildMemberAdd', async member => {
   const welcomechannel = db.get(`welcomechannel_${member.guild.id}`)
 
   const embed = new Discord.MessageEmbed()
-    .setTitle('New Member')
-    .setDescription(`${member.username} joined ${member.guild.name}, which now has ${member.guild.memberCount}`)
-    .setImage(`https://luminabot.xyz/api/image/welcomecard?middle=${member.username}&avatar=${member.avatarURL()}&footer=${member.guild.name}+now+has+${member.guild.memberCount}+members!`)
+    .setAuthor('-> New Member! <-', member.guild.iconURL())
+    .setColor('GREEN')
+    .setThumbnail(member.user.displayAvatarURL())
+    .setDescription(`:wave: Welcome **${member.user.tag}** to **${member.guild.name}**!\nMake sure to read the rules of the server! \n\nHave a __great__ day!`)
+    .setFooter(`User No. ${member.guild.memberCount}`)
+    .setTimestamp()
 
-  welcomechannel.send(embed)
+  client.channels.cache.get(welcomechannel).send(embed)
+
+})
+
+client.on('guildMemberRemove', async member => {
+
+  const welcomechannel = db.get(`welcomechannel_${member.guild.id}`)
+
+  const embed = new Discord.MessageEmbed()
+    .setAuthor('-> Member Left! <-', member.guild.iconURL())
+    .setColor('RED')
+    .setThumbnail(member.user.displayAvatarURL())
+    .setDescription(`:wave: Goodbye **${member.user.tag}** from **${member.guild.name}`)
+    .setTimestamp()
+
+  client.channels.cache.get(welcomechannel).send(embed)
 
 })
 
