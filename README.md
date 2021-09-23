@@ -18,10 +18,6 @@ git clone https://github.com/SirDevEnforcement/Tekno
 + node index.js (runs the bot)
 ```
 
-## Release History
-
-[None as of creating readme.md]
-
 ## Contact Me
 
 > [Discord](https://discord.gg/keykNcVDn3)

@@ -25,7 +25,7 @@ client.on('ready', () => {
   ]
   const multi = Math.floor(Math.random() * status.length);
   const activity = status[multi]
-  client.user.setActivity(activity)
+  client.user.setActivity(activity, { type: 'LISTENING' } )
 
   const channel = client.channels.cache.get('890588312769818674')
   channel.setName(`👤 Total Users: ${client.guilds.cache.map(c => c.memberCount).reduce((a, b) => a + b)}`)
