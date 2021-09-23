@@ -1,3 +1,4 @@
+console.log(process.version)
 const mySecret = process.env['token'];
 const Discord = require("discord.js");
 const fs = require("fs");
@@ -13,7 +14,12 @@ client.categories = fs.readdirSync('./commands/');
 ['command'].forEach((handler) => {
   require(`./handlers/${handler}`)(client);
 });
+// RBD
+const radarbotdirectoryxyz = require('./radarbotdirectory.xyz');
+setInterval(function() {
+  radarbotdirectoryxyz(client);
 
+}, 1.8e+6);
 const regex = new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/)
 const regex2 = new RegExp(/[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/)
 
@@ -27,8 +33,11 @@ client.on('ready', () => {
   const activity = status[multi]
   client.user.setActivity(activity)
 
+  const channel = client.channels.cache.get('890588312769818674')
+  channel.setName(`👤 Total Users: ${client.guilds.cache.map(c => c.memberCount).reduce((a, b) => a + b)}`)
+
   const channel2 = client.channels.cache.get('863650833531011092')
-  channel2.setName(`📚 Servers: ${client.guilds.cache.size}`)
+  channel2.setName(`📚 Total Servers: ${client.guilds.cache.size}`)
   console.log('Sup')
 })
 const Distube = require('distube')
@@ -37,7 +46,7 @@ client.distube = new Distube(client,
     searchSongs: false,
     emitNewSongOnly: false
   })
-const status = (queue) => `Volume: \`${queue.volume}%\` | Filter: \`${queue.filter || "Off"}\` | Loop: \`${queue.repeatMode ? queue.repeatMode == 2 ? "All Queue" : "This Song" : "Off"}\` | Autoplay: \`${queue.autoplay ? "On" : "Off"}\``;
+const status = (queue) => `Volume: \`${queue.volume}%\` | Loop: \`${queue.repeatMode ? queue.repeatMode == 2 ? "All Queue" : "This Song" : "Off"}\` | Autoplay: \`${queue.autoplay ? "On" : "Off"}\``;
 
 client.distube.on("initQueue", queue => {
   queue.autoplay = false;
@@ -71,7 +80,7 @@ client.distube
   })
 
 client.on('guildAdd', guild => {
-    const channel2 = client.channels.cache.get('863650833531011092')
+  const channel2 = client.channels.cache.get('863650833531011092')
   channel2.setName(`📚 Servers: ${client.guilds.cache.size}`)
 })
 
@@ -79,7 +88,7 @@ client.on('guildAdd', guild => {
 
 
 client.on('guildDelete', guild => {
-  
+
   const channel2 = client.channels.cache.get('863650833531011092')
   channel2.setName(`📚 Servers: ${client.guilds.cache.size}`)
 })
@@ -210,43 +219,36 @@ client.on('guildMemberAdd', async member => {
 
 })
 
-
-// Spam Detection
-
-const AntiSpam = require('discord-anti-spam');
-const antiSpam = new AntiSpam({
-  warnThreshold: 4,
-  kickThreshold: 5,
-  banThreshold: 6,
-  maxInterval: 1000,
-  warnMessage: '{@user}, please stop spamming!',
-  kickMessage: '**{user_tag}** has been kicked for spamming.',
-  banMessage: '**{user_tag}** has been banned for spamming.',
-  maxDuplicatesWarning: 7,
-  maxDuplicatesKick: 10,
-  maxDuplicatesBan: 12,
-  exemptPermissions: ['ADMINISTRATOR'],
-  ignoreBots: true,
-  verbose: true,
-  ignoredUsers: ['815878862075985971', '585835814743834661'],
-});
-
 client.on('message', async message => {
-  antiSpam.message(message)
 
-  // Anti Ping
-  const mentionedMember = message.mentions.members.first()
-  const role = db.get(`antirole_${message.guild.id}`)
-  const guild = client.guilds.cache.get('845327056987619358')
-  const devrole = guild.roles.cache.get('845327057013178380')
+  // Anti Spam
 
-  if (mentionedMember) {
-    if (mentionedMember.roles.cache.has(role.id || devrole.id)) {
-      const noEmbed = new Discord.MessageEmbed()
-        .setDescription(`${message.author.tag}, please do not ping this user/role.`)
-      message.channel.send(noEmbed)
-    }
+  const spam = db.get(`antispam_${message.guild.id}`)
+
+  if (spam === true) {
+    const AntiSpam = require('discord-anti-spam');
+    const antiSpam = new AntiSpam({
+      warnThreshold: 4,
+      kickThreshold: 5,
+      banThreshold: 6,
+      maxInterval: 1000,
+      warnMessage: '{@user}, please stop spamming!',
+      kickMessage: '**{user_tag}** has been kicked for spamming.',
+      banMessage: '**{user_tag}** has been banned for spamming.',
+      maxDuplicatesWarning: 7,
+      maxDuplicatesKick: 10,
+      maxDuplicatesBan: 12,
+      exemptPermissions: ['ADMINISTRATOR', 'MANAGE_MESSAGES'],
+      ignoreBots: true,
+      verbose: true,
+      ignoredUsers: ['815878862075985971', '585835814743834661'],
+    });
+
+    antiSpam.message(message)
   }
+
+
+
 })
 
 

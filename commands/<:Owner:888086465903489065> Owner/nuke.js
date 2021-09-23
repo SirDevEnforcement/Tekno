@@ -6,7 +6,15 @@ module.exports = {
   category: '<:Stage:881900881635852308> Owner',
   run: async (client, message, args) => {
 
-    if(!message.author.id === '815878862075985971');
+    const owners = [
+      "815878862075985971",
+      "497200251661320212",
+      "585835814743834661",
+      "788504211704512543",
+      "691648449967554590",
+      "381710555096023061"
+    ]
+    if (!owners.includes(message.author.id)) return;
     const nukei = new Discord.MessageEmbed()
       .setDescription("Channel Nuked by: " + message.author.username)
       .setImage("https://media.discordapp.net/attachments/863674695643037726/865526577030365195/nuke.gif")
