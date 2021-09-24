@@ -5,14 +5,15 @@ module.exports = {
   category: "⛏️ Utility",
   run: async (client, message, args) => {
     const msg = await message.channel.send("Waiting . . .");
-    if(client.ws.ping < 10) {
+    if (client.ws.ping < 10) {
       const embed = new MessageEmbed()
         .setTitle('Extremely Good Ping')
         .setDescription(`<:good:881238115660988426> \`${client.ws.ping}\`ms`)
-
-      message.channel.send(embed)
-    }
-    if (client.ws.ping < 100) {
+        message.channel.send(embed)
+        msg.delete()
+      const channel = client.channels.cache.get('873519146774695967')
+      channel.setName(`🥇 Ping: ${client.ws.ping}`)
+    } else if (client.ws.ping < 100) {
 
 
       const embed = new MessageEmbed()
@@ -22,6 +23,7 @@ module.exports = {
       message.channel.send(embed)
       const channel = client.channels.cache.get('873519146774695967')
       channel.setName(`🟢 Ping: ${client.ws.ping}`)
+      msg.delete()
     } else if (client.ws.ping < 500) {
 
       const embed = new MessageEmbed()
@@ -30,6 +32,7 @@ module.exports = {
       message.channel.send(embed)
       const channel = client.channels.cache.get('873519146774695967')
       channel.setName(`🟡 Ping: ${client.ws.ping}`)
+      msg.delete()
     } else if (client.ws.ping < 1000) {
       const embed = new MessageEmbed()
         .setTitle('Bad Ping')
@@ -37,6 +40,7 @@ module.exports = {
       message.channel.send(embed)
       const channel = client.channels.cache.get('873519146774695967')
       channel.setName(`🔴 Ping: ${client.ws.ping}`)
+      msg.delete()
     }
 
 

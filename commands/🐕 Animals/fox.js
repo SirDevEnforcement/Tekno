@@ -1,15 +1,15 @@
 const { MessageEmbed } = require('discord.js');
-const { getDog, getDogFacts } = require('shitapi-wrapper');
+const { getFox, getFoxFacts } = require('shitapi-wrapper');
 
 module.exports = {
-  name: "dog",
+  name: "fox",
   category: '🐕 Animals',
   run: async (client, message, args) => {
 
-    const image = await getDog(`3YLQ3c8FMSwGPCRV`)
-    const fact = await getDogFacts(`3YLQ3c8FMSwGPCRV`)
+    const image = await getFox(`3YLQ3c8FMSwGPCRV`)
+    const fact = await getFoxFacts(`3YLQ3c8FMSwGPCRV`)
     const card = new MessageEmbed()
-    .setTitle('🐕 Dogs!')
+    .setTitle('🦊 Foxes!')
     .setDescription(fact)
     .setImage(image)
     message.channel.send(card)

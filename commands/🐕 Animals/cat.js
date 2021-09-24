@@ -9,7 +9,7 @@ module.exports = {
     const image = await getCat(`3YLQ3c8FMSwGPCRV`)
     const fact = await getCatFacts(`3YLQ3c8FMSwGPCRV`)
     const card = new MessageEmbed()
-    .setTitle('Cats!')
+    .setTitle('🐱 Cats!')
     .setDescription(fact)
     .setImage(image)
     message.channel.send(card)

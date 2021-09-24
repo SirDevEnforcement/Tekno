@@ -15,6 +15,7 @@
     "@top-gg/sdk": "^3.1.2",
     "ascii-table": "0.0.9",
     "axios": "^0.21.4",
+    "body-parser": "^1.19.0",
     "common-tags": "^1.8.0",
     "deepmerge": "^4.2.2",
     "discord-anti-spam": "^2.5.8",
@@ -31,6 +32,7 @@
     "shitapi-wrapper": "^2.0.0",
     "something-random-on-discord": "^3.4.4",
     "tiktok-scraper": "^1.4.36",
+    "top.gg": "^2.3.2",
     "urban": "^0.3.4",
     "weather-js": "^2.0.0"
   },

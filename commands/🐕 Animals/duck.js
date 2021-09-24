@@ -9,7 +9,7 @@ module.exports = {
     const image = await getDuck(`3YLQ3c8FMSwGPCRV`)
     const fact = await getDuckFacts(`3YLQ3c8FMSwGPCRV`)
     const card = new MessageEmbed()
-    .setTitle('Ducks!')
+    .setTitle('🦆 Ducks!')
     .setDescription(fact)
     .setImage(image)
     message.channel.send(card)
