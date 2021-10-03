@@ -2,6 +2,7 @@ const { MessageEmbed } = require('discord.js');
 
 module.exports = {
   name: "total-bans",
+  aliases: ['tb', 'bans'],
   category: "<:Stage:881900881635852308> Owner",
   run: async (client, message, args) => {
 

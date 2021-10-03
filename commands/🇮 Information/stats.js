@@ -2,6 +2,7 @@ const { MessageEmbed } = require('discord.js');
 
 module.exports = {
   name: "stats",
+  aliases: ['s'],
   category: '🇮 Information',
   run: async (client, message, args) => {
       let { version } = require("discord.js");

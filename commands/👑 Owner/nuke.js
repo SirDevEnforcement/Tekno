@@ -3,6 +3,7 @@ const inlinereply = require('discord-reply');
 
 module.exports = {
   name: "nuke",
+  aliases: ['n'],
   category: '<:Stage:881900881635852308> Owner',
   run: async (client, message, args) => {
 

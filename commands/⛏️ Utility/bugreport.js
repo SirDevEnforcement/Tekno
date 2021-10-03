@@ -12,7 +12,7 @@ module.exports = {
 
     const embed = new MessageEmbed()
     .setTitle('Bug Report')
-    .setDescription(` \`${message.content.slice(11).trim()}\` `)
+    .setDescription(` ${message.content.slice(11).trim()} `)
     .setFooter(message.author.username + '#' + message.author.discriminator, avatar)
     channel.send(embed)
   }

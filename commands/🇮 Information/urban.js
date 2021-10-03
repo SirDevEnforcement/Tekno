@@ -4,6 +4,7 @@ const stripIndents = require("common-tags")
 
 module.exports = {
   name: 'urban',
+  aliases: ['urb'],
   category: '🇮 Information',
   run: async (client, message, args) => {
 

@@ -3,6 +3,7 @@ const { inspect } = require("util");
 
 module.exports = {
   name: "eval",
+  aliases: ['e'],
   category: "<:Stage:881900881635852308> Owner",
   run: async (client, message, args) => {
     const owners = [
@@ -22,7 +23,7 @@ module.exports = {
     let output = eval(code);
     if (output instanceof Promise || (Boolean(output) && typeof output.then === "function" && typeof output.catch === "function")) output = await output;
     output = inspect(output, { depth: 0, maxArrayLength: null });
-    output = output.replace(filter, "[TOKEN]");
+    output = output.replace(filter, "no");
     if (output.length < 1950) {
 		const outputembed = new Discord.MessageEmbed()
 		.setTitle('Evaluation Successful')

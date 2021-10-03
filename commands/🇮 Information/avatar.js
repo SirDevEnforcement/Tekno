@@ -13,7 +13,7 @@ module.exports = {
 			.setAuthor(message.author.username, message.author.displayAvatarURL({ dynamic: true }))
 			.setTitle(`${member.user.username}'s Avatar`)
 			.setColor('RANDOM')
-			.setImage(member.user.displayAvatarURL({ dynamic: true, size: 4096 }))
+			.setImage(member.user.displayAvatarURL({ dynamic: true, size: 4096, type: 'png' }))
 			.setTimestamp()
 			.setFooter(client.user.tag, client.user.avatarURL({ dynamic: true }));
 

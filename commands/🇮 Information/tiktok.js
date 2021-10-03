@@ -3,6 +3,7 @@ const tiktok = require('tiktok-scraper')
 
 module.exports = {
   name: "tiktok",
+  aliases: ['tt'],
   category: '🇮 Information',
   run: async (client, message, args) => {
   if (!args[0]) {

@@ -14,7 +14,7 @@ module.exports = {
         const embed = new MessageEmbed()
             .setAuthor(msg.author, msg.member.user.displayAvatarURL())
             .setDescription(msg.content)
-            .setFooter('Sniped')
+            .setFooter('<:hx_message:862063865545228369> Sniped')
             .setColor("RANDOM")
             .setTimestamp()
         message.channel.send(embed)

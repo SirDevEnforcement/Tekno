@@ -3,7 +3,7 @@ const { readdirSync } = require('fs');
 const ascii = require('ascii-table');
 
 const table = new ascii('Commands');
-table.setHeading('Command', 'Load status');
+table.setHeading('Command', 'Load status', 'Aliases');
 
 module.exports = (client) => {
   readdirSync('./commands/').forEach(dir => {
@@ -15,6 +15,10 @@ module.exports = (client) => {
       if (pull.name) {
         client.commands.set(pull.name, pull);
         table.addRow(file, '✅');
+      } else if (pull.aliases) {
+
+        table.addRow(file, '✅')
+
       }
       else {
         table.addRow(file, '❎ -> missing a help.name, or help.name is not a string.');

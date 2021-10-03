@@ -2,6 +2,7 @@ const { MessageEmbed } = require("discord.js");
 
 module.exports = {
   name: "vote",
+  aliases: ['v'],
   category: "📖 General",
   timeout: 5000,
   run: async (client, message, args) => {

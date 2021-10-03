@@ -18,7 +18,7 @@ module.exports = {
     if(!reason) return message.channel.send('Please specify a reason!')
     const embed2 = new MessageEmbed()
       .setColor("GREEN")
-      .setTitle('<:tickYes:870648352704987176> Banned')
+      .setTitle('<:hx_ba:862059080301805628> Banned')
       .setDescription(`Success! <@${target}> was banned! \n \nReason: \`${reason}\`\n Moderator: \`${message.author.username}#${message.author.discriminator}\``);
     await message.channel.send(embed2);
   }

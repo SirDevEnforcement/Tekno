@@ -9,8 +9,11 @@ let questions = [
       title: "Best discord bot",
       options: ["MCFacts", "Tekno", "Render Bump", "Luigi", "Vetrilox"],
       correct: 2
+  },
+  {
+      title: ""
   }
-]
+  ]
 
 module.exports = {
   name: "trivia",

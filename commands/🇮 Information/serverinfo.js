@@ -26,6 +26,7 @@ let region = {
 };
 module.exports = {
   name: "serverinfo",
+  aliases: ['si', 'server'],
   category: '🇮 Information',
   run: async (client, message, args) => {
 

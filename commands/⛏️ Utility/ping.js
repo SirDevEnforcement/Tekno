@@ -5,7 +5,7 @@ module.exports = {
   category: "⛏️ Utility",
   run: async (client, message, args) => {
     const msg = await message.channel.send("Waiting . . .");
-    if (client.ws.ping < 10) {
+    if (client.ws.ping < 50) {
       const embed = new MessageEmbed()
         .setTitle('Extremely Good Ping')
         .setDescription(`<:good:881238115660988426> \`${client.ws.ping}\`ms`)

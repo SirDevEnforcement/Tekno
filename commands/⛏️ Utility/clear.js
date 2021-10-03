@@ -1,6 +1,7 @@
-const { MessageEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js');
 module.exports = {
     name: "clear",
+    aliases: ["purge"],
     category: "⛏️ Utility",
     timeout: 5000,
     run: async (client, message, args) => {

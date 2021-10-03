@@ -24,7 +24,7 @@ module.exports = {
 
 		let res;
 		if (!reason) {
-			res = 'no reason given';
+			res = 'N/A';
 		}
 		else {
 			res = reason;
@@ -34,7 +34,7 @@ module.exports = {
 		await member.ban({ reason: reason, days: 7 }).catch(e => console.log(`[WARN] ${e.message} in ${e.filename} [${e.lineNumber}, ${e.columnNumber}]`));
 		message.reply(`Successfully banned **${member.user.username}** for a reason **${res}**, by **${message.author.username}**.`);
 			const embed = new Discord.MessageEmbed()
-				.setAuthor('Member Banned', member.user.displayAvatarURL({ dynamic: true }))
+				.setAuthor('<:hx_ba:862059080301805628> Member Banned', member.user.displayAvatarURL({ dynamic: true }))
 				.setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
 				.setColor('RANDOM')
 				.setDescription(`Member: ${member.user.tag}`)
