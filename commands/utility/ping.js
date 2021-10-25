@@ -3,43 +3,31 @@ module.exports = {
   name: "ping",
     description: "Check the bots latency!", 
   run: async (client, message, args) => {
-    const msg = await message.channel.send("Waiting . . .");
+    const msg = await message.channel.send({content: "Waiting . . ."});
     if (client.ws.ping < 50) {
       const embed = new MessageEmbed()
         .setTitle('Extremely Good Ping')
-        .setDescription(`<:good:881238115660988426> \`${client.ws.ping}\`ms`)
-  message.channel.send({ embeds: [embed] });
-        msg.delete()
-      const channel = client.channels.cache.get('873519146774695967')
-      channel.setName(`🥇 Ping: ${client.ws.ping}`)
+        .setDescription(`<:goldping:900038218043490357> \`${client.ws.ping}\`ms`)
+  msg.edit({embeds: [embed]})
     } else if (client.ws.ping < 100) {
 
 
       const embed = new MessageEmbed()
         .setTitle('Good Ping')
-        .setDescription(`<:good:881238115660988426> \`${client.ws.ping}\`ms`)
-
-  message.channel.send({ embeds: [embed] });
-      const channel = client.channels.cache.get('873519146774695967')
-      channel.setName(`🟢 Ping: ${client.ws.ping}`)
-      msg.delete()
+        .setDescription(`<:leo_goodping:892325994596298782> \`${client.ws.ping}\`ms`)
+          msg.edit({embeds: [embed]})
     } else if (client.ws.ping < 500) {
 
       const embed = new MessageEmbed()
         .setTitle('Moderate Ping')
-        .setDescription(`<:moderate:881238123290443806> \`${client.ws.ping}\`ms`)
-  message.channel.send({ embeds: [embed] });
-      const channel = client.channels.cache.get('873519146774695967')
-      channel.setName(`🟡 Ping: ${client.ws.ping}`)
-      msg.delete()
+        .setDescription(`<:leo_midping:892326052377034772>  \`${client.ws.ping}\`ms`)
+          msg.edit({embeds: [embed]})
+
     } else if (client.ws.ping < 1000) {
       const embed = new MessageEmbed()
         .setTitle('Bad Ping')
-        .setDescription(`<:bad:881238132568252467> \`${client.ws.ping}\`ms`)
-  message.channel.send({ embeds: [embed] });
-      const channel = client.channels.cache.get('873519146774695967')
-      channel.setName(`🔴 Ping: ${client.ws.ping}`)
-      msg.delete()
+        .setDescription(`<:leo_badping:892326095603507230> \`${client.ws.ping}\`ms`)
+          msg.edit({embeds: [embed]})
     }
 
 

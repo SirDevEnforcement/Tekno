@@ -32,6 +32,10 @@ module.exports = {
   message.channel.send({ embeds: [outputembed] });
     }
   } catch (error) {
-    message.channel.send({content: ` \`\`\`js\n${error}\`\`\` `});
+
+    const erroremb = new Discord.MessageEmbed()
+    .setTitle(`⚠ Error`)
+    .setDescription(`\`\`\`${error}\`\`\``)
+    message.channel.send({embeds: [erroremb]})
  }}}
  

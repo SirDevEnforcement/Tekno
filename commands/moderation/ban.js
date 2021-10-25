@@ -8,16 +8,18 @@ module.exports = {
 
 		const member = await getMember(message, args[0]);
 
+    
     		if (!message.member.permissions.has('BAN_MEMBERS')) return message.reply('Sorry you don\'t have ban permission to use this command.');
 		if (!message.guild.me.permissions.has('BAN_MEMBERS')) return message.reply('I don\'t have ban permission. Please enable it for me to be able to ban members');
 		if (!args[0]) return message.reply(`The right syntax is \`t!ban <mention | id | username> [reason]\`.`);
 
-		if (!member) return message.reply(`The right syntax is \`t!ban <mention | id | username> [reason]\`.`);
-		if (!member.bannable) return message.reply('Seems like I can\'t ban this user. Please make sure my role is higher than any members');
-		if (member.user.id === '585835814743834661') return message.reply('Seems like I can\'t ban my owner!');
-		if (member.user.id === client.user.id) return message.reply('Seems like I can\'t ban myself');
-		if (member.user.id === message.author.id) return message.reply('Seems like you can\'t ban yourself');
-		if (member.roles.highest.position > message.member.roles.highest.position && message.guild.owner.user.id !== message.author.id) return message.reply('Please make sure your role is higher than the person you want to ban.');
+
+		if (!member) return message.reply({content: `The right syntax is \`t!ban <mention | id | username> [reason]\`.`});
+		if (!member.bannable) return message.reply({content: 'Seems like I can\'t ban this user. Please make sure my role is higher than any members'});
+		if (member.user.id === '815878862075985971') return message.reply({content: 'Seems like I can\'t ban my owner!'});
+		if (member.user.id === client.user.id) return message.reply({content: 'Seems like I can\'t ban myself'});
+		if (member.user.id === message.author.id) return message.reply({content: 'Seems like you can\'t ban yourself'});
+		if (member.roles.highest.position > message.member.roles.highest.position && message.guild.owner.user.id !== message.author.id) return message.reply({content: 'Please make sure your role is higher than the person you want to ban.'});
 
 
 		const reason = args.slice(1).join(' ');
@@ -30,17 +32,15 @@ module.exports = {
 			res = reason;
 		}
 
-		member.send({content: [`You have been banned in **${message.guild.name}** for **${res}**`]}).catch((err) => (console.log(err)));
+		member.send({content: `You have been banned in **${message.guild.name}** for **${res}**`}).catch((err) => (console.log(err)));
 		await member.ban({ reason: reason, days: 7 }).catch(e => console.log(`[WARN] ${e.message} in ${e.filename} [${e.lineNumber}, ${e.columnNumber}]`));
 			const embed = new Discord.MessageEmbed()
 				.setTitle('<:hx_ba:862059080301805628> Member Banned')
 				.setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
 				.setColor('RANDOM')
-				.setDescription(`Member: ${member.user.tag}`)
-				.addFields(
-					{ name: '**Banned by**', value: message.author },
-					{ name: '**Reason**', value: res },
-				)
+				.addField(`Member`, `\`\`\`${member.user.tag}\`\`\``)
+        .addField('Banned by', `${message.author}`)
+        .addField('Reason', `\`\`\`${res}\`\`\``)
 				.setTimestamp()
 				.setFooter(`ID: ${member.user.id}`, member.user.displayAvatarURL({ dynamic: true }));
 

@@ -56,7 +56,7 @@ module.exports = {
 
                 if (ignored.includes(dir.toLowerCase())) return;
 
-                const name = `${emo[dir]} - ${dir[0].toUpperCase()}${dir.slice(1).toLowerCase()}`;
+                const name = `${emo[dir]} ${dir[0].toUpperCase()}${dir.slice(1).toLowerCase()}`;
 
                 let nome = dir.toUpperCase();
 
@@ -65,7 +65,7 @@ module.exports = {
 
                 cats = {
                     name: name,
-                    value: `\`${prefix}help ${dir.toLowerCase()}\``,
+                    value: `\`help ${dir.toLowerCase()}\``,
                     inline: true
                 }
 
@@ -155,7 +155,7 @@ module.exports = {
 
                     if (cots.includes(value.toLowerCase())) {
                         const combed = new MessageEmbed()
-                            .setTitle(`**${value.charAt(0).toUpperCase() + value.slice(1).toLowerCase()}** Commands!`)
+                            .setTitle(`**${value.charAt(0).toUpperCase() + value.slice(1).toLowerCase()}** Commands`)
                             .setDescription(`Use \`${prefix}help\` followed by a command name to get more information on a command.\nFor example: \`${prefix}help ping\`.\n\n`)
                             .addFields(catts)
                             .setColor(color)
@@ -221,7 +221,7 @@ module.exports = {
                     if (co == undefined) return;
 
                     dota = {
-                        name: `${cmds.length === 0 ? "In progress." : prefix + co.cname}`,
+                        name: `${cmds.length === 0 ? "In progress." : co.cname}`,
                         value: co.des ? co.des : `No Description`,
                         inline: true,
                     }
@@ -239,7 +239,7 @@ module.exports = {
 
             if (cots.includes(args[0].toLowerCase())) {
                 const combed = new MessageEmbed()
-                    .setTitle(`__${args[0].charAt(0).toUpperCase() + args[0].slice(1)} Commands!__`)
+                    .setTitle(`**${args[0].charAt(0).toUpperCase() + args[0].slice(1)} Commands**`)
                     .setDescription(`Use \`${prefix}help\` followed by a command name to get more information on a command.\nFor example: \`${prefix}help ping\`.\n\n`)
                     .addFields(catts)
                     .setColor(color)

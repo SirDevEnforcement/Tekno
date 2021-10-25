@@ -1,14 +1,14 @@
 const { MessageEmbed } = require('discord.js');
 
 module.exports = {
-  name: "invert",
-    description: "Invert your profile picture!", 
+  name: "wanted",
+    description: "Wanted, dead or alive 💀", 
   run: async (client, message, args) => {
 
 
     const embed = new MessageEmbed()
-    .setImage(`https://shit-api.ml/imagegen/invert?key=3YLQ3c8FMSwGPCRV&image=${message.member.displayAvatarURL()}`)
+      .setImage(`https://api.leoapi.xyz/image/wanted?image=${message.author.displayAvatarURL()}`)
       message.channel.send({ embeds: [embed] });
-  
-  
-}}
+  }
+
+}

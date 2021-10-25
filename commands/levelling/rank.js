@@ -1,16 +1,6 @@
 const Discord = require('discord.js');
 const Canvacord = require('canvacord');
-const xpfile = require('../../xp.json')
-
-/* if (xpfile[message.author.id].xp > xpfile[message.author.id].reqxp) {
-        xpfile[message.author.id].xp -= xpfile[message.author.id].reqxp
-        xpfile[message.author.id].reqxp *= 2
-        xpfile[message.author.id].reqxp = Math.floor(xpfile[message.author.id].reqxp)
-        xpfile[message.author.id].level += 1
-        message.channelsend(message.author.tag + "You are now level **" + xpfile[message.author.id].level + "**!").then(
-            msg => msg.delete({ timeout: "10000" })
-        )
-        */
+const db = require('quick.db')
 
 module.exports = {
   name: "rank",
@@ -18,13 +8,17 @@ module.exports = {
   aliases: ['level'],
   run: async (client, message, args) => {
 
+    const xp = db.get(`xp_${message.guild.id}_${message.author.id}`) || 0;
+    const reqxp = db.get(`reqxp_${message.guild.id}_${message.author.id}`) || 0;
+    const level = db.get(`level_${message.guild.id}_${message.author.id}`) || 1;
+
     if (message.author.bot) return;
     const rankcard = new Canvacord.Rank()
       .setAvatar(message.author.displayAvatarURL({ format: 'png', dynamic: true }))
-      .setCurrentXP(xpfile[message.author.id].xp)
-      .setRequiredXP(xpfile[message.author.id].reqxp)
+      .setCurrentXP(xp)
+      .setRequiredXP(reqxp)
       .setStatus('online')
-      .setLevel(xpfile[message.author.id].level)
+      .setLevel(level)
       .setRank(1, 'RANK', false)
       .setProgressBar("#E28611", "COLOR")
       .setOverlay("#242830")

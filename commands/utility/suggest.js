@@ -15,7 +15,7 @@ module.exports = {
       .setDescription(` ${message.content.slice(9).trim()} `)
       .setFooter(message.author.username + '#' + message.author.discriminator, avatar)
 
-    channel.send({embeds: [embed]}).then(sentMessage => sentMessage.react(`<:check:881238079829053460>`).then(reaction => reaction.message.react(`<:cross:881238098871201802>`)))
+const suggestion = await channel.send({embeds: [embed]})
 
   }
 

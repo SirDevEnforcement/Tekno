@@ -15,6 +15,7 @@ const create_mh = (
     let id = `help-menus`;
 
     let menus = [];
+                    
   const emo = {
 
                 fun: "😃",
@@ -29,13 +30,12 @@ const create_mh = (
 
     array.forEach(cca => {
         let name = cca;
-        let sName = `${name.toUpperCase()}`
+        let sName = `${name[0].toUpperCase()}${name.slice(1).toLowerCase()}`
         let tName = name.toLowerCase();
-        let fName = name.toUpperCase();
+        let fName = name.toLowerCase();
 
         return menus.push({
             label: sName,
-            description: `${tName} commands!`,
             value: fName
         })
     });
