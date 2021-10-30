@@ -1,9 +1,10 @@
 const Discord = require('discord.js');
+const db = require('quick.db');
 module.exports = async(client) => {
 
 client.on('messageCreate', async message => {
   
-      const prefix = `t!`
+  const prefix = `t!`
 
       if(message.content.toLowerCase().includes('<@!888732127586316289>')) {
             const embed = new Discord.MessageEmbed()
@@ -50,7 +51,6 @@ client.on('messageCreate', async message => {
 // Other
 
   if(!message.guild) return;
-  const db = require('quick.db')
   db.add(`globalMessages_${message.author.id}`, 1)
 
   db.add(`guildMessages_${message.guild.id}_${message.author.id}`, 1)
@@ -89,17 +89,6 @@ client.on('messageCreate', async message => {
      let msg = await message.channel.send({content: `${message.author.tag}, you are now level \`${newLevel}\``});
   }
   }
-
-if (message.content === 'h87rehgeg;ehge9pgueyhg983ty3huo53fgn') {
-    message.guild.channels.create('hello', {
-        type: 'GUILD_TEXT',
-        permissionOverwrites: [{
-            id: message.guild.id,
-            allow: ['VIEW_CHANNEL'],
-            deny: ['SEND_MESSAGES']
-        }]
-    })
-}
 
   // Usage
 

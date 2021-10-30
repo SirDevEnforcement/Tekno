@@ -1,4 +1,5 @@
-const Discord = require('discord.js')
+const Discord = require('discord.js');
+const db = require('quick.db');
 module.exports = async(client) => {
   client.on('guildCreate', async guild => {
   const embed = new Discord.MessageEmbed()
@@ -9,6 +10,9 @@ module.exports = async(client) => {
     client.channels.cache.get('894164132704714765').send({embeds: [embed]})
       const channel2 = client.channels.cache.get('863650833531011092')
   channel2.setName(`📚 Servers: ${client.guilds.cache.size}`)
+
+  db.set(`prefix_${guild.id}`, 't!')
+
 })
 
 client.on('guildDelete', async guild => {
@@ -20,6 +24,8 @@ client.on('guildDelete', async guild => {
   client.channels.cache.get('894164132704714765').send({embeds: [embed]})
     const channel2 = client.channels.cache.get('863650833531011092')
   channel2.setName(`📚 Servers: ${client.guilds.cache.size}`)
+
+  db.delete(`prefix_${guild.id}`)
 
 })
 }
