@@ -43,7 +43,8 @@ module.exports = {
                 moderation: "⚒",
                 image: '📷',
                 levelling: '📈',
-                information: 'ℹ'
+                information: 'ℹ',
+                "auto moderation": '⚙'
             }
 
             let ccate = [];
@@ -170,9 +171,17 @@ module.exports = {
 
                 };
 
-                const filter = (interaction) => {
-                    return !interaction.user.bot && interaction.user.id == message.author.id
-                };
+const filter = async(interaction) => {
+    if (message.author.id !== interaction.user.id) {
+        let msg = await message.channel.send({content: `You do not have permission to do this, ${interaction.user}!`})
+        setTimeout(() => {
+          msg.delete()
+        }, 5000)
+        return false;
+    } else {
+        return true;
+    }
+}
 
                 const collector = msgg.createMessageComponentCollector({
                     filter,

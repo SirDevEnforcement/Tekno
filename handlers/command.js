@@ -1,6 +1,7 @@
 const { readdirSync } = require('fs');
 
 const ascii = require('ascii-table');
+const chalk = require('chalk')
 
 const table = new ascii('Commands');
 table.setHeading('Command', 'Load status');
@@ -14,14 +15,11 @@ module.exports = (client) => {
 
       if (pull.name) {
         client.commands.set(pull.name, pull);
-        table.addRow(file, '✅');
+        table.addRow(`${chalk.yellow(pull.name)}`, `${chalk.green('✅ -> File Ready')}`);
       }
       else {
-        table.addRow(file, '❎ -> missing a help.name, or help.name is not a string.');
-        continue;
+        table.addRow(file, `${chalk.red('❎ -> Not ready')}`);
       }
-
-      if (pull.aliases && Array.isArray(pull.aliases)) pull.aliases.forEach(alias => client.aliases.set(alias, pull.name));
     }
   });
 

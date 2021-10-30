@@ -1,15 +1,20 @@
-const random = require("something-random-on-discord").Random;
-const { MessageEmbed } = require('discord.js');
-
+const Discord = require('discord.js');
 module.exports = {
   name: "meme",
-    description: "Get a funny meme!", 
-  run: async (client, message, args) => {
+  description: "So funny, right?!",
+  run: async(client, message, args) => {
 
+const API = require('leoapi.xyz');
+const leo = new API();
 
-    let data = await random.getMeme()
-      message.channel.send({ embeds: [data] });
-
-
+        leo.fun('meme', {}).then(data => {
+            const embed = new Discord.MessageEmbed()
+            .setTitle(data.title)
+            .setURL(data.subreddit)
+            .setImage(data.image)
+            .setFooter(`👍 ${data.upvotes} || 💬 ${data.comments}`)
+            .setColor('RANDOM')
+            message.reply({embeds: [embed]})
+        })
   }
-}
+  }

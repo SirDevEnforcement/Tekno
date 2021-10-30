@@ -3,8 +3,6 @@ const { inspect } = require("util");
 
 module.exports = {
   name: "eval",
-  aliases: ['e'],
-  category: "<:Stage:881900881635852308> Owner",
   run: async (client, message, args) => {
     const owners = [
       "815878862075985971",

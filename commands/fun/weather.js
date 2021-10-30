@@ -9,21 +9,30 @@ module.exports = {
  
  
 
- if (!args[0]) return message.channel.send("Please Give Location!");
+ if (!args[0]) return message.channel.send({content: "Please give a location!"});
 
  weather.find({ search: args.join(" ") }, function(error, result) {
- if (error) return message.channel.send(`Something Went Wrong, Try Again Later!`);
+ if (error) return message.channel.send({content: `Something went wrong, try again later!`});
 
  if (result === undefined || result.length === 0)
- return message.channel.send(
- `Invalid Location, Please Give Valid Location!`
- );
+ return message.channel.send({content: `Invalid location`});
 
  var current = result[0].current;
  var location = result[0].location;
 
  const Weather = new Discord.MessageEmbed()
- .setTitle(`${location.name} Weather🌡!`)
+ .setTitle(`${location.name}'s Weather`)
+ .setDescription(`\`${current.skytext}\``)
+ .setThumbnail(current.imageUrl)
+ .addField('Degree Type', ` \`${location.degreetype}\``, true)
+ .addField(`Temperature`, ` \`${current.temperature}°\``, true)
+ .addField(`Humidity`, `\`${current.humidity}%\``, true)
+ .addField(`Wind`, `\`${current.winddisplay}\``, true)
+ .addField(`Feels Like`, `\`${current.feelslike}\``, true)
+ .addField(`Timezone`, `\`${location.timezone}\``, true)
+ .setTimestamp()
+ .setFooter(`Temperatures are in Farenheit.`)
+ /* .setTitle(`${location.name} Weather🌡!`)
  .setDescription(`${current.skytext}`+ " ✅")
  .setThumbnail(current.imageUrl)
  .addField("🎴 Degree Type", location.degreetype, true)
@@ -35,6 +44,7 @@ module.exports = {
  .addField("🕐Timezone ", `${location.timezone}`, true)
  .setTimestamp()
  .setFooter(`Temperature is in Farenheit!`);
+ */
 
   message.channel.send({ embeds: [Weather] });
  });

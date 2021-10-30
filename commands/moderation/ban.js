@@ -26,7 +26,7 @@ module.exports = {
 
 		let res;
 		if (!reason) {
-			res = 'N/A';
+			res = 'no reason specified';
 		}
 		else {
 			res = reason;
@@ -35,7 +35,7 @@ module.exports = {
 		member.send({content: `You have been banned in **${message.guild.name}** for **${res}**`}).catch((err) => (console.log(err)));
 		await member.ban({ reason: reason, days: 7 }).catch(e => console.log(`[WARN] ${e.message} in ${e.filename} [${e.lineNumber}, ${e.columnNumber}]`));
 			const embed = new Discord.MessageEmbed()
-				.setTitle('<:hx_ba:862059080301805628> Member Banned')
+				.setAuthor('Member Banned', '')
 				.setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
 				.setColor('RANDOM')
 				.addField(`Member`, `\`\`\`${member.user.tag}\`\`\``)

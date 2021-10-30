@@ -21,6 +21,7 @@ module.exports = {
     const user = message.mentions.members.first() ||
         client.users.cache.get(args[0]);
     user.send({embeds: [embed]})
+
     
 
   }

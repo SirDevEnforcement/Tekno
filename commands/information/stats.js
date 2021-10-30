@@ -43,11 +43,8 @@ module.exports = {
         .setColor('RANDOM')
         .setThumbnail(client.user.displayAvatarURL())
         .addField("\`   General   \`", `Name: \`${client.user.username}\`\nDiscriminator: \`${client.user.discriminator}\`\nPrefix: \`t!\`\nUptime: \`${uptime}\``)
-        .addField('\`   Statistics   \`', `Guilds: \`${client.guilds.cache.size}\`\nUsers: \`${client.guilds.cache.map(c => c.memberCount).reduce((a, b) => a + b)}\`\nChannels: \`${client.channels.cache.size}\``)
-        .addField('\`   Discord.JS Version   \`', `Version: \`${version}\``)
-        .addField('\`   Owner   \`', `below`)
+        .addField('\`   Statistics   \`', `Guilds: \`${client.guilds.cache.size}\`\nUsers: \`${client.guilds.cache.map(c => c.memberCount).reduce((a, b) => a + b)}\`\nChannels: \`${client.channels.cache.size}\`\nDiscord.JS version: \`${version}\``)
         .setFooter('Tekno', client.user.displayAvatarURL())
-        .setImage(`https://discord.c99.nl/widget/theme-1/815878862075985971.png`)
   message.channel.send({ embeds: [clientembed] });
     
 }}

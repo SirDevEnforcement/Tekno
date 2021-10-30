@@ -33,10 +33,12 @@ const create_mh = (
         let sName = `${name[0].toUpperCase()}${name.slice(1).toLowerCase()}`
         let tName = name.toLowerCase();
         let fName = name.toLowerCase();
+        let e = emo
 
         return menus.push({
             label: sName,
-            value: fName
+            value: fName,
+            emoji: e[tName]
         })
     });
 

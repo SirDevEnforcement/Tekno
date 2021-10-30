@@ -9,12 +9,12 @@ module.exports = {
      * @param {String[]} args 
      */
     run: async (client, message, args) => {
-        const msg = client.snipes.get(message.channel.id)
+        const msg = client.snipes.get(message.guild.id)
         if (!msg) return message.reply('There\'s nothing to snipe!')
         const embed = new MessageEmbed()
             .setAuthor(msg.author, msg.member.user.displayAvatarURL())
             .setDescription(msg.content)
-            .setFooter('Sniped')
+            .setFooter(`#${msg.channel} ||    Sniped!`)
             .setColor("RANDOM")
             .setTimestamp()
           message.channel.send({ embeds: [embed] });

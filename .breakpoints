@@ -11,9 +11,9 @@
     "commands/fun/advice.js": [
       {
         "id": "6d25a4d3-7810-4e59-aa32-0d32c3b64f02",
-        "line": 8,
-        "version": 3,
-        "index": 189
+        "line": 6,
+        "version": 8,
+        "index": 126
       }
     ],
     "commands/🇮 Information/wikipedia.js": [
