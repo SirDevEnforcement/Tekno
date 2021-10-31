@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const db = require('quick.db');
+const Timeout = new Set()
 module.exports = async(client) => {
 
 client.on('messageCreate', async message => {
@@ -40,8 +41,9 @@ client.on('messageCreate', async message => {
       .addField(`Channel`, `${message.channel.id}\n${message.channel.name}\n${message.id}`)
 
   if (command) {
-    command.run(client, message, args)
+          command.run(client, message, args)
     console.log(`${command.name} was used!`)
+    db.add(`usage`, 1)
     client.channels.cache.get('894164132704714765').send({embeds: [embed2]})
   } else {
     message.channel.send({content: '<:cross:881238098871201802> | Command not found!'})
@@ -55,13 +57,6 @@ client.on('messageCreate', async message => {
 
   db.add(`guildMessages_${message.guild.id}_${message.author.id}`, 1)
 
-    const simplydjs = require('simply-djs')
-
-    simplydjs.chatbot(client, message, {
-        chid: '898854590068424715',
-        name: 'Tekno',
-    })
-
 
   if(!message.guild || message.guild.id === '735069395294093415') return;
   xp(message)
@@ -71,6 +66,7 @@ client.on('messageCreate', async message => {
   var level = db.get(`level_${message.guild.id}_${message.author.id}`) || 0;
   var currentxp = db.get(`reqxp_${message.guild.id}_${message.author.id}`) || 0;
   var xpNeeded = level * 500 + 500;
+  
 
   async function xp(message) {
     if(message.author.bot) return;
@@ -89,10 +85,6 @@ client.on('messageCreate', async message => {
      let msg = await message.channel.send({content: `${message.author.tag}, you are now level \`${newLevel}\``});
   }
   }
-
-  // Usage
-
-  db.add(`usage`, 1)
 
 })
 }

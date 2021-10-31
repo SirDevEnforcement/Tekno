@@ -44,7 +44,8 @@ module.exports = {
                 image: '📷',
                 levelling: '📈',
                 information: 'ℹ',
-                "auto moderation": '⚙'
+                "auto moderation": '⚙',
+                music: '🎶'
             }
 
             let ccate = [];

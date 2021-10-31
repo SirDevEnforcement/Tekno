@@ -23,6 +23,14 @@
         "version": 3,
         "index": 204
       }
+    ],
+    "handlers/guild/guildEvents.js": [
+      {
+        "id": "e9585519-ba4e-44a1-8add-39178deabfb5",
+        "line": 31,
+        "version": 112,
+        "index": 1211
+      }
     ]
   }
 }

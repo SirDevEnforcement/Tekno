@@ -7,7 +7,7 @@ module.exports = {
 
 
     const embed = new MessageEmbed()
-    .setImage(`https://api.leoapi.xyz/image/achievement?title=Achievement&text=${args.join("+")}`)
+    .setImage(`https://api.leoapi.xyz/image/achievement?title=Achievement&text=${args.join("%20")}`)
       message.channel.send({ embeds: [embed] });
   
   

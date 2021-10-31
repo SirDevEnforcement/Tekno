@@ -9,7 +9,7 @@ module.exports = {
 
     const embed = new Discord.MessageEmbed()
     .setTitle(`Commands used`)
-    .setDescription(`\`\`\`${usage || 0}\`\`\`  `)
+    .setDescription(`\`\`\`    ${usage || 0}\`\`\`  `)
 
     message.reply({embeds: [embed]})
 

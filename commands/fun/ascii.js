@@ -16,9 +16,7 @@ module.exports = {
     }
 
     figlet(text, function(err, data) {
-      message.channel.send(data, {
-        code: 'AsciiArt'
-      });
+      message.channel.send({content: `\`\`\`${data}\`\`\`  `})
     })
 
   }
