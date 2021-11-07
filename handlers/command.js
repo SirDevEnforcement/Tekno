@@ -6,7 +6,7 @@ const chalk = require('chalk')
 const table = new ascii('Commands');
 table.setHeading('Command', 'Load status');
 
-module.exports = (client) => {
+module.exports = async(client) => {
   readdirSync('./commands/').forEach(dir => {
     const commands = readdirSync(`./commands/${dir}/`).filter(file => file.endsWith('.js'));
 
@@ -23,5 +23,5 @@ module.exports = (client) => {
     }
   });
 
-  console.log(table.toString());
+  await console.log(table.toString());
 };

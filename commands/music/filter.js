@@ -3,6 +3,7 @@ const Discord = require('discord.js');
 module.exports = {
   name: "filter",
   description: "Change the filter!",
+  usage: '[3d/bassboost/echo/karaoke/nightcore/vaporwave]',
   run: async(client, message, args) => {
 
     if([`3d`, `bassboost`, `echo`, `karaoke`, `nightcore`, `vaporwave`].includes(args[0])) {

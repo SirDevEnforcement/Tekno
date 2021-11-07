@@ -1,18 +1,21 @@
-const { MessageEmbed } = require('discord.js');
-
+const Discord = require('discord.js');
 module.exports = {
-  name: "drake",
-    description: "Drake!", 
-  run: async (client, message, args) => {
+	name: 'drake',
+	description: 'Drake hotline bling meme generator',
+	usage: '"<text 1>" "<text 2>"',
+	run: async (client, message, args) => {
+		if (!args[0]) return message.reply(`**${message.author.username}**, the right syntax is \`t!drake "<text1>" "<text2>"\`.`);
+		if (!args[1]) return message.reply(`**${message.author.username}**, the right syntax is \`t!drake "<text1>" "<text2>"\`.`);
 
+		const a = args.join('%20');
+		const content = a.split('"');
 
-    if(!args[0] && !args[1]) return message.channel.send(` \`\`\`t!drake <Bad Thing> <Good Thing> \nMUST be one word only for both!\`\`\` `)
+		if (content[0] !== '') return message.reply(`**${message.author.username}**, the right syntax is \`t!drake "<text 1>" "<text2>"\`.`);
+		if (content[4] !== '') return message.reply(`**${message.author.username}**, the right syntax is \`t!drake "<text 1>" "<text2>"\`.`);
+		const m = await message.reply('Please wait...');
 
+    const embed = new Discord.MessageEmbed()
+    .setImage(`https://api.leoapi.xyz/image/drake?text1=${content[1]}&text2=${content[3]}`)
 
-    const embed = new MessageEmbed()
-      .setTitle('Drake!')
-      .setImage(`https://shit-api.ml/imagegen/drake?key=3YLQ3c8FMSwGPCRV&text=${args[0]}&text2=${args[1]}`)
-      message.channel.send({ embeds: [embed] });
-  }
-
-}
+    message.channel.send({embeds: [embed]}).then(() => m.delete())
+}}

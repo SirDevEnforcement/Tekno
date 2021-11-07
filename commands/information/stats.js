@@ -39,12 +39,12 @@ module.exports = {
 
       uptime += `${days}d, ${hours}h, ${minutes}m, ${seconds}s`
       const clientembed = new MessageEmbed()
-        .setAuthor('Tekno')
+        .setAuthor(client.user.username, client.user.displayAvatarURL())
         .setColor('RANDOM')
         .setThumbnail(client.user.displayAvatarURL())
         .addField("\`   General   \`", `Name: \`${client.user.username}\`\nDiscriminator: \`${client.user.discriminator}\`\nPrefix: \`t!\`\nUptime: \`${uptime}\``)
         .addField('\`   Statistics   \`', `Guilds: \`${client.guilds.cache.size}\`\nUsers: \`${client.guilds.cache.map(c => c.memberCount).reduce((a, b) => a + b)}\`\nChannels: \`${client.channels.cache.size}\`\nDiscord.JS version: \`${version}\``)
-        .setFooter('Tekno', client.user.displayAvatarURL())
+        .setFooter(client.user.username, client.user.displayAvatarURL())
   message.channel.send({ embeds: [clientembed] });
     
 }}

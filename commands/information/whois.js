@@ -25,6 +25,7 @@ module.exports = {
     .addField(` \`\`\`   Member Information   \`\`\` `, `> **Nickname** ﹕\`${member.nickname ? member.nickname : "None"}\`\n> **Hex Color** ﹕\`${member.displayHexColor.toUpperCase()}\`\n> **Nitro Booster** ﹕\`${member.premiumSince === null ? 'False' : `True`}\`\n> **Joined At** ﹕\`${joined}\``, true)
     .addField(`\`\`\`   Roles   \`\`\``, `> ${roles}`, true)
     .setColor(member.displayHexColor.toUpperCase())
+    .setThumbnail(member.user.displayAvatarURL({dynamic: true}))
 
 		message.reply({ embeds: [embed] });
 	},

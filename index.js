@@ -1,10 +1,9 @@
-const mySecret = process.env['token'];
 const Discord = require("discord.js");
 const { Intents } = require('discord.js')
 const fs = require("fs");
 const { Client } = require('discord.js');
 const client = new Client({
-  intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.DIRECT_MESSAGES, "GUILD_MESSAGES", 'GUILD_VOICE_STATES']
+  intents: 32767,
   });
 module.exports = client;
 const { Collection } = require('discord.js');
@@ -17,10 +16,9 @@ client.snipes = new Map();
 client.embedColor = "RED";
 client.categories = fs.readdirSync('./commands/');
 
-['command', './guild/messageCreate', './guild/messageDelete', './client/ready', './guild/guildEvents', './client/app', './client/antiCrash', './distube/index.js'].forEach((handler) => {
+['command', './guild/messageCreate', './guild/messageDelete', './client/ready', './client/app', './client/antiCrash', './distube/index.js'].forEach((handler) => {
 	require(`./handlers/${handler}`)(client);
 });
 
 
-
-client.login(mySecret)
+client.login(process.env['token'])

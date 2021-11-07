@@ -12,7 +12,7 @@ const leo = new API();
             .setTitle(data.title)
             .setURL(data.subreddit)
             .setImage(data.image)
-            .setFooter(`👍 ${data.upvotes} || 💬 ${data.comments}`)
+            .setFooter(`👍 ${data.upvotes} | 💬 ${data.comments}`)
             .setColor('RANDOM')
             message.reply({embeds: [embed]})
         })

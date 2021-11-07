@@ -92,7 +92,7 @@ module.exports = {
 
 
             let menus = create_mh(ccate);
-            return message.reply({
+            let msg1 = await message.reply({
                 embeds: [embed],
                 components: menus.smenu
             }).then((msgg) => {
@@ -172,17 +172,17 @@ module.exports = {
 
                 };
 
-const filter = async(interaction) => {
-    if (message.author.id !== interaction.user.id) {
-        let msg = await message.channel.send({content: `You do not have permission to do this, ${interaction.user}!`})
-        setTimeout(() => {
-          msg.delete()
-        }, 5000)
-        return false;
-    } else {
-        return true;
-    }
-}
+const filter = async interaction => {
+
+            if (interaction.user.id !== message.author.id) {
+                interaction.reply({
+                    content: "<:cross:881238098871201802> Don't help other people to select the menu",
+                    ephemeral: true
+                });
+                return false;
+            };
+            return true;
+        }
 
                 const collector = msgg.createMessageComponentCollector({
                     filter,
@@ -308,4 +308,4 @@ const filter = async(interaction) => {
             });
         }
     },
-}; 
+};

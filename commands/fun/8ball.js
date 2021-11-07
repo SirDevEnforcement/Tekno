@@ -6,7 +6,7 @@ module.exports = {
   run: async (bot, message, args) => {
     let question = args.join(" ")
     if (!question)
-      return message.channel.send(`You did not specify your question!`);
+      return message.channel.send({content: `You did not specify your question!`});
     else {
       let responses = [
        'Maybe.',

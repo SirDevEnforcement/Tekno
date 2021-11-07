@@ -48,7 +48,7 @@ module.exports = {
             .setImage(member.user.displayAvatarURL({ size: 1024, dynamic: true, format: 'png' }))
             .setDescription(`Download Avatar Image At:\n**[png](${png}) | [jpg](${jpg}) | [gif](${gif}) | [webp](${webp})**` || `**[png](${png}) | [jpg](${jpg})**`)
 
-        let avt = await message.channel.send({ content: 'Avatar ' + member.user.tag, embeds: [avtEmbed], components: [avatarMenu] })
+        let avt = await message.channel.send({ embeds: [avtEmbed], components: [avatarMenu] })
 
         const filter = async interaction => {
 
