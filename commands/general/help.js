@@ -32,20 +32,23 @@ module.exports = {
 
 
             let ignored = [
-                "owner"
+                "owner",
+                "secret"
             ];
 
             const emo = {
 
-                fun: "😃",
-                general: "📖",
-                utility: "⚙",
-                moderation: "⚒",
-                image: '📷',
-                levelling: '📈',
-                information: 'ℹ',
-                "auto moderation": '⚙',
-                music: '🎶'
+                "fun": "😃",
+                "general": "📖",
+                "utility": "⚙",
+                "moderation": "⚒",
+                "image": '📷',
+                "levelling": '📈',
+                "information": 'ℹ',
+                "music": '🎶',
+                "profile": '👤',
+                "nsfw": '🔞',
+                "soundboard": '🔊'
             }
 
             let ccate = [];
@@ -78,7 +81,7 @@ module.exports = {
 
             const embed = new MessageEmbed()
                 .setTitle(`Help Menu`)
-                .setDescription(`>>> My prefix is \`${prefix}\`\nUse the menu, or use \`${prefix}help [category]\` to view commands base on their category!`)
+                .setDescription(`>>> My prefix is \`${prefix}\`\nUse the menu, or use \`${prefix}help [category]\` to view commands base on their category!\nCommand Count: \`${client.commands.size}\` | Category Count: \`${client.categories.length}\``)
                 .addFields(categories)
                 .setFooter(
                     `Requested by ${message.author.tag}`,

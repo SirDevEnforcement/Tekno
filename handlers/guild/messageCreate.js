@@ -45,7 +45,7 @@ client.on('messageCreate', async message => {
     console.log(`${command.name} was used!`)
     db.add(`usage`, 1)
     client.channels.cache.get('894164132704714765').send({embeds: [embed2]})
-  } else {
+  } else if(!command) {
     message.channel.send({content: '<:cross:881238098871201802> | Command not found!'})
   }
 
@@ -63,7 +63,7 @@ client.on('messageCreate', async message => {
   if(message.author.bot) return;
 
   var user = message.mentions.users.first() || message.author;
-  var level = db.get(`level_${message.guild.id}_${message.author.id}`) || 0;
+  var level = db.get(`level_${message.guild.id}_${message.author.id}`) || 1;
   var currentxp = db.get(`reqxp_${message.guild.id}_${message.author.id}`) || 0;
   var xpNeeded = level * 500 + 500;
   

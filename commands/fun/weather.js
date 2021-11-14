@@ -32,19 +32,6 @@ module.exports = {
  .addField(`Timezone`, `\`${location.timezone}\``, true)
  .setTimestamp()
  .setFooter(`Temperatures are in Farenheit.`)
- /* .setTitle(`${location.name} Weather🌡!`)
- .setDescription(`${current.skytext}`+ " ✅")
- .setThumbnail(current.imageUrl)
- .addField("🎴 Degree Type", location.degreetype, true)
- .addField("🔥 Temperature", `${current.temperature}°`, true)
- .addField("💦 Humidity", `${current.humidity}%`, true)
- .addField("☁️ Wind", current.winddisplay, true)
- .addField("✅ Feels Like", `${current.feelslike}°`, true)
-
- .addField("🕐Timezone ", `${location.timezone}`, true)
- .setTimestamp()
- .setFooter(`Temperature is in Farenheit!`);
- */
 
   message.channel.send({ embeds: [Weather] });
  });
