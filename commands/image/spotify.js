@@ -4,6 +4,7 @@ module.exports = {
   name: "spotify",
     description: "Play some music!", 
   run: async (client, message, args) => {
+    if(!args[0]) return message.channel.send({content: ` \`\`\`t!spotify <song name>\`\`\` `})
 
 
     const embed = new MessageEmbed()

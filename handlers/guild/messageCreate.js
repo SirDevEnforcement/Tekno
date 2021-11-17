@@ -1,6 +1,8 @@
 const Discord = require('discord.js');
 const db = require('quick.db');
 const Timeout = new Set()
+const premium = require('../../premium.json');
+const maintenance = require('../../maintenance.json');
 module.exports = async(client) => {
 
 client.on('messageCreate', async message => {
@@ -12,6 +14,10 @@ client.on('messageCreate', async message => {
       .setAuthor(`Help Menu`, client.user.displayAvatarURL())
       .setDescription(`<:leo_member:892325715494711307> Hello! I'm **Tekno**, a feature-rich multi-purpose bot! To use **all** my commands, run the command \`${prefix}help\`!`)
       .setFooter(`dsc.gg/tekno`)
+
+      if(premium.includes(message.guild.id)) {
+        embed.addField('<:premium:909142147083673610> Premium', 'This server is a premium server, congrats!')
+      }
     message.channel.send({embeds: [embed]})
 
       }
@@ -41,10 +47,13 @@ client.on('messageCreate', async message => {
       .addField(`Channel`, `${message.channel.id}\n${message.channel.name}\n${message.id}`)
 
   if (command) {
+    if(maintenance.includes("true")) { message.channel.send({content: `Maintenance is going on! You cannot use commands until maintenance mode ends.`})
+    } else {
           command.run(client, message, args)
     console.log(`${command.name} was used!`)
     db.add(`usage`, 1)
     client.channels.cache.get('894164132704714765').send({embeds: [embed2]})
+    }
   } else if(!command) {
     message.channel.send({content: '<:cross:881238098871201802> | Command not found!'})
   }

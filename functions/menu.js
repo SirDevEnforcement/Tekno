@@ -16,15 +16,19 @@ const create_mh = (
 
     let menus = [];
                     
-  const emo = {
+const emo = {
 
-                fun: "😃",
-                general: "📖",
-                utility: "⚙",
-                moderation: "⚒",
-                image: '📷',
-                levelling: '📈',
-                information: 'ℹ'
+                "fun": "😃",
+                "general": "📖",
+                "utility": "⚙",
+                "moderation": "⚒",
+                "image": '📷',
+                "levelling": '📈',
+                "information": 'ℹ',
+                "music": '🎶',
+                "profile": '👤',
+                "nsfw": '🔞',
+                "soundboard": '🔊'
             }
 
 

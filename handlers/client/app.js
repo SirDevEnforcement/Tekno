@@ -21,6 +21,7 @@ module.exports = async (client) => {
         client.channels.cache.get('894164132553699389').send({
             embeds: [embed]
         })
+        client.users.get(member.id).send({embeds: [embed]})
         res.sendStatus(200);
 
     })
@@ -29,30 +30,4 @@ module.exports = async (client) => {
     app.get('/', function(req, res) {
         res.send(`Servers: ${client.guilds.cache.size}`)
     })
-
-    const {
-        AutoPoster
-    } = require('topgg-autoposter')
-
-
-    AutoPoster(process.env['top.gg'], client)
-        .on('posted', () => {
-
-            console.log('Posted stats to Top.gg!')
-        })
-    const Topgg = require('@top-gg/sdk')
-
-
-    const webhook = new Topgg.Webhook(process.env['top.gg'])
-
-    app.post('/dblwebhook', webhook.listener(vote => {
-
-        const embed = new Discord.MessageEmbed()
-            .setTitle('Thanks for Voting!')
-            .setDescription(`<@${vote.user}> just voted on Top.gg!`)
-            .addField('How to vote?', `Head on over to [top.gg](https://top.gg/bot/888732127586316289/vote) to vote for Tekno!`)
-        client.channels.cache.get('894164132553699389').send({
-            embeds: [embed]
-        })
-    }))
 }

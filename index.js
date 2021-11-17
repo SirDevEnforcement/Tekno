@@ -7,7 +7,6 @@ module.exports = client;
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
 client.prefix = process.env['prefix'];
-client.slashCommands = new Discord.Collection();
 client.Discord = Discord;
 client.snipes = new Map();
 client.embedColor = "RED";

@@ -1,10 +1,8 @@
 const { readdirSync } = require('fs');
-
 const ascii = require('ascii-table');
 const chalk = require('chalk')
-
-const table = new ascii('Commands');
-table.setHeading('Command', 'Load status');
+const table = new ascii('Table');
+table.setHeading('Command', 'Load status', 'Directory');
 
 module.exports = async(client) => {
   readdirSync('./commands/').forEach(dir => {
@@ -15,10 +13,10 @@ module.exports = async(client) => {
 
       if (pull.name) {
         client.commands.set(pull.name, pull);
-        table.addRow(`${chalk.yellow(pull.name)}`, `${chalk.green('✅ -> File Ready')}`);
+        table.addRow(`${pull.name}`, `${chalk.green('✅')}`, `${dir}`);
       }
       else {
-        table.addRow(file, `${chalk.red('❎ -> Not ready')}`);
+        table.addRow(file, `${chalk.red('❎')}`);
       }
     }
   });
