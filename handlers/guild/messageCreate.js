@@ -1,13 +1,12 @@
 const Discord = require('discord.js');
 const db = require('quick.db');
-const Timeout = new Set()
-const premium = require('../../premium.json');
-const maintenance = require('../../maintenance.json');
+const premium = require('../../database/premium.json');
+const maintenance = require('../../database/maintenance.json');
 module.exports = async(client) => {
 
 client.on('messageCreate', async message => {
   
-  const prefix = `t!`
+  const prefix = db.get(`prefix_${message.guild.id}`) ? db.get(`prefix_${message.guild.id}`) : 't!'
 
       if(message.content.toLowerCase().includes('<@!888732127586316289>')) {
             const embed = new Discord.MessageEmbed()
@@ -43,8 +42,8 @@ client.on('messageCreate', async message => {
         const embed2 = new Discord.MessageEmbed()
       .setTitle(`Command used`)
       .setDescription(`Name: ${command.name}`)
-      .addField(`Guild`, `${message.guild.id}\n${message.guild.name}\n${message.guild.ownerId}`)
-      .addField(`Channel`, `${message.channel.id}\n${message.channel.name}\n${message.id}`)
+      .addField(`Guild`, `Guild ID: ${message.guild.id}\nGuild Name:${message.guild.name}\nOwner ID:${message.guild.ownerId}`)
+      .addField(`Channel`, `Channel ID: ${message.channel.id}\nChannel Name: ${message.channel.name}\nMessage ID:${message.id}`)
 
   if (command) {
     if(maintenance.includes("true")) { message.channel.send({content: `Maintenance is going on! You cannot use commands until maintenance mode ends.`})

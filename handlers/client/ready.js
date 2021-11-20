@@ -1,7 +1,6 @@
-const Discord = require('discord.js');
-const { REST } = require('@discordjs/rest');
-const { Route } = require('discord-api-types/v9')
-const chalk = require('chalk')
+const chalk = require('chalk');
+const moment = require('moment');
+const tz = require('moment-timezone');
 module.exports = async (client) => {
     client.on('ready', async () => {
         const status = [
@@ -25,6 +24,17 @@ module.exports = async (client) => {
         console.log(`Watching ${chalk.magenta(`${client.guilds.cache.map(c => c.memberCount).reduce((a, b) => a + b)}`)} users and ${chalk.magenta(client.guilds.cache.size)} servers!`)
         console.log(chalk.green(`\n                  [ ﹕Statistics ﹕]\n`))
         console.log(`Prefix: ${chalk.magenta(`t!`)} ﹕﹕Commands: ${chalk.magenta(client.commands.size)} ﹕﹕Categories: ${chalk.magenta(client.categories.length)}\n`)
+
+        const timeNow = moment().tz("GMT+0").format("HH:mm (z)");
+
+     const clockChannel = client.channels.cache.get("910604633309847593");
+  clockChannel.edit({ name: `🕒 ${timeNow}` }, 'Clock update')
+    .catch(console.error);
+  setInterval(() => {
+    const timeNowUpdate = moment().tz("GMT+0").format("HH:mm (z)");
+    clockChannel.edit({ name: `🕒 ${timeNowUpdate}` }, 'Clock update')
+      .catch(console.error);
+  }, 60000);
     })
 
     const axios = require('axios')

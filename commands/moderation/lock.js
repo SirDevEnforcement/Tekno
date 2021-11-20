@@ -4,8 +4,8 @@ module.exports = {
   name: "lock",
     description: "Lock the server!", 
   run: async (client, message, args) => {
-    if (!message.member.hasPermission("MANAGE_CHANNELS")) return message.channel.send('You do not have the correct permissions! Permission needed: \`MANAGE_CHANNELS\`')
-    if (!message.guild.me.hasPermission("MANAGE_CHANNELS")) return message.channel.send('I do not have the correct permissions! Permission needed: \`MANAGE_CHANNELS\`')
+    if (!message.member.permissions.has("MANAGE_CHANNELS")) return message.channel.send('You do not have the correct permissions! Permission needed: \`MANAGE_CHANNELS\`')
+    if (!message.guild.me.permissions.has("MANAGE_CHANNELS")) return message.channel.send('I do not have the correct permissions! Permission needed: \`MANAGE_CHANNELS\`')
     const channels = message.guild.channels.cache.filter(ch => ch.type !== 'category');
     if (args[0] === 'on') {
       channels.forEach(channel => {

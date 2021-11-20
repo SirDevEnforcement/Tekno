@@ -7,8 +7,8 @@ const {
     readdirSync
 } = require("fs");
 const client = require('../../index')
-const prefix = 't!'
-let color = "RANDOM"
+let color = "RANDOM";
+const db = require('quick.db')
 
 const create_mh = require(`../../functions/menu.js`);
 
@@ -23,7 +23,8 @@ module.exports = {
      * @param {String} args 
      * @returns 
      */
-    run: async (client, message, args, Discord, db) => {
+    run: async (client, message, args) => {
+      const prefix = db.get(`prefix_${message.guild.id}`) ? db.get(`prefix_${message.guild.id}`) : 't!'
 
         let categories = [];
         let cots = [];
@@ -70,7 +71,7 @@ module.exports = {
 
                 cats = {
                     name: name,
-                    value: `\`help ${dir.toLowerCase()}\``,
+                    value: `\`${prefix}help ${dir.toLowerCase()}\``,
                     inline: true
                 }
 
