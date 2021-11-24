@@ -39,17 +39,21 @@ module.exports = {
 
             const emo = {
 
-                "fun": "😃",
-                "general": "📖",
+                "fun": "🙂",
+                "general": "📔",
                 "utility": "⚙",
-                "moderation": "⚒",
+                "moderation": "🔨",
                 "image": '📷',
                 "levelling": '📈',
                 "information": 'ℹ',
                 "music": '🎶',
                 "profile": '👤',
                 "nsfw": '🔞',
-                "soundboard": '🔊'
+                "soundboard": '🔊',
+                "expresions": '😊',
+                "animals": '🐶',
+                "sfw": '🦺',
+                "anime": '💮',
             }
 
             let ccate = [];
@@ -62,11 +66,19 @@ module.exports = {
 
                 if (ignored.includes(dir.toLowerCase())) return;
 
-                const name = `${emo[dir]} ${dir[0].toUpperCase()}${dir.slice(1).toLowerCase()}`;
+                let name = `${emo[dir]} ${dir[0].toUpperCase()}${dir.slice(1).toLowerCase()}`;
+
+                if(name === `${emo[dir]} Sfw`) {
+                  name = `${emo[dir]} SFW`
+                } else if(name === `${emo[dir]} Nsfw`) {
+                  name = `${emo[dir]} NSFW`
+                }
 
                 let nome = dir.toUpperCase();
 
                 let cats = new Object();
+
+                
 
 
                 cats = {
@@ -81,7 +93,7 @@ module.exports = {
             });
 
             const embed = new MessageEmbed()
-                .setTitle(`Help Menu`)
+                .setTitle(`<:help:913104163372662825> Help Menu`)
                 .setDescription(`>>> My prefix is \`${prefix}\`\nUse the menu, or use \`${prefix}help [category]\` to view commands base on their category!\nCommand Count: \`${client.commands.size}\` | Category Count: \`${client.categories.length}\``)
                 .addFields(categories)
                 .setFooter(
@@ -161,7 +173,7 @@ module.exports = {
 
                     if (cots.includes(value.toLowerCase())) {
                         const combed = new MessageEmbed()
-                            .setTitle(`**${value.charAt(0).toUpperCase() + value.slice(1).toLowerCase()}** Commands`)
+                            .setTitle(`<:help:913104163372662825> **${value.charAt(0).toUpperCase() + value.slice(1).toLowerCase()}** Commands`)
                             .setDescription(`Use \`${prefix}help\` followed by a command name to get more information on a command.\nFor example: \`${prefix}help ping\`.\n\n`)
                             .addFields(catts)
                             .setColor(color)
@@ -253,7 +265,7 @@ const filter = async interaction => {
 
             if (cots.includes(args[0].toLowerCase())) {
                 const combed = new MessageEmbed()
-                    .setTitle(`**${args[0].charAt(0).toUpperCase() + args[0].slice(1)} Commands**`)
+                    .setTitle(`<:help:913104163372662825> **${args[0].charAt(0).toUpperCase() + args[0].slice(1)} Commands**`)
                     .setDescription(`Use \`${prefix}help\` followed by a command name to get more information on a command.\nFor example: \`${prefix}help ping\`.\n\n`)
                     .addFields(catts)
                     .setColor(color)
@@ -276,7 +288,7 @@ const filter = async interaction => {
             }
 
             const embed = new MessageEmbed()
-                .setTitle("Command Details:")
+                .setTitle("<:help:913104163372662825> Command Details:")
                 .addField(
                     "Command:",
                     command.name ? `\`${command.name}\`` : "No name for this command."

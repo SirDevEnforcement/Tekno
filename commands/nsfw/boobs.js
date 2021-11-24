@@ -1,35 +1,41 @@
-const { MessageEmbed } = require("discord.js");
-const NSFW = require("discord-nsfw");
+const superagent = require("node-fetch");
+const Discord = require('discord.js')
+
+const rp = require('request-promise-native');
 
 module.exports = {
-    name: 'boobs',
-    aliases: [],
-    description: 'Shows a boobs pic :hot_face:.',
-    run: async (client, message, args, Discord) => {
-        const nsfw = new NSFW();
-        if (!message.channel.nsfw) {
-          const embed = new MessageEmbed()
-            .setTitle(`Not NSFW Channel`)
-            .setColor("DARK_PURPLE")
-            .setDescription(
-              "We cant send nsfw command in text channels you need a **nsfw** channel to run this command"
-            ).setImage("https://media.discordapp.net/attachments/721019707607482409/855827123616481300/nsfw.gif");;
-          message.channel.send({ embeds: [embed] });
-        } else {
-          const image = await nsfw.nekotits();
-          const embed = new MessageEmbed()
-            .setTitle(`BOOBS :eyes:`)
-            .setColor("DARK_PURPLE")
-            .setImage(image)
-            .setFooter(
-              `Requested by ${message.author.username}`,
-              message.author.displayAvatarURL({
-                dynamic: true,
-                format: "png",
-                size: 2048,
-              })
-            );
-          message.channel.send({ embeds: [embed] });
-        }
-    }
-}
+    name: "boobs",
+    category: "NSFW",
+  description: "Sends boobs",
+  run: async (client, message, args, level) => {
+  //command
+
+  //Checks channel for nsfw
+  var errMessage = "This is not an NSFW Channel";
+  if (!message.channel.nsfw) {
+      message.react('💢');
+
+      return message.reply(errMessage)
+      .then(msg => {
+      msg.delete({ timeout: 3000 })
+      })
+      
+  }
+
+  return rp.get('http://api.oboobs.ru/boobs/0/1/random').then(JSON.parse).then(function(res)  {
+    return rp.get({
+        url:'http://media.oboobs.ru/' + res[0].preview,
+        encoding: null
+    });
+}).then(function(res)   {
+
+const boobs = new Discord.MessageEmbed()
+      .setTitle("Boobs")
+      .setColor(`#FF0000`)
+      .setImage("attachment://file.png").attachFiles([{ attachment: res, name: "file.png" }])
+
+
+    message.channel.send(boobs);
+});
+  }
+  };

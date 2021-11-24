@@ -30,10 +30,14 @@ module.exports = async (client) => {
      const clockChannel = client.channels.cache.get("910604633309847593");
   clockChannel.edit({ name: `🕒 ${timeNow}` }, 'Clock update')
     .catch(console.error);
-  setInterval(() => {
+    setInterval(() => {
     const timeNowUpdate = moment().tz("GMT+0").format("HH:mm (z)");
     clockChannel.edit({ name: `🕒 ${timeNowUpdate}` }, 'Clock update')
       .catch(console.error);
+
+      const chnl = client.channels.cache.get('913105625276350504')
+
+      chnl.edit({ name: `📈 Uptime: ${client.uptime}` }, 'Clock update')
   }, 60000);
     })
 

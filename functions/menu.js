@@ -16,7 +16,7 @@ const create_mh = (
 
     let menus = [];
                     
-const emo = {
+            const emo = {
 
                 "fun": "😃",
                 "general": "📖",
@@ -28,7 +28,11 @@ const emo = {
                 "music": '🎶',
                 "profile": '👤',
                 "nsfw": '🔞',
-                "soundboard": '🔊'
+                "soundboard": '🔊',
+                "expresions": '😊',
+                "animals": '🐶',
+                "sfw": '🦺',
+                "anime": '💮',
             }
 
 

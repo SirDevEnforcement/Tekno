@@ -1,36 +1,41 @@
-const { MessageEmbed } = require("discord.js");
-const NSFW = require("discord-nsfw");
+const superagent = require("node-fetch");
+const Discord = require('discord.js')
+
+const rp = require('request-promise-native');
 
 module.exports = {
-  name: "ass",
-  aliases: ["asses"],
-  description: "Shows a juicy ass pic :hot_face:.",
+    name: "ass",
+    category: "NSFW",
+  description: "Sends ass",
+  run: async (client, message, args, level) => {
+  //command
 
-  run: async (client, message, args, Discord) => {
-    const nsfw = new NSFW();
-    if (!message.channel.nsfw) {
-      const embed = new MessageEmbed()
-        .setTitle(`Not NSFW Channel`)
-        .setColor("DARK_PURPLE")
-        .setDescription(
-          "We cant send nsfw command in text channels you need a **nsfw** channel to run this command"
-        ).setImage("https://media.discordapp.net/attachments/721019707607482409/855827123616481300/nsfw.gif");;
-      message.channel.send({ embeds: [embed] });
-    } else {
-      const image = await nsfw.hentaiass();
-      const embed = new MessageEmbed()
-        .setTitle(`Juicy Ass`)
-        .setColor("DARK_PURPLE")
-        .setImage(image)
-        .setFooter(
-          `Requested by ${message.author.username}`,
-          message.author.displayAvatarURL({
-            dynamic: true,
-            format: "png",
-            size: 2048,
-          })
-        );
-      message.channel.send({ embeds: [embed] });
-    }
-  },
-};
+  //Checks channel for nsfw
+  var errMessage = "This is not an NSFW Channel";
+  if (!message.channel.nsfw) {
+      message.react('💢');
+
+      return message.reply(errMessage)
+      .then(msg => {
+      msg.delete({ timeout: 3000 })
+      })
+      
+  }
+
+  return rp.get('http://api.obutts.ru/butts/0/1/random').then(JSON.parse).then(function(res)  {
+    return rp.get({
+        url:'http://media.obutts.ru/' + res[0].preview,
+        encoding: null
+    });
+}).then(function(res)   {
+
+const ass = new Discord.MessageEmbed()
+      .setTitle("Ass")
+      .setColor(`#FF0000`)
+      .setImage("attachment://file.png").attachFiles([{ attachment: res, name: "file.png" }])
+
+
+    message.channel.send(ass);
+});
+  }
+  };

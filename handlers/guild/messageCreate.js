@@ -5,6 +5,8 @@ const maintenance = require('../../database/maintenance.json');
 module.exports = async(client) => {
 
 client.on('messageCreate', async message => {
+
+  if(!message.guild) return;
   
   const prefix = db.get(`prefix_${message.guild.id}`) ? db.get(`prefix_${message.guild.id}`) : 't!'
 
@@ -64,35 +66,6 @@ client.on('messageCreate', async message => {
   db.add(`globalMessages_${message.author.id}`, 1)
 
   db.add(`guildMessages_${message.guild.id}_${message.author.id}`, 1)
-
-
-  if(!message.guild || message.guild.id === '735069395294093415') return;
-  xp(message)
-  if(message.author.bot) return;
-
-  var user = message.mentions.users.first() || message.author;
-  var level = db.get(`level_${message.guild.id}_${message.author.id}`) || 1;
-  var currentxp = db.get(`reqxp_${message.guild.id}_${message.author.id}`) || 0;
-  var xpNeeded = level * 500 + 500;
-  
-
-  async function xp(message) {
-    if(message.author.bot) return;
-    const randomNumber = Math.floor(Math.random() * 10) + 15;
-    db.add(`xp_${message.guild.id}_${message.author.id}`, randomNumber)
-    db.add(`xptotal_${message.guild.id}_${message.author.id}`, randomNumber)
-  var level = db.get(`level_${message.guild.id}_${message.author.id}`) || 1;
-  var xp = db.get(`xp_${message.guild.id}_${message.author.id}`);
-  var xpNeeded = level * 500;
-  if(xpNeeded < xp) {
-    var newLevel = db.add(`level_${message.guild.id}_${message.author.id}`, 1);
-    db.subtract(`xp_${message.guild.id}_${message.author.id}`, xpNeeded)
-
-    if(!message.guild.me.permissionsIn(message.channel.id).toArray().includes('SEND_MESSAGES')) return message.author.send({content: `${message.author.tag}, you are now level \`${newLevel}\``})
-     
-     let msg = await message.channel.send({content: `${message.author.tag}, you are now level \`${newLevel}\``});
-  }
-  }
 
 })
 }

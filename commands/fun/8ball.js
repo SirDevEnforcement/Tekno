@@ -3,7 +3,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
   name: "8ball",
   description: "There is a big chance I insult you!",
-  run: async (bot, message, args) => {
+  run: async (client, message, args) => {
     let question = args.join(" ")
     if (!question)
       return message.channel.send({content: `You did not specify your question!`});

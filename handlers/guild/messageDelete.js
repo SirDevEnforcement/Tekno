@@ -12,6 +12,7 @@ client.on("messageDelete", (message) => {
 })
 
 client.on("messageDelete", async(message) => {
+  if(!message.guild.me.permissions.has("MANAGE_CHANNELS")) return;
   if(premium.includes(message.guild.id)) {
     if(message.author.bot) return;
     const embed = new Discord.MessageEmbed()
