@@ -11,7 +11,7 @@ client.snipes = new Map();
 client.embedColor = "RED";
 client.categories = fs.readdirSync('./commands/');
 
-['command', './guild/messageCreate', './guild/messageDelete', './client/ready', './client/app', './client/antiCrash', './distube/index', 'slash_commands', 'interactionCreate', './client/antiAlt'].forEach((handler) => {
+['command', './guild/messageCreate', './guild/messageDelete', './client/ready', './client/app', './client/antiCrash', './distube/index', 'slash_commands', 'interactionCreate'].forEach((handler) => {
 	require(`./handlers/${handler}`)(client);
 })
 

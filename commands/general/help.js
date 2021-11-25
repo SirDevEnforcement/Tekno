@@ -34,7 +34,7 @@ module.exports = {
 
             let ignored = [
                 "owner",
-                "secret"
+                "christmas",
             ];
 
             const emo = {
@@ -54,6 +54,7 @@ module.exports = {
                 "animals": '🐶',
                 "sfw": '🦺',
                 "anime": '💮',
+                "christmas": '🎄'
             }
 
             let ccate = [];
@@ -288,7 +289,7 @@ const filter = async interaction => {
             }
 
             const embed = new MessageEmbed()
-                .setTitle("<:help:913104163372662825> Command Details:")
+                .setTitle(`Command Details:`)
                 .addField(
                     "Command:",
                     command.name ? `\`${command.name}\`` : "No name for this command."

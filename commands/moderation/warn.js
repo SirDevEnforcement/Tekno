@@ -1,58 +1,44 @@
-const Discord = require('discord.js');
-const warns = require('../../database/warns.json');
-const fs = require('fs')
 module.exports = {
-  name: "warn",
-  description: "Warn a user. Saves to the database",
-  run: async(client, message, args) => {
-    const mutedrole = message.guild.roles.cache.find(role => role.name === 'Muted');
-    const mutedroleid = mutedrole.id
-if(!message.member.permissions.has("MUTE_MEMBERS")) return message.reply("You do not have permission to do that.");
-        const user = message.mentions.users.first();
-        if (!user) return message.reply("Please specify someone you want to warn. **!warn <user> [reason]**");
-        const target = message.guild.members.cache.get(user.id);
-        if(target.roles.cache.has(mutedroleid)) return message.reply("You cannot warn muted members.");
-        if(!mutedrole) return message.reply("Couldn't find the Muted role.");
+  name: 'warn',
+  description: 'Warn a user!',
 
-        const reason = args.slice(1).join(" ");
+  run: async(client, message, args) => { 
+    if (!message.guild.me.permissions.has(["EMBED_LINKS", "ADD_REACTIONS"])) return message.channel.send(`🚫 | I cannot run this command as I have insufficient permissions to do so. Please ensure I have the \"EMBED_LINKS\" & \"ADD_REACTIONS\" permissions.`);
 
-        if (!warns[user.id]) {
-            warns[user.id] = {
-                warnCount: 1
-            }
-        } else {
-            warns[user.id].warnCount += 1;
-        }
+    if(!message.member.permisions.has(["MANAGE_MESSAGES", "MANAGE_MEMBERS"])) return message.channel.send(`🚫 | I cannot run this command as you have insufficient permissions. Make sure to have the \"MANAGE_MEMBERS\" & \"MANAGE_MESSAGES\" permissions!`)
 
-        if(warns[user.id].warnCount >= 5) {
-            const mute = new Discord.MessageEmbed()
-            .setColor("#00aaaa")
-            .setDescription(`${user} has been muted. (**5**/**5**)\nReason: **${reason != "" ? reason : "-"}**`);
-            message.channel.send({ embeds: [mute] });
-            
-            target.roles.add(mutedrole.id);
-            warns[user.id].warnCount = 0;
+    const user = message.mentions.users.first();
+    let reason = args.slice(1).join(" ") || "None Specified";
     
-            setTimeout(() => {
-                target.roles.remove(mutedrole.id);
-                const unmute = new Discord.MessageEmbed()
-                .setColor("#00aaaa")
-                .setDescription(`${user} has been unmuted.`);
-                message.channel.send({ embeds: [unmute] });
-            }, 1000 * 900);
+    if (!user) return message.react('🚫'), message.reply('Command Usage: `warn <@USER_MENTION> <Reason>`');
 
-        } else {
-            const warn = new Discord.MessageEmbed()
-            .setColor("#00aaaa")
-            .setDescription(`${user} has been warned by ${message.author}. (**${warns[user.id].warnCount}**/**5**) \nReason: **${reason != "" ? reason : "-"}**`);
-            message.channel.send({ embeds: [warn] });
-        }
+    if (reason) {
+      try {
+        const embed = new client.Discord.MessageEmbed()
+          .setTitle(`⚠️ | __**Warning issued**__`)
+          .setColor('RANDOM')
+          .addField('Member', `\`\`\`${user.tag}\`\`\``)
+          .addField('Moderator', `\`\`\`${message.author.tag}\`\`\``)
+          .addField('Reason', `\`\`\`${reason}\`\`\``)
+          .setFooter('Moderation system powered by Tekno')
+          .setTimestamp()
+        message.channel.send({ embeds: [embed] });
 
-        fs.writeFile("../../warns.json", JSON.stringify(warns), err => {
-            if (err) console.log(err);
-        });
+        const emb = new client.Discord.MessageEmbed()
+          .setTitle(`⚠️ | __**Warning issued**__`)
+          .setColor('RANDOM')
+          .addField('Member', `\`\`\`${user.tag}\`\`\``)
+          .addField('Moderator', `\`\`\`${message.author.tag}\`\`\``)
+          .addField('Reason', `\`\`\`${reason}\`\`\``)
+          .setFooter('Moderation system powered by Tekno')
+          .setTimestamp()
 
+        if (!user.bot) user.send({embeds: [emb]});
 
-
+        message.react("✅");
+      } catch (error) {
+        return message.channel.send(`🚫 | An error occurred:\n\```${error.message}\````);
+      }
+    }
   }
-  }
+}
