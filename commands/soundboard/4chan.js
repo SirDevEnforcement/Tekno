@@ -3,13 +3,13 @@ const { createAudioResource, createAudioPlayer, joinVoiceChannel, AudioPlayerSta
 const { MessageButton } = require('discord.js');
 
 module.exports = {
-	name: 'bruh',
+	name: '4chan',
 	run: async (client, message) => {
 	const channel = message.member.voice.channel;
 	if (!channel) return message.channel.send('Please connect to a voice channel to use soundboard');
 	function play() {
 		const player = createAudioPlayer();
-		const resource = createAudioResource(path.join(__dirname + '/audio/bruh.mp3'));
+		const resource = createAudioResource(path.join(__dirname + '/audio/4chan.mp3'));
 		const connection = joinVoiceChannel({
 			channelId: message.member.voice.channel.id,
 			guildId: message.guild.id,

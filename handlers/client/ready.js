@@ -65,23 +65,12 @@ module.exports = async (client) => {
      const clockChannel = client.channels.cache.get("910604633309847593");
   clockChannel.edit({ name: `🕒 ${timeNow}` }, 'Clock update')
     .catch(console.error);
-    setInterval(() => {
-    const timeNowUpdate = moment().tz("GMT+0").format("HH:mm (z)");
-    clockChannel.edit({ name: `🕒 ${timeNowUpdate}` }, 'Clock update')
-      .catch(console.error);
-
-      const chnl = client.channels.cache.get('913105625276350504')
-
-      chnl.edit({ name: `📈 Uptime: ${uptime}` }, 'Uptime')
-
-      console.log('Edit')
-  }, 60000);
     })
 
     const axios = require('axios')
     axios({
         method: 'post',
-        url: 'https://radarbotdirectory.xyz/api/bot/888732127586316289/stats',
+        url: 'https://radarbotdirectory.xyz/api/bot/913472906913267793/stats',
         headers: {
             'Content-Type': 'application/json',
             Accept: 'application/json',
@@ -91,6 +80,18 @@ module.exports = async (client) => {
             guilds: client.guilds.cache.size,
         },
     })
+
+	setTimeout(() => {
+
+		const timeNow = moment().tz("GMT+0").format("HH:mm (z)");
+
+     const clockChannel = client.channels.cache.get("910604633309847593");
+  clockChannel.edit({ name: `🕒 ${timeNow}` }, 'Clock update')
+    .catch(console.error);
+		const chnl = client.channels.cache.get('913105625276350504')
+
+      chnl.edit({ name: `📈 Uptime: ${uptime}` }, 'Uptime')
+	}, 30000)
     
     
     
