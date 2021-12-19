@@ -12,11 +12,10 @@ module.exports = {
 
     const embed = new MessageEmbed()
       .setTitle('Suggestion')
-      .setDescription(` ${message.content.slice(9).trim()} `)
+      .setDescription(` ${message.content.slice(1).trim()} `)
       .setFooter(message.author.username + '#' + message.author.discriminator, avatar)
 
-const suggestion = await channel.send({embeds: [embed]})
-
+const suggestion = await channel.send({embeds: [embed]}).then(sentMessage => sentMessage.react('<:tickYes:897893666138517535>')).then(reaction => reaction.message.react('<:tickNo:897893666637623356>'))
   }
-
+  
 }

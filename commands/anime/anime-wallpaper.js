@@ -30,7 +30,7 @@ module.exports = {
     try {
         var wallpapers = await Wallpaper1();
     } catch (err) {
-        return message.inlineReply("❌ I dind't find any wallpaper with the name: " + query.toString());
+        return message.reply("❌ I dind't find any wallpaper with the name: " + query.toString());
     }
 
     const wallpaper =

@@ -1,5 +1,13 @@
 {
   "files": {
+    "client.js": [
+      {
+        "id": "92184515-4eb7-44e8-8643-ee54af658b1b",
+        "line": 9,
+        "version": 60,
+        "index": 267
+      }
+    ],
     "commands/General/messages.js": [
       {
         "id": "1ece1742-6449-4e18-9274-0290abfd19f5",
@@ -30,6 +38,14 @@
         "line": 31,
         "version": 112,
         "index": 1211
+      }
+    ],
+    "index.js": [
+      {
+        "id": "1b6e9a1d-6e9a-4600-96d9-21dd41c57a16",
+        "line": 10,
+        "version": 25463,
+        "index": 353
       }
     ]
   }

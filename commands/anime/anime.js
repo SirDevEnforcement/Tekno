@@ -14,7 +14,7 @@ module.exports = {
    */
   run: async (client, message, args) => {
     const query = args.join(" ");
-    if (!query) return message.inlineReply("Please type a name of an anime!");
+    if (!query) return message.reply("Please type a name of an anime!");
     const anime = await searchAnime(query, 1).then((res) => {
       return res[0];
     });

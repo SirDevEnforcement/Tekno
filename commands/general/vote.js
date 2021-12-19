@@ -3,7 +3,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
   name: "vote",
   aliases: ['v'],
-    description: "Vote to Tekno!", 
+    description: "Vote for Tekno!", 
   run: async (client, message, args) => {
 
     const embed = new MessageEmbed()

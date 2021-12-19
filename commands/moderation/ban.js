@@ -33,7 +33,7 @@ module.exports = {
 		}
 
 		member.send({content: `You have been banned in **${message.guild.name}** for **${res}**`}).catch((err) => (console.log(err)));
-		await member.ban({ reason: reason, days: 7 }).catch(e => console.log(`[WARN] ${e.message} in ${e.filename} [${e.lineNumber}, ${e.columnNumber}]`));
+		await member.ban({ reason: reason }).catch(e => console.log(`[WARN] ${e.message} in ${e.filename} [${e.lineNumber}, ${e.columnNumber}]`));
 			const embed = new Discord.MessageEmbed()
 				.setAuthor('Member Banned', '')
 				.setThumbnail(member.user.displayAvatarURL({ dynamic: true }))

@@ -15,13 +15,13 @@ const create_mh = (
     let id = `help-menus`;
 
     let menus = [];
-                    
-            const emo = {
 
-                "fun": "😃",
-                "general": "📖",
+    const emo = {
+
+                "fun": "🙂",
+                "general": "📔",
                 "utility": "⚙",
-                "moderation": "⚒",
+                "moderation": "🔨",
                 "image": '📷',
                 "levelling": '📈',
                 "information": 'ℹ',
@@ -30,9 +30,12 @@ const create_mh = (
                 "nsfw": '🔞',
                 "soundboard": '🔊',
                 "expresions": '😊',
-                "animals": '🐶',
-                "sfw": '🦺',
+                "animals": '🐶', 
                 "anime": '💮',
+                "christmas": '🎄',
+                "activities": '🎮',
+                "giveaways" : '🎉',
+							  "reaction roles": "<:Settings:919554131688063007>",
             }
 
 

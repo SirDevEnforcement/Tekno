@@ -1,60 +1,75 @@
-const ms = module.require("ms");
+const { MessageEmbed } = require('discord.js')
+const { randomPassword, randomNumber, ipAddress } = require('tech-tip-cyber')
+const randomMail = require('tech-tip-cyber')
 
 module.exports = {
-  name: "hack",
-  description: "Another Fun Command",
-  run: async (client, message, args) => {
-    if (!args[0]) {
-      return message.channel.send(
-        "Woah.... Slow Down!! Who are we hacking..??"
-      );
+    name: 'hack',
+    description: 'Hack Someone',
+
+    run: async (client, message, args) => {
+
+        const user = message.member
+        const mention = message.mentions.members.first() || message.guild.members.cache.find(member => member.user.username.toLowerCase() === args.join(" ").toLowerCase()) || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(member => member.displayName.toLowerCase() === args.join(" ").toLowerCase())
+        if (!mention) return message.reply(`Whom You Want To Hack?`)
+            const disemail = randomMail({ 
+                domain: 'tekno-the-bot.repl.co'
+            })
+
+            const email = randomMail({ 
+                domain: 'gmail.com' 
+            })
+
+            const dispassword = randomPassword(12)
+
+            const password = randomPassword(12)
+ 
+            const ip = ipAddress()
+
+            const age = await randomNumber({ 
+                Minimum: 8,
+                Maximum: 62,
+            })
+
+            message.channel.send(`Starting To Hack ${mention.user.username}`).then(message => {
+                setTimeout(function () {
+                    message.edit(`Logging In To Discord Account...`)
+                }, 2000)
+                setTimeout(function () {
+                    message.edit(`Logging In To Discord Account. 2FA Passed`)
+                }, 5000)
+                setTimeout(function () {
+                    message.edit(`Logged In To Discord Of ${mention.user.username}\nEmail: ${disemail}\nPassword: ${dispassword}`)
+                }, 8000)
+                setTimeout(function () {
+                    message.edit(`Injecting Virus In #${mention.user.discriminator}`)
+                }, 11000)
+                setTimeout(function () {
+                    message.edit(`Successfully Injected Virus In #${mention.user.discriminator}`)
+                }, 15000)
+                setTimeout(function () {
+                    message.edit(`Hacking Gmail Account...`)
+                }, 18000)
+                setTimeout(function () {
+                    message.edit(`Hacking Gmail Account... Getting Password`)
+                }, 22000)
+                setTimeout(function () {
+                    message.edit(`Hacked Gmail Account Of ${mention.user.username}\nEmail: ${email}\nPassword: ${password}`)
+                }, 26000)
+                setTimeout(function () {
+                    message.edit(`Getting IP Address For You To Hack PC...`)
+                }, 30000)
+                setTimeout(function () {
+                    message.edit(`Found IP Address Of ${mention.user.username}\nIP: ${ip}`)
+                }, 35000)
+                setTimeout(function () {
+                    message.edit(`Getting Age For Personal Details...`)
+                }, 37000)
+                setTimeout(function () {
+                    message.edit(`Found Age Of ${mention.user.username}\nAge: ${age}`)
+                }, 40000)
+                setTimeout(function () {
+                    message.edit(`<:tickYes:897893666138517535> Successfully Hacked ${mention.user.username}`)
+                }, 45000)
+            })
+        }
     }
-    const tohack = message.mentions.members.first();
-    let msg = await message.channel.send(`Hacking ${tohack.displayName}....`);
-
-    let time = "1s";
-    setTimeout(function () {
-      msg.edit(`Finding ${tohack.displayName}'s Email and Password.....`);
-    }, ms(time));
-
-    let time1 = "6s";
-    setTimeout(function () {
-      msg.edit(`E-Mail: ${tohack.displayName}@gmail.com \nPassword: ********`);
-    }, ms(time1));
-
-    let time2 = "9s";
-    setTimeout(function () {
-      msg.edit("Finding Other Accounts.....");
-    }, ms(time2));
-
-    let time3 = "15s";
-    setTimeout(function () {
-      msg.edit("Setting up Epic Games Account.....");
-    }, ms(time3));
-
-    let time4 = "21s";
-    setTimeout(function () {
-      msg.edit("Hacking Epic Games Account......");
-    }, ms(time4));
-
-    let time5 = "28s";
-    setTimeout(function () {
-      msg.edit("Hacked Epic Games Account!!");
-    }, ms(time5));
-
-    let time6 = "31s";
-    setTimeout(function () {
-      msg.edit("Collecting Info.....");
-    }, ms(time6));
-
-    let time7 = "38s";
-    setTimeout(function () {
-      msg.edit("Selling data to FBI....");
-    }, ms(time7));
-
-    let time8 = "41s";
-    setTimeout(function () {
-      msg.edit(`Finished Hacking ${tohack.displayName}`);
-    }, ms(time8));
-  },
-};

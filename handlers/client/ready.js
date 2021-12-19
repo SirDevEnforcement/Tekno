@@ -1,6 +1,8 @@
 const chalk = require('chalk');
 const moment = require('moment');
 const tz = require('moment-timezone');
+const Database = require("@replit/database")
+const db = new Database();
 module.exports = async (client) => {
 
       let days = 0;
@@ -34,6 +36,8 @@ module.exports = async (client) => {
 
 
     client.on('ready', async () => {
+
+
         const status = [
             `t!help ・ ${client.guilds.cache.size} servers!`,
             `t!help ・ ${client.guilds.cache.map(c => c.memberCount).reduce((a, b) => a + b)} users!`,
@@ -52,9 +56,9 @@ module.exports = async (client) => {
         channel2.setName(`📚 Total Servers: ${client.guilds.cache.size}`)
 
         console.log(`                Connected to ${chalk.green(client.user.username + '#' + client.user.discriminator)}`)
-        console.log(`Watching ${chalk.magenta(`${client.guilds.cache.map(c => c.memberCount).reduce((a, b) => a + b)}`)} users and ${chalk.magenta(client.guilds.cache.size)} servers!`)
+        console.log(`Watching ${chalk.red(`${client.guilds.cache.map(c => c.memberCount).reduce((a, b) => a + b)}`)} users and ${chalk.red(client.guilds.cache.size)} servers!`)
         console.log(chalk.green(`\n                  [ ﹕Statistics ﹕]\n`))
-        console.log(`Prefix: ${chalk.magenta(`t!`)} ﹕﹕Commands: ${chalk.magenta(client.commands.size)} ﹕﹕Categories: ${chalk.magenta(client.categories.length)}\n`)
+        console.log(`Commands: ${chalk.red(client.commands.size)} ﹕﹕Slash Commands: ${chalk.red(client.slashcommands.size)} ﹕﹕Categories: ${chalk.red(client.categories.length)}\n`)
 
         const timeNow = moment().tz("GMT+0").format("HH:mm (z)");
 

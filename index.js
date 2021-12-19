@@ -5,14 +5,16 @@ module.exports = client;
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
 client.slashcommands = new Discord.Collection();
-client.prefix = process.env['prefix'];
+client.prefix = 't!' || `<@!${client.user.id}>`;
 client.Discord = Discord;
 client.snipes = new Map();
-client.embedColor = "RED";
+const { DiscordTogether } = require('discord-together');
+client.discordTogether = new DiscordTogether(client);
+client.giveawaysManager = require('./giveaways.js');
+client.reactionRoleManager = require('./reaction-roles.js')
 client.categories = fs.readdirSync('./commands/');
 
-['command', './guild/messageCreate', './guild/messageDelete', './client/ready', './client/app', './client/antiCrash', './distube/index', 'slash_commands', 'interactionCreate'].forEach((handler) => {
+['command', './guild/messageCreate', './guild/messageDelete', './client/ready', './client/app', './client/antiCrash', './distube/index', 'slash_commands', 'interactionCreate', './guild/guildMemberAdd'].forEach((handler) => {
 	require(`./handlers/${handler}`)(client);
 })
-
 client.login(process.env['token'])

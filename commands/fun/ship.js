@@ -28,7 +28,7 @@ module.exports = {
         `:heart:`,
         false
       );
-      const mehh = new Discord.MessageEmbed()
+      const mehh = new MessageEmbed()
         .setTitle(
           `💔 This isn't a match`,
           message.guild.iconURL({
@@ -52,7 +52,7 @@ module.exports = {
         )
         .setTimestamp()
         .setColor("RED");
-      const love = new Discord.MessageEmbed()
+      const love = new MessageEmbed()
         .setTitle(
           `:heart: They are born for each others!`,
           message.guild.iconURL({

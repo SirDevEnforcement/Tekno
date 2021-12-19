@@ -2,19 +2,19 @@ const Discord = require('discord.js');
 const db = require('quick.db');
 const premium = require('../../database/premium.json');
 const maintenance = require('../../database/maintenance.json');
+const blacklisted = require('../../database/blacklisted.json');
 module.exports = async(client) => {
 
 client.on('messageCreate', async message => {
 
   if(!message.guild) return;
-  
-  const prefix = db.get(`prefix_${message.guild.id}`) ? db.get(`prefix_${message.guild.id}`) : 't!'
 
-      if(message.content.toLowerCase().includes('<@!888732127586316289>')) {
+      if(message.content.toLowerCase() === `<@!${client.user.id}>`) {
             const embed = new Discord.MessageEmbed()
       .setAuthor(`Help Menu`, client.user.displayAvatarURL())
-      .setDescription(`<:leo_member:892325715494711307> Hello! I'm **Tekno**, a feature-rich multi-purpose bot! To use **all** my commands, run the command \`${prefix}help\`!`)
-      .setFooter(`dsc.gg/tekno`)
+      .setTitle('Click here!')
+      .setDescription(`<:leo_member:892325715494711307> Hello! I'm **Tekno**, a feature-rich multi-purpose bot! To use **all** my commands, run the command \`${client.prefix}help\`!`)
+      .setURL(`https://tekno-the-bot.repl.co`)
 
       if(premium.includes(message.guild.id)) {
         embed.addField('<:premium:909142147083673610> Premium', 'This server is a premium server, congrats!')
@@ -24,10 +24,10 @@ client.on('messageCreate', async message => {
       }
  
 
-  const args = message.content.slice(prefix.length).trim().split(/ +/g);
+  const args = message.content.slice(client.prefix.length).trim().split(/ +/g);
 
   if (message.author.bot) return;
-  if (!message.content.toLowerCase().startsWith(prefix)) return;
+  if (!message.content.toLowerCase().startsWith(client.prefix)) return;
 
   if (!message.member) {
     message.member = await message.guild.fetchMember(message);
@@ -39,24 +39,26 @@ client.on('messageCreate', async message => {
 
   if (cmd.length === 0) return;
 
-  let command = client.commands.get(cmd) || client.commands.get(client.aliases.get(cmd))
+  let command = client.commands.get(cmd)
 
-        const embed2 = new Discord.MessageEmbed()
-      .setTitle(`Command used`)
-      .setDescription(`Name: ${command.name}`)
-      .addField(`Guild`, `Guild ID: ${message.guild.id}\nGuild Name:${message.guild.name}\nOwner ID:${message.guild.ownerId}`)
-      .addField(`Channel`, `Channel ID: ${message.channel.id}\nChannel Name: ${message.channel.name}\nMessage ID:${message.id}`)
+      const embed3 = new Discord.MessageEmbed()
+      .setTitle('Blacklisted')
+      .setDescription('<:moderation:913104155424460840> You are blacklisted from the bot! To appeal, go to the link below and speak to the (main) developer!\n\n> https://discord.gg/B82QFdqPPH')
+
+       const embed2 = new Discord.MessageEmbed()
+       .setTitle('Command Not Found')
+      .setDescription(`<:tickNo:897893666637623356> \`${cmd}\` was not found! Try doing \`t!help\` to find the correct command!`)
 
   if (command) {
-    if(maintenance.includes("true")) { message.channel.send({content: `Maintenance is going on! You cannot use commands until maintenance mode ends.`})
+  if(blacklisted.includes(message.author.id)) {
+      message.channel.send({embeds: [embed3]})
     } else {
           command.run(client, message, args)
     console.log(`${command.name} was used!`)
     db.add(`usage`, 1)
-    client.channels.cache.get('894164132704714765').send({embeds: [embed2]})
     }
-  } else if(!command) {
-    message.channel.send({content: '<:cross:881238098871201802> | Command not found!'})
+  } else {
+    message.channel.send({embeds: [embed2]})
   }
 
 

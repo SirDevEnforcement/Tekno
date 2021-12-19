@@ -1,3 +1,5 @@
+const warns = require('../../database/warns.json');
+const fs = require('fs');
 module.exports = {
   name: 'warn',
   description: 'Warn a user!',
@@ -5,10 +7,17 @@ module.exports = {
   run: async(client, message, args) => { 
     if (!message.guild.me.permissions.has(["EMBED_LINKS", "ADD_REACTIONS"])) return message.channel.send(`🚫 | I cannot run this command as I have insufficient permissions to do so. Please ensure I have the \"EMBED_LINKS\" & \"ADD_REACTIONS\" permissions.`);
 
-    if(!message.member.permisions.has(["MANAGE_MESSAGES", "MANAGE_MEMBERS"])) return message.channel.send(`🚫 | I cannot run this command as you have insufficient permissions. Make sure to have the \"MANAGE_MEMBERS\" & \"MANAGE_MESSAGES\" permissions!`)
+    if(!message.member.permissions.has(["MANAGE_MESSAGES", "MANAGE_MEMBERS"])) return message.channel.send(`🚫 | I cannot run this command as you have insufficient permissions. Make sure to have the \"MANAGE_MEMBERS\" & \"MANAGE_MESSAGES\" permissions!`)
 
     const user = message.mentions.users.first();
     let reason = args.slice(1).join(" ") || "None Specified";
+    if(!warns[user.id]) {
+            warns[user.id] = {
+                warnCount: 1
+            }
+        } else {
+            warns[user.id].warnCount += 1;
+        }
     
     if (!user) return message.react('🚫'), message.reply('Command Usage: `warn <@USER_MENTION> <Reason>`');
 
@@ -39,6 +48,10 @@ module.exports = {
       } catch (error) {
         return message.channel.send(`🚫 | An error occurred:\n\```${error.message}\````);
       }
+
+      fs.writeFile("../../database/warns.json", JSON.stringify(warns), err => {
+            if (err) console.log(err);
+        });
     }
   }
 }

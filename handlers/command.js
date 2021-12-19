@@ -13,7 +13,7 @@ module.exports = async(client) => {
 
       if (pull.name) {
         client.commands.set(pull.name, pull);
-        table.addRow(`${pull.name}`, `${chalk.green('✅')}`, `${dir}`);
+        table.addRow(`${pull.name}`, `${chalk.green('✅ Loaded')}`, `${dir}`);
       }
       else {
         table.addRow(file, `${chalk.red('❎')}`);

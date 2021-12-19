@@ -33,7 +33,7 @@ module.exports = {
 
     const erroremb = new Discord.MessageEmbed()
     .setTitle(`⚠ Error`)
-    .setDescription(`\`\`\`${error}\`\`\``)
+    .setDescription(`\`\`\`${error.stack}\`\`\``)
     message.channel.send({embeds: [erroremb]})
  }}}
  

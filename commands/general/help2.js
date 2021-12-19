@@ -13,8 +13,8 @@ const db = require('quick.db')
 const create_mh = require(`../../functions/menu.js`);
 
 module.exports = {
-    name: "help",
-    aliases: [`h`],
+    name: "help2",
+    aliases: [`h2`],
     description: "Shows all available bot commands",
     /**
      * 
@@ -24,7 +24,7 @@ module.exports = {
      * @returns 
      */
     run: async (client, message, args) => {
-      const prefix = client.prefix;
+      const prefix = db.get(`prefix_${message.guild.id}`) ? db.get(`prefix_${message.guild.id}`) : 't!'
 
         let categories = [];
         let cots = [];
@@ -85,7 +85,7 @@ module.exports = {
 
                 cats = {
                     name: name,
-                    value: `<:reply:919553027768193055> \`${prefix}help ${dir.toLowerCase()}\``,
+                    value: `\`${prefix}help ${dir.toLowerCase()}\``,
                     inline: true
                 }
 
@@ -95,9 +95,8 @@ module.exports = {
             });
 
             const embed = new MessageEmbed()
-                .setTitle(`<:leo_member:892325715494711307> Help Menu`)
+                .setTitle(`<:help:913104163372662825> Help Menu`)
                 .setDescription(`>>> My prefix is \`${prefix}\`\nUse the menu, or use \`${prefix}help [category]\` to view commands base on their category!\nCommand Count: \`${client.commands.size}\` | Category Count: \`${client.categories.length}\``)
-                .addFields(categories)
                 .setFooter(
                     `Requested by ${message.author.tag}`,
                     message.author.displayAvatarURL({
@@ -264,18 +263,6 @@ const filter = async interaction => {
                 client.commands.find(
                     (c) => c.aliases && c.aliases.includes(args[0].toLowerCase())
                 );
-
-            if (cots.includes(args[0].toLowerCase())) {
-                const combed = new MessageEmbed()
-                    .setTitle(`<:help:913104163372662825> **${args[0].charAt(0).toUpperCase() + args[0].slice(1)} Commands**`)
-                    .setDescription(`Use \`${prefix}help\` followed by a command name to get more information on a command.\nFor example: \`${prefix}help ping\`.\n\n`)
-                    .addFields(catts)
-                    .setColor(color)
-
-                return message.reply({
-                    embeds: [combed]
-                })
-            };
 
             if (!command) {
                 const embed = new MessageEmbed()

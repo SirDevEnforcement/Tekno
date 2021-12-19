@@ -13,7 +13,7 @@ module.exports = async (client) => {
         console.log(body)
         if (body.type !== "vote") return;
         const member = await client.users.fetch(body.user)
-        const embed = new Discord.MessageEmbed()
+            const embed = new Discord.MessageEmbed()
             .setTitle('Thanks for Voting!')
             .setDescription(`\`${member.username}\` just voted on Radar Bot Directory!`)
             .addField('How to vote?', `Head on over to [Radar Bot Directory](https://radarbotdirectory.xyz/bot/888732127586316289/vote) to vote for Tekno!`)
@@ -21,7 +21,12 @@ module.exports = async (client) => {
         client.channels.cache.get('894164132553699389').send({
             embeds: [embed]
         })
-        client.users.get(member.id).send({embeds: [embed]})
+
+				const embed2 = new Discord.MessageEmbed()
+				.setTitle('Thanks for Voting!')
+        .setDescription(`Thank you \`${member.username}\` for voting!\nHere, have a cookie :cookie:`)
+        .setThumbnail(`https://cdn.discordapp.com/avatars/${member.id}/${member.avatar}.png`)
+        client.users.cache.get(member.id).send({embeds: [embed2]})
         res.sendStatus(200);
 
     })
