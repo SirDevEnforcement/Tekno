@@ -1,4 +1,5 @@
-const Discord = require('discord.js')
+const Discord = require('discord.js');
+const fs = require('fs')
 module.exports = async (client) => {
     const express = require('express')
     const app = express()
@@ -32,7 +33,11 @@ module.exports = async (client) => {
     })
 
 
-    app.get('/', function(req, res) {
-        res.send(`Servers: ${client.guilds.cache.size}`)
-    })
+    app.get("/", async (req, res) => {
+
+    res.send('Servers: null')
+})
+
+
+	
 }

@@ -5,7 +5,7 @@ module.exports = async (client) => {
     if (!slash_commands) return interaction.followUp({ content: "This interaction failed." });
 
     try {
-      slash_commands.execute(client, interaction);
+      slash_commands.run(client, interaction);
     } catch (e) {
       console.error(e)
     }

@@ -16,8 +16,6 @@ module.exports = async (client) => {
     });
 
     client.on("ready", async () => {
-        await client.guilds.cache.get('894164132100730880').commands.set(array).then(async () => {
-            console.log(`Total Application (/) Commands: ${client.slashcommands.size}`)
-        }).catch(() => {});
+        await client.application.commands.set(array)
     })
 }

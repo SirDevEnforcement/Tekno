@@ -18,24 +18,21 @@ const create_mh = (
 
     const emo = {
 
-                "fun": "🙂",
-                "general": "📔",
-                "utility": "⚙",
-                "moderation": "🔨",
-                "image": '📷',
-                "levelling": '📈',
-                "information": 'ℹ',
-                "music": '🎶',
-                "profile": '👤',
-                "nsfw": '🔞',
-                "soundboard": '🔊',
-                "expresions": '😊',
+                "fun": "<:fun:927160213142913084>",
+                "general": "<:robot:926838334888763453>",
+                "utility": "<:discovery:926837134348939296>",
+                "moderation": "<:staff:926838334788083793>",
+                "image": '<:image:927154625033945109>',
+                "information": '<:rules:926839487953252373>',
+                "music": '<:music:927155320436961350>',
+                "profile": '<:members:926839973171302400>',
+                "nsfw": '<:textchannellocked:926837134218907648>',
+                "soundboard": '<:soundboard:927155497885384755>',
                 "animals": '🐶', 
                 "anime": '💮',
-                "christmas": '🎄',
-                "activities": '🎮',
-                "giveaways" : '🎉',
-							  "reaction roles": "<:Settings:919554131688063007>",
+                "activities": '<:activities:927155715796267028>',
+                "giveaways" : '<:gift:926839973158735952>',
+							  "games": "<:games:927156041714651136>"
             }
 
 

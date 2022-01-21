@@ -1,19 +1,19 @@
-# 🤖 Tekno (Multi-purpose bot)
+# `🤖` Tekno (Multi-purpose bot)
 > Tekno is a multi-feature discord bot, built with [discord.js](discord.js.org)
 
-## 🔗Links
+## `🔗` Links
 [Website](https://tekno-the-bot.repl.co)
 
 [Invite](https://tekno-the-bot.repl.co/invite)
 
 [FaQ](https://tekno-the-bot.repl.co/invite)
 
-## ⚠ Requirements
+## `⚠` Requirements
 
 1. Discord Bot Token **[Guide](https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot)**
 2. Node.js v16.0.1 or newer.
 
-## 🚀 Getting Started
+## `🚀` Getting Started
 
 ```sh
 git clone https://github.com/sirdevenforcement/tekno.git
@@ -24,13 +24,13 @@ npm install
 After installation finishes follow configuration instructions then run `node index.js` to start the bot.
 
 
-## 📝 Features & Commands
+## `📝` Features & Commands
 
 > The prefix `t!`
 
 Run `t!help` to see all of my commands
 
-## 🤝 Contributing
+## `🤝` Contributing
 
 1. [Fork the repository](https://github.com/sirdevenforcement/tekno/fork)
 2. Clone your fork: `git clone https://github.com/your-username/tekno.git`
@@ -40,6 +40,6 @@ Run `t!help` to see all of my commands
 6. Push to the branch: `git push origin my-new-feature`
 7. Submit a pull request
 
-## 📝 Credits
+## `📝` Credits
 
-Will be updated.
+Will be updated soon
