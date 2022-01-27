@@ -10,11 +10,11 @@ module.exports = {
 		required: true
 	}],
 	run: async(client, interaction) => {
+		const url = interaction.options.getString('url');
 		if(!interaction.options.getString('url').startsWith('https://')) return interaction.reply({content: 'Specify a URL! (Start with https://)', ephemeral: true})
-
-    interaction.reply({ content: "Loading..." }).then(async msg => {
-        let res = await fetch(`https://api.ultrax-yt.com/v1/screenshot?url=${url}&key=JCD8O1cgEDFA`)
-        const buffer = new Buffer.from(res.data.screenshot.split(",")[1], "base64")
+		
+        await fetch(`https://api.ultrax-yt.com/v1/screenshot?url=${url}&key=G7TnWpjSznkD`).then(res => {
+        const buffer = new Buffer.from(res.screenshot.split(",")[1], "base64")
         const image = new discord.MessageAttachment(buffer, 'screenshot.png')
 
         const embed = new discord.MessageEmbed()
@@ -22,11 +22,8 @@ module.exports = {
         .setURL(`${url}`)
         .setImage("attachment://screenshot.png")
 
-        message.channel.send({ embeds: [ embed ], files: [ image ] })
-        await msg.delete()
-    })
-    .catch(() => {
-        return message.channel.send("Something went wrong, cannot screenshot that URL!")
-    })
+        interaction.reply({ embeds: [ embed ], files: [ image ] })
+				})
+    
 	}
 }

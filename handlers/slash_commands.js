@@ -7,7 +7,7 @@ module.exports = async (client) => {
         for (const file of commands) {
             const command = require(`../application_commands/${dir}/${file}`);
             if(!command.name) throw new Error("Please provide a slash command name");
-            if(!command.description) throw new Error("Please provide a slash command description");
+					  if(!command.description) throw new Error("Please provide a slash command description");
 
             client.slashcommands.set(command.name, command);
             array.push(command);
@@ -16,6 +16,7 @@ module.exports = async (client) => {
     });
 
     client.on("ready", async () => {
+			  await client.guilds.cache.get('894164132100730880').commands.set([])
         await client.application.commands.set(array)
     })
 }

@@ -39,9 +39,10 @@ module.exports = async (client) => {
 
 
         const status = [
-            `t!help ・ ${client.guilds.cache.size} servers!`,
-            `t!help ・ ${client.guilds.cache.map(c => c.memberCount).reduce((a, b) => a + b)} users!`,
-            `t!help ・ ${client.channels.cache.size} channels!`,
+            `/help ・ ${client.guilds.cache.size} servers!`,
+            `/help ・ ${client.guilds.cache.map(c => c.memberCount).reduce((a, b) => a + b)} users!`,
+            `/help ・ ${client.channels.cache.size} channels!`,
+					  `SLASH COMMANDS UPDATE!`
         ]
         const multi = Math.floor(Math.random() * status.length);
         const activity = status[multi]
@@ -58,7 +59,7 @@ module.exports = async (client) => {
         console.log(`                Connected to ${chalk.green(client.user.username + '#' + client.user.discriminator)}`)
         console.log(`Watching ${chalk.red(`${client.guilds.cache.map(c => c.memberCount).reduce((a, b) => a + b)}`)} users and ${chalk.red(client.guilds.cache.size)} servers!`)
         console.log(chalk.green(`\n                  [ ﹕Statistics ﹕]\n`))
-        console.log(`Commands: ${chalk.red(client.commands.size)} ﹕﹕Slash Commands: ${chalk.red(client.slashcommands.size)} ﹕﹕Categories: ${chalk.red(client.categories.length)}\n`)
+        console.log(`Slash Commands: ${chalk.red(client.slashcommands.size)} ﹕﹕Categories: ${chalk.red(client.categories.length)}\n`)
 
         const timeNow = moment().tz("GMT+0").format("HH:mm (z)");
 

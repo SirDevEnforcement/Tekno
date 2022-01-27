@@ -6,13 +6,12 @@ const {
 const {
     readdirSync
 } = require("fs");
-let color = "RANDOM";
+let color = "BLURPLE";
 
 const create_mh = require(`../../functions/menu.js`);
 
 module.exports = {
-    name: "help2",
-    aliases: [`h2`],
+    name: "help",
     description: "Shows all available bot commands",
     /**
      * 
@@ -27,8 +26,6 @@ module.exports = {
 
         let categories = [];
         let cots = [];
-
-        if (!args[0]) {
 
 
             let ignored = [
@@ -56,9 +53,9 @@ module.exports = {
 
             let ccate = [];
 
-            readdirSync("./commands/").forEach((dir) => {
+            readdirSync("./application_commands/").forEach((dir) => {
                 if (ignored.includes(dir.toLowerCase())) return;
-                const commands = readdirSync(`./commands/${dir}/`).filter((file) =>
+                const commands = readdirSync(`./application_commands/${dir}/`).filter((file) =>
                     file.endsWith(".js")
                 );
 
@@ -91,11 +88,11 @@ module.exports = {
             });
 
             const embed = new MessageEmbed()
-                .setTitle(`<:help:913104163372662825> Help Menu`)
-                .setDescription(`>>> My prefix is \`/\`\nUse the menu to view commands!\nCommand Count: \`${client.commands.size}\` | Category Count: \`${client.categories.length}\``)
+                .setTitle(`<:logo:926840701654814770> Help Menu`)
+                .setDescription(`>>> My prefix is \`/\`\nUse the menu to view commands!\nCommand Count: \`${client.slashcommands.size}\` | Category Count: \`${client.categories.length}\``)
                 .setFooter(
-                    `Requested by ${message.author.tag}`,
-                    message.author.displayAvatarURL({
+                    `Requested by ${interaction.user.tag}`,
+                    interaction.user.displayAvatarURL({
                         dynamic: true
                     })
                 )
@@ -107,7 +104,8 @@ module.exports = {
             let menus = create_mh(ccate);
             let msg1 = await message.reply({
                 embeds: [embed],
-                components: menus.smenu
+                components: menus.smenu,
+							  fetchReply: true,
             }).then((msgg) => {
 
                 const menuID = menus.sid;
@@ -137,11 +135,10 @@ module.exports = {
 
                             let name = file.name.replace(".js", "");
 
-                            if (client.commands.get(name).hidden) return;
 
 
-                            let des = client.commands.get(name).description;
-                            let emo = client.commands.get(name).emoji;
+                            let des = client.slashcommands.get(name).description;
+                            let emo = client.slashcommands.get(name).emoji;
                             let emoe = emo ? `${emo} - ` : ``;
 
                             let obj = {
@@ -170,7 +167,7 @@ module.exports = {
 
                     if (cots.includes(value.toLowerCase())) {
                         const combed = new MessageEmbed()
-                            .setTitle(`<:help:913104163372662825> **${value.charAt(0).toUpperCase() + value.slice(1).toLowerCase()}** Commands`)
+                            .setTitle(`<:logo:926840701654814770> **${value.charAt(0).toUpperCase() + value.slice(1).toLowerCase()}** Commands`)
                             .addFields(catts)
                             .setColor(color)
 
@@ -205,107 +202,5 @@ const filter = async interaction => {
 
             });
 
-        } else {
-            let catts = [];
-
-            readdirSync("./commands/").forEach((dir) => {
-                if (dir.toLowerCase() !== args[0].toLowerCase()) return;
-                const commands = readdirSync(`./application_commands/${dir}/`).filter((file) =>
-                    file.endsWith(".js")
-                );
-
-
-                const cmds = commands.map((command) => {
-                    let file = require(`../../application_commands/${dir}/${command}`);
-
-                    if (!file.name) return "No command name.";
-
-                    let name = file.name.replace(".js", "");
-
-                    if (client.commands.get(name).hidden) return;
-
-
-                    let des = client.slashcommands.get(name).description;
-                    let emo = client.slashcommands.get(name).emoji;
-                    let emoe = emo ? `${emo} - ` : ``;
-
-                    let obj = {
-                        cname: `${emoe}\`${name}\``,
-                        des
-                    }
-
-                    return obj;
-                });
-
-                let dota = new Object();
-
-                cmds.map(co => {
-                    if (co == undefined) return;
-
-                    dota = {
-                        name: `${cmds.length === 0 ? "In progress." : co.cname}`,
-                        value: co.des ? co.des : `No Description`,
-                        inline: true,
-                    }
-                    catts.push(dota)
-                });
-
-                cots.push(dir.toLowerCase());
-            });
-
-            const command =
-                client.commands.get(args[0].toLowerCase()) ||
-                client.commands.find(
-                    (c) => c.aliases && c.aliases.includes(args[0].toLowerCase())
-                );
-
-            if (!command) {
-                const embed = new MessageEmbed()
-                    .setTitle(`Invalid command! Use \`${prefix}help\` for all of my commands!`)
-                    .setColor("RED");
-                return await message.reply({
-                    embeds: [embed],
-                    allowedMentions: {
-                        repliedUser: false
-                    },
-                });
-            }
-
-            const embed = new MessageEmbed()
-                .setTitle(`Command Details:`)
-                .addField(
-                    "Command:",
-                    command.name ? `\`${command.name}\`` : "No name for this command."
-                )
-                .addField(
-                    "Aliases:",
-                    command.aliases ?
-                    `\`${command.aliases.join("` `")}\`` :
-                    "No aliases for this command."
-                )
-                .addField(
-                    "Usage:",
-                    command.usage ?
-                    `\`${prefix}${command.name} ${command.usage}\`` :
-                    `\`${prefix}${command.name}\``
-                )
-                .addField(
-                    "Command Description:",
-                    command.description ?
-                    command.description :
-                    "No description for this command."
-                )
-                .setFooter(
-                    `Requested by ${message.author.tag}`,
-                    message.author.displayAvatarURL({
-                        dynamic: true
-                    })
-                )
-                .setTimestamp()
-                .setColor(color);
-            return await message.reply({
-                embeds: [embed]
-            });
         }
-    },
-};
+    }
