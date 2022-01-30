@@ -88,7 +88,7 @@ module.exports = {
             });
 
             const embed = new MessageEmbed()
-                .setTitle(`<:logo:926840701654814770> Help Menu`)
+                .setTitle(`<:logo:936999146332749916> Help Menu`)
                 .setDescription(`>>> My prefix is \`/\`\nUse the menu to view commands!\nCommand Count: \`${client.slashcommands.size}\` | Category Count: \`${client.categories.length}\``)
                 .setFooter(
                     `Requested by ${interaction.user.tag}`,
@@ -97,6 +97,7 @@ module.exports = {
                     })
                 )
                 .setTimestamp()
+							.setImage('https://cdn.discordapp.com/attachments/894164132385935396/936995900792905759/banner1.png')
                 .setColor(color)
 
 
@@ -167,7 +168,7 @@ module.exports = {
 
                     if (cots.includes(value.toLowerCase())) {
                         const combed = new MessageEmbed()
-                            .setTitle(`<:logo:926840701654814770> **${value.charAt(0).toUpperCase() + value.slice(1).toLowerCase()}** Commands`)
+                            .setTitle(`<:logo:936999146332749916> **${value.charAt(0).toUpperCase() + value.slice(1).toLowerCase()}** Commands`)
                             .addFields(catts)
                             .setColor(color)
 
@@ -185,7 +186,7 @@ const filter = async interaction => {
 
             if (interaction.user.id !== interaction.user.id) {
                 interaction.reply({
-                    content: "<:cross:881238098871201802> Don't help other people to select the menu",
+                    content: "<:cross:926839972558954497> Don't help other people to select the menu",
                     ephemeral: true
                 });
                 return false;

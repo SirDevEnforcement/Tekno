@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const fs = require('fs');
-const client = new Discord.Client({intents: 32767});
+const client = new Discord.Client({ intents: 32767 });
 module.exports = client;
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
@@ -18,4 +18,5 @@ client.categories = fs.readdirSync('./application_commands/');
 	require(`./handlers/${handler}`)(client)
 })
 require('./events/index.js')(client)
+require('./dashboard')
 client.login(process.env['token'])

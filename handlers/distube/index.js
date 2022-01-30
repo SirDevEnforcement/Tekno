@@ -6,7 +6,8 @@ const status = (queue) =>
         : "This Song"
       : "Off"
   }\` | Autoplay: \`${queue.autoplay ? "On" : "Off"}\``;
-const Discord = require('discord.js')
+const Discord = require('discord.js');
+const { SpotifyPlugin } = require('@distube/spotify');
 
 module.exports = async(client) => {
   const Distube = require("distube").default;
@@ -14,6 +15,7 @@ module.exports = async(client) => {
   const distube = new Distube(client, {
   emitNewSongOnly: false,
   searchSongs: 0,
+	plugins: [new SpotifyPlugin()]
 });
 client.distube = distube;
 distube.on("initQueue", queue => {

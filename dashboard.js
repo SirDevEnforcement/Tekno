@@ -12,6 +12,6 @@ const app = express()
 	})
 
 	app.get('/stats', (req, res) => {
-		res.send(`<h1>${client.users.cache.get}</h1>`)
+		res.send(`${client.users.cache.size}<`)
 	})
 }

@@ -1,5 +1,5 @@
-const fetch = require('node-fetch');
-const discord = require('discord.js')
+const discord = require('discord.js');
+const Screenshoter = require("discord-screenshot");
 module.exports = {
 	name: 'screenshot',
 	description: 'Screenshot a website!',
@@ -11,19 +11,10 @@ module.exports = {
 	}],
 	run: async(client, interaction) => {
 		const url = interaction.options.getString('url');
-		if(!interaction.options.getString('url').startsWith('https://')) return interaction.reply({content: 'Specify a URL! (Start with https://)', ephemeral: true})
+		const result = Screenshoter.screenshot(url);
+
+		console.log(result)
 		
-        await fetch(`https://api.ultrax-yt.com/v1/screenshot?url=${url}&key=G7TnWpjSznkD`).then(res => {
-        const buffer = new Buffer.from(res.screenshot.split(",")[1], "base64")
-        const image = new discord.MessageAttachment(buffer, 'screenshot.png')
-
-        const embed = new discord.MessageEmbed()
-        .setTitle(`${url}`)
-        .setURL(`${url}`)
-        .setImage("attachment://screenshot.png")
-
-        interaction.reply({ embeds: [ embed ], files: [ image ] })
-				})
     
 	}
 }
