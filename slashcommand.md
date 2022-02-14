@@ -1,5 +1,3 @@
-const { Client, CommandInteraction } = require("discord.js");
-
 module.exports = {
     name: "",
     description: "",

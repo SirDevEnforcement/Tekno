@@ -1,3 +1,4 @@
+
 # `🤖` Tekno (Multi-purpose bot)
 > Tekno is a multi-feature discord bot, built with [discord.js](discord.js.org)
 
@@ -26,9 +27,9 @@ After installation finishes follow configuration instructions then run `node ind
 
 ## `📝` Features & Commands
 
-> The prefix `t!`
+> The prefix `/`
 
-Run `t!help` to see all of my commands
+Run `/help` to see all of my commands
 
 ## `🤝` Contributing
 

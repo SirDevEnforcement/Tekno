@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Admin Panel</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href='https://fonts.googleapis.com/css?family=Lato:400,300italic,300,400italic,700,900' rel='stylesheet'
+		type='text/css'>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+	<style>
+		html {
+			box-sizing: border-box;
+			color: #444;
+			font: 1rem/1.5 Lato;
+		}
+
+		select option {
+			color: black;
+		}
+
+		*,
+		*:after,
+		*:before {
+			box-sizing: inherit;
+		}
+
+		.auth-wrap-background {
+			background-image: url("https://cdn.discordapp.com/attachments/894164132385935396/936995900792905759/banner1.png");
+			background-size: cover;
+			background-position: 50%;
+			height: 100%;
+			width: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+
+		.auth-center {
+			align-items: center;
+			display: flex;
+			justify-content: center;
+			z-index: 1;
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+		}
+
+		.auth-blur {
+			-webkit-filter: blur(10px);
+			filter: blur(10px);
+			overflow: hidden;
+		}
+
+		.auth-size {
+			max-height: 440px;
+			max-width: 780px;
+			height: 440px;
+			width: 100%;
+		}
+
+		.auth__inner {
+			display: flex;
+			overflow: hidden;
+		}
+
+		.auth__inner__section {
+			padding: 1.25rem 2rem;
+		}
+
+		.auth__sidebar {
+			background: rgba(255, 255, 255, 0.5);
+			flex: 40%;
+		}
+
+		.auth__form {
+			background: rgba(34, 37, 42, 0.8);
+			flex: 45%;
+		}
+
+		.form__title {
+			color: rgba(255, 255, 255, 0.95);
+			font-size: 1.125rem;
+			font-weight: 900;
+			letter-spacing: 1px;
+			padding: 0 0 1rem 0;
+			text-align: center;
+			text-transform: uppercase;
+		}
+
+		.form__label {
+			padding-bottom: 1.25rem;
+			display: block;
+		}
+
+		.form__label__text {
+			color: #87909c;
+			font-weight: 700;
+			font-size: 0.6875rem;
+			text-transform: uppercase;
+		}
+
+		.form__input {
+			background: transparent;
+			color: rgba(255, 255, 255, 0.8);
+			border: 0;
+			border-bottom: 2px solid transparent;
+			display: block;
+			outline: 0;
+			position: relative;
+			padding: 10px 0px;
+			width: 100%;
+		}
+
+		.form__input:focus {
+			border-color: 2px solid rgba(255, 255, 255, 0.5);
+		}
+
+		.form__input-border {
+			border-bottom: 1px solid #87909c;
+			display: block;
+		}
+
+		.button {
+			background: #5865F2;
+			border-radius: 3px;
+			border: 0;
+			color: #fff;
+			display: block;
+			line-height: 60px;
+			margin-top: 20px;
+			outline: 0;
+			width: 100%;
+		}
+
+		.form__meta {
+			font-size: 0.6875rem;
+			padding: 10px 0;
+		}
+	</style>
+
+</head>
+
+<body>
+	<div class="auth-wrap-background">
+		<div class="auth-center">
+			<div class="auth-blur auth-size">
+				<div class="auth-wrap-background"></div>
+			</div>
+		</div>
+		<div class="auth-center">
+			<div class="auth__inner auth-size">
+				
+				<div class="auth__form auth__inner__section">
+					<div class="form">
+						<h1 class="form__title" id="wb-text">Welcome back</h1>
+						<div id="form">
+							<label class="form__label"><span class="form__label__text">Server</span>
+								<select class="form__input" name="webhooks" id="url">
+                                    <option style="appearance:none;" value="https://discord.com/api/webhooks/939917039517188127/z6ZAgRSH69Vh0OiUWWL256UNtG8qXKa15aUZyk--oUC3ZMbgJDNEh-4xURbj2K0oSaBc">
+                                        Tekno</option>	
+								</select>
+								<div class="form__input-border"></div>
+							</label>
+							<label class="form__label"><span class="form__label__text">Message</span>
+								<textarea class="form__input" style="resize:none;" name="message" id="content" cols="30" rows="5" maxlength="2000" placeholder="This is a message."></textarea>
+							</label>
+							<input class="button" type="submit" id="Submit" value="Send to Discord">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"> </script>
+	<script> $(function () {
+			$('#Submit').click(function (e) {
+				var url = $("#url").val(); var content = $("#content").val(); $.post(url, { "content": content }, function () {
+					document.getElementById('wb-text').innerHTML = "Message Sent to Discord.";
+					document.getElementById("form").style.display = "none";
+					setTimeout(() => document.location.reload(), 5000);
+				});
+			});
+		}); </script>
+
+
+
+
+</body>
+
+</html>

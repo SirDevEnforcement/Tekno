@@ -7,14 +7,14 @@ module.exports = async(client) => {
   autoFetch: true,
   cloneLevel: 'deep',
   autoEnsure: {
-    prefix: "t!",
     modLogChannel: "mod-log",
-    modRole: "Moderator",
-    adminRole: "Administrator",
-    welcomeChannel: "welcome",
     welcomeMessage: "Say hello to {{user}}, everyone!"
   }
 });
+
+	client.points = new Enmap({
+		name: 'points'
+	})
 
 	console.log(client.settings)
 	

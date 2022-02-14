@@ -35,7 +35,7 @@ module.exports = {
             const emo = {
 
                 "fun": "<:fun:927160213142913084>",
-                "general": "<:robot:926838334888763453>",
+                "core": "<:robot:926838334888763453>",
                 "utility": "<:discovery:926837134348939296>",
                 "moderation": "<:staff:926838334788083793>",
                 "image": '<:image:927154625033945109>',
@@ -63,12 +63,6 @@ module.exports = {
 
                 let name = `${emo[dir]} ${dir[0].toUpperCase()}${dir.slice(1).toLowerCase()}`;
 
-                if(name === `${emo[dir]} Sfw`) {
-                  name = `${emo[dir]} SFW`
-                } else if(name === `${emo[dir]} Nsfw`) {
-                  name = `${emo[dir]} NSFW`
-                }
-
                 let nome = dir.toUpperCase();
 
                 let cats = new Object();
@@ -88,14 +82,14 @@ module.exports = {
             });
 
             const embed = new MessageEmbed()
-                .setTitle(`<:logo:936999146332749916> Help Menu`)
-                .setDescription(`>>> My prefix is \`/\`\nUse the menu to view commands!\nCommand Count: \`${client.slashcommands.size}\` | Category Count: \`${client.categories.length}\``)
+                .setTitle(`<:logo:937325392363135026> Help Menu`)
                 .setFooter(
                     `Requested by ${interaction.user.tag}`,
                     interaction.user.displayAvatarURL({
                         dynamic: true
                     })
                 )
+							  .setDescription(`<:slash:942739284300021760> Use the Select Menu to get started!\n<:DiscordLogo:942740075828097055> [Join Our Support Server](https://discord.gg/uEnRY7jR)\n<:invite:942740886272503808> [Invite Me](https://tekno-the-bot.repl.co/invite)`)
                 .setTimestamp()
 							.setImage('https://cdn.discordapp.com/attachments/894164132385935396/936995900792905759/banner1.png')
                 .setColor(color)
@@ -168,7 +162,7 @@ module.exports = {
 
                     if (cots.includes(value.toLowerCase())) {
                         const combed = new MessageEmbed()
-                            .setTitle(`<:logo:936999146332749916> **${value.charAt(0).toUpperCase() + value.slice(1).toLowerCase()}** Commands`)
+                            .setTitle(`<:logo:937325392363135026> **${value.charAt(0).toUpperCase() + value.slice(1).toLowerCase()}** Commands`)
                             .addFields(catts)
                             .setColor(color)
 
@@ -183,14 +177,6 @@ module.exports = {
                 };
 
 const filter = async interaction => {
-
-            if (interaction.user.id !== interaction.user.id) {
-                interaction.reply({
-                    content: "<:cross:926839972558954497> Don't help other people to select the menu",
-                    ephemeral: true
-                });
-                return false;
-            };
             return true;
         }
 

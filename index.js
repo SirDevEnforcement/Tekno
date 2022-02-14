@@ -14,9 +14,9 @@ client.giveawaysManager = require('./giveaways.js');
 client.reactionRoleManager = require('./reaction-roles.js')
 client.categories = fs.readdirSync('./application_commands/');
 
-['./guild/messageCreate', './guild/messageDelete', './client/ready', './client/app', './client/antiCrash', './distube/index', 'slash_commands', 'interactionCreate', './guild/guildMemberAdd', 'db', './client/rateLimit'].forEach((handler) => {
+['./guild/messageCreate', './guild/messageDelete', './client/ready', './client/antiCrash', './distube/index', 'slash_commands', 'interactionCreate', './guild/guildMemberAdd', 'db', './client/rateLimit', './client/guildEvents'].forEach((handler) => {
 	require(`./handlers/${handler}`)(client)
 })
 require('./events/index.js')(client)
-require('./dashboard')
+require('./website.js')(client)
 client.login(process.env['token'])

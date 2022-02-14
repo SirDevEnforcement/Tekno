@@ -16,7 +16,7 @@ module.exports = async (client) => {
     });
 
     client.on("ready", async () => {
-			  await client.guilds.cache.get('894164132100730880').commands.set([])
-        await client.application.commands.set(array)
+			client.slasharray = array;
+			client.application.commands.set(array)
     })
 }

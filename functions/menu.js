@@ -19,7 +19,7 @@ const create_mh = (
     const emo = {
 
                 "fun": "<:fun:927160213142913084>",
-                "general": "<:robot:926838334888763453>",
+                "core": "<:robot:926838334888763453>",
                 "utility": "<:discovery:926837134348939296>",
                 "moderation": "<:staff:926838334788083793>",
                 "image": '<:image:927154625033945109>',

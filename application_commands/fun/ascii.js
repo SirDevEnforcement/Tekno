@@ -17,7 +17,7 @@ module.exports = {
     }
 
     figlet(text, function(err, data) {
-      message.channel.send({content: `\`\`\`${data}\`\`\`  `})
+      interaction.reply({content: `\`\`\`${data}\`\`\`  `})
     })
 
   }
