@@ -44,8 +44,8 @@ module.exports = {
                 "profile": '<:members:926839973171302400>',
                 "nsfw": '<:textchannellocked:926837134218907648>',
                 "soundboard": '<:soundboard:927155497885384755>',
-                "animals": '🐶', 
-                "anime": '💮',
+                "animals": '<:wumpus:942865327727996948>', 
+                "anime": '<:china:942865339778215966>',
                 "activities": '<:activities:927155715796267028>',
                 "giveaways" : '<:gift:926839973158735952>',
 							  "games": "<:games:927156041714651136>"
