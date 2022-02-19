@@ -29,6 +29,7 @@ module.exports = {
     let row = new MessageActionRow().addComponents(menu);
 
     const slowmoEmbed = new MessageEmbed()
+			.setColor('#2f3136')
         
         .setDescription(`${message.user.username}, use the menu to select a slowmode!`)
 
@@ -51,11 +52,13 @@ module.exports = {
             if (collected.values[0] !== 'OFF') {
                 slowmoEmbed
                     .setDescription('Successfully Enabled')
+							.setColor('#2f3136')
                     
             }
             else {
                 slowmoEmbed
                     .setDescription('Successfully Disabled')
+							.setColor('#2f3136')
                     
             }
             message.channel.setRateLimitPerUser(isNaN(ms(collected.values[0])/1e3) ? 0 : ms(collected.values[0])/1e3 );
@@ -71,6 +74,7 @@ module.exports = {
     })} else {
       const no = new MessageEmbed()
       .setDescription(`You need the \`MANAGE_CHANNELS\` permission to use this command!`)
+			.setColor('#2f3136')
       interaction.reply({embeds: [no]})
     }
 

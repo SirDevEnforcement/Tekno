@@ -14,6 +14,7 @@ module.exports = {
             .setTimestamp()
             .setDescription(`${event.year}: ${event.text}`)
             .setFooter('Tekno', client.user.displayAvatarURL())
+			.setColor('#2f3136')
         return interaction.reply({embeds: [embed]})
 
   })

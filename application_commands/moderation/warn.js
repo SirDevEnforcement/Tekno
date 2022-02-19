@@ -46,6 +46,7 @@ module.exports = {
           .addField('Reason', `\`\`\`${reason}\`\`\``)
           .setFooter('Moderation system powered by Tekno')
           .setTimestamp()
+				  .setColor('#2f3136')
         interaction.reply({ embeds: [embed] });
 
         const emb = new client.Discord.MessageEmbed()

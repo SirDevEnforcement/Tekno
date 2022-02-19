@@ -10,7 +10,7 @@ new Slots({
     slash_command: true,
     embed: {
         title: '🎰 Slot Machine',
-        color: '#5865F2'
+        color: '#2f3136'
     }
 }).startGame();
 

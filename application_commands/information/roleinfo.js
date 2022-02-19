@@ -78,6 +78,7 @@ module.exports = {
         .addField('Color', `\`${role.hexColor.toUpperCase()}\``, true)
         .addField('Creation Date', `\`${moment(role.createdAt).format('DD/MMM/YYYY')}\``, true)
         .addField('Permissions', `\`\`\`diff\n${finalPermissions.join('\n')}\`\`\``)
+	      .setColor('#2f3136')
 
         interaction.reply({embeds: [embed]})
 

@@ -12,6 +12,7 @@ module.exports = {
 			.addField('Bot Created', `\`\`\`${clientCreated}\`\`\``)
 			.addField('Bot Owner', `\`\`\`${applicationOwner}\`\`\``)
 			.addField('Up Since (Uptime)', `<t:${Math.floor(client.readyTimestamp / 1000)}:R>`)
+			.setColor('#2f3136')
 			interaction.reply({embeds: [embed]})
 		}
     }

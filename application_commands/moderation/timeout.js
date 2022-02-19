@@ -19,9 +19,7 @@ module.exports = {
 		const fetch = require('node-fetch');
 		const ms = require('ms');
 		const time = interaction.options.getString('time')
-
-		if(!time) return interaction.reply('Please specify the time! E.g. `1m, 1h, 1d`');
-
+		
 		const user = interaction.options.getUser('target')
 		const milliseconds = ms(time);
 
@@ -40,6 +38,13 @@ module.exports = {
 				'Authorization': `Bot ${client.token}`,
 			},
 		});
-		interaction.reply(`${user.username} has been timed out for \`${time}\`!`);
+
+		const embed = new Discord.MessageEmbed()
+		.setColor('#2f3136')
+		.setTitle(`<:timeoutclock:943484323061981246> ${user.username} has been timed-out`)
+		.addField('Moderator', `\`\`\`${interaction.user.tag}\`\`\``)
+		.addField('Time', `\`\`\`${time}\`\`\``)
+
+		interaction.reply({embeds: [embed]})
 	},
 };

@@ -11,7 +11,7 @@ new GuessThePokemon({
   embed: {
     title: 'Who\'s This Pokemon?',
     footer: 'You have only 1 chance',
-    color: '#5865F2',
+    color: '#2f3136',
   },
   time: 60000,
   thinkMessage: '**Thinking...**',

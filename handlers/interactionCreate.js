@@ -6,6 +6,7 @@ module.exports = async (client) => {
 
     try {
       slash_commands.run(client, interaction);
+			client.db.add('usage', 1)
     } catch (e) {
       console.error(e)
     }

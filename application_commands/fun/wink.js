@@ -25,6 +25,7 @@ module.exports = {
         const embed = new MessageEmbed()
             .setTitle(`@${interaction.user.username} winks at ${interaction.options.getUser('user').username}`)
             .setImage(data.link)
+			      .setColor('#2f3136')
 
         await interaction.reply({ embeds: [embed] });
     }

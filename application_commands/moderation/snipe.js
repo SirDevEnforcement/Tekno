@@ -15,7 +15,7 @@ module.exports = {
             .setAuthor(msg.author, msg.member.user.displayAvatarURL())
             .setDescription(msg.content)
             .setFooter(`#${msg.channel}`)
-            .setColor("BLURPLE")
+            .setColor('#2f3136')
             .setTimestamp()
           interaction.reply({ embeds: [embed] });
     }

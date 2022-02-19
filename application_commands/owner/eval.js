@@ -33,6 +33,7 @@ module.exports = {
 		const outputembed = new Discord.MessageEmbed()
 		.setTitle('Evaluation Successful')
 		.setDescription('**Argument**\n\`\`\`' + code + '\`\`\`\n\n**Output**\n\`\`\`' + output + '\`\`\`')
+		.setColor('#2f3136')
 		.setFooter('Tekno', client.user.displayAvatarURL())
   interaction.reply({ embeds: [outputembed] });
     }
@@ -41,6 +42,7 @@ module.exports = {
     const erroremb = new Discord.MessageEmbed()
     .setTitle(`⚠ Error`)
     .setDescription(`\`\`\`${error.stack}\`\`\``)
+		.setColor('#2f3136')
     interaction.reply({embeds: [erroremb]})
  }}}
  

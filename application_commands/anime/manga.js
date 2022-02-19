@@ -20,6 +20,7 @@ module.exports = {
     }
     const embed = new MessageEmbed()
       .setAuthor(manga.titles.en, "https://cdn.myanimelist.net/img/sp/icon/apple-touch-icon-256.png")
+			.setColor('#2f3136')
       .setTitle("Manga")
       .addFields(
         {

@@ -23,6 +23,7 @@ module.exports = {
 		.addField('Created', `\`\`\`${created}\`\`\`<t:${Math.floor(message.guild.createdTimestamp / 1000)}:R>`, true)
 		.addField('Roles', `${roles}`)
 		.setThumbnail(message.guild.iconURL({dynamic: true}))
+		.setColor('#2f3136')
 
 		message.reply({embeds: [embed]})
 		

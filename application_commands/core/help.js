@@ -6,7 +6,7 @@ const {
 const {
     readdirSync
 } = require("fs");
-let color = "BLURPLE";
+let color = "#2f3136"
 
 const create_mh = require(`../../functions/menu.js`);
 
@@ -21,7 +21,6 @@ module.exports = {
      * @returns 
      */
     run: async (client, interaction, args) => {
-      const prefix = client.prefix;
 			const message = interaction;
 
         let categories = [];
@@ -34,21 +33,17 @@ module.exports = {
 
             const emo = {
 
-                "fun": "<:fun:927160213142913084>",
-                "core": "<:robot:926838334888763453>",
-                "utility": "<:discovery:926837134348939296>",
-                "moderation": "<:staff:926838334788083793>",
-                "image": '<:image:927154625033945109>',
-                "information": '<:rules:926839487953252373>',
-                "music": '<:music:927155320436961350>',
-                "profile": '<:members:926839973171302400>',
-                "nsfw": '<:textchannellocked:926837134218907648>',
-                "soundboard": '<:soundboard:927155497885384755>',
-                "animals": '<:wumpus:942865327727996948>', 
-                "anime": '<:china:942865339778215966>',
-                "activities": '<:activities:927155715796267028>',
-                "giveaways" : '<:gift:926839973158735952>',
-							  "games": "<:games:927156041714651136>"
+                "fun": "<:rocket:943484323057774612>",
+                "core": "<:bot:943484322739019778>",
+                "utility": "<:compass:943484322852266095>",
+                "moderation": "<:developer:943484323150065704>",
+                "image": '<:image:943487918566174762>',
+                "information": '<:rules:943484323200389150>',
+                "music": '<:sound:943484323145859072>',
+                "profile": '<:members:943484322906767360>',
+                "animals": '<:wumpus:943484322978103356>', 
+                "anime": '<:anime:943484322814500914>',
+		            "games": "<:plane:943484322919362641>",
             }
 
             let ccate = [];
@@ -72,7 +67,7 @@ module.exports = {
 
                 cats = {
                     name: name,
-                    value: `\`${prefix}help ${dir.toLowerCase()}\``,
+                    value: `\`/help ${dir.toLowerCase()}\``,
                     inline: true
                 }
 
@@ -82,14 +77,14 @@ module.exports = {
             });
 
             const embed = new MessageEmbed()
-                .setTitle(`<:logo:937325392363135026> Help Menu`)
+                .setAuthor(`Help Menu`, client.user.displayAvatarURL({format: 'png'}))
                 .setFooter(
                     `Requested by ${interaction.user.tag}`,
                     interaction.user.displayAvatarURL({
                         dynamic: true
                     })
                 )
-							  .setDescription(`<:slash:942739284300021760> Use the Select Menu to get started!\n<:DiscordLogo:942740075828097055> [Join Our Support Server](https://discord.gg/uEnRY7jR)\n<:invite:942740886272503808> [Invite Me](https://tekno-the-bot.repl.co/invite)`)
+							  .setDescription(`<:slash:943489715259203605> Use the Select Menu to get started!\n<:discord:943484322923561011> [Join Our Support Server](https://discord.gg/uEnRY7jR)\n<:link:943484322894184458> [Invite Me](https://tekno-the-bot.repl.co/invite)`)
                 .setTimestamp()
 							.setImage('https://cdn.discordapp.com/attachments/894164132385935396/936995900792905759/banner1.png')
                 .setColor(color)
@@ -162,7 +157,7 @@ module.exports = {
 
                     if (cots.includes(value.toLowerCase())) {
                         const combed = new MessageEmbed()
-                            .setTitle(`<:logo:937325392363135026> **${value.charAt(0).toUpperCase() + value.slice(1).toLowerCase()}** Commands`)
+                            .setTitle(`<:logo:943489573781123103> **${value.charAt(0).toUpperCase() + value.slice(1).toLowerCase()}** Commands`)
                             .addFields(catts)
                             .setColor(color)
 

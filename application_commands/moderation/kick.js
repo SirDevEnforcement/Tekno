@@ -39,6 +39,7 @@ const Discord = require('discord.js')
         .addField('Kicked by', `${interaction.user.tag}`)
         .addField('Reason', `\`\`\`${reason}\`\`\``)
 				.setTimestamp()
+				.setColor('#2f3136')
 				.setFooter(`Guild: ${interaction.guild.name}`, target.user.displayAvatarURL({ dynamic: true }));
 			  target.send({embeds: [embed]}).catch(e => interaction.reply('⛔ Could not DM user.'))
         target.ban({reason: reason});

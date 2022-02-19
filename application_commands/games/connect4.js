@@ -17,7 +17,7 @@ new Connect4({
   opponent: interaction.options.getUser('opponent'),
   embed: {
     title: 'Connect 4',
-    color: '#5865F2',
+    color: '#2f3136',
   },
   emojis: {
     player1: '🔵',

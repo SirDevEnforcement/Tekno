@@ -35,7 +35,8 @@ module.exports = {
         "Fox 🦊"
       )
       .setDescription(dataFact.fact)
-      .setImage(dataImg.link);
+      .setImage(dataImg.link)
+		  .setColor('#2f3136')
 
     await interaction.reply({embeds: [embed]});
   },

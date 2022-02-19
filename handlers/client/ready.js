@@ -8,12 +8,18 @@ module.exports = async (client) => {
 
     client.on('ready', async () => {
 
+			client.db.set('servers', client.guilds.cache.size)
+			client.db.set('users', client.guilds.cache.map(c => c.memberCount).reduce((a, b) => a + b))
+
 
         const status = [
             `/help ・ ${client.guilds.cache.size} servers!`,
             `/help ・ ${client.guilds.cache.map(c => c.memberCount).reduce((a, b) => a + b)} users!`,
             `/help ・ ${client.channels.cache.size} channels!`,
-					  `SLASH COMMANDS UPDATE!`
+					  `/help ・ DevEnforcement is watching you 👀`,
+					  `/help ・ Cats are better than dogs`,
+					  `/help ・ Flying cars in 2020? Nah, eating bats!`,
+					  `/help ・ Why are you here?`
         ]
         const multi = Math.floor(Math.random() * status.length);
         const activity = status[multi]

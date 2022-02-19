@@ -12,6 +12,7 @@ module.exports = {
     .setTitle('Message Stats!')
     .addField(`Global Messages`, `\`\`\`${global} messages\`\`\``)
     .addField(`Guild Messages`, `\`\`\`${guild} messages\`\`\``)
+		.setColor('#2f3136')
 
     interaction.reply({embeds: [embed]})
 

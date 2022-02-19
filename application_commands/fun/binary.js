@@ -25,6 +25,7 @@ module.exports = {
         const embed = new MessageEmbed()
             .setTitle('Text to Binary')
             .setDescription(data.binary)
+			      .setColor('#2f3136')
 
          await interaction.reply({ embeds: [embed] });
     }

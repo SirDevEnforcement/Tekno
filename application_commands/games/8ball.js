@@ -19,7 +19,7 @@ new EightBall({
     slash_command: true,
     embed: {
         title: '🎱 8Ball',
-        color: '#5865F2'
+        color: '#2f3136'
     }
 }).startGame();
 	}}

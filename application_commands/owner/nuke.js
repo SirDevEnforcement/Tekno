@@ -19,7 +19,7 @@ module.exports = {
       .setDescription("Channel Nuked by: " + interaction.user.username)
       .setImage("https://media.discordapp.net/attachments/863674695643037726/865526577030365195/nuke.gif")
       .setTimestamp()
-      .setColor("RED")
+      .setColor('#2f3136')
     interaction.channel.clone({ position: interaction.channel.rawPosition }).then(ch => { ch.send( { embeds: [nukei] }); })
     interaction.channel.delete();
 

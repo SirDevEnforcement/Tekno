@@ -24,7 +24,7 @@ module.exports = {
             let { word, definition, example, thumbs_up, thumbs_down, permalink, author } = res
 
             let embed = new MessageEmbed()
-            .setColor('BLUE')
+            .setColor('#2f3136')
             .setAuthor(word, image)
             .setThumbnail(image)
             .setDescription(`**Definition:** ${definition || 'No Definition'}

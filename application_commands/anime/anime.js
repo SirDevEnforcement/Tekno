@@ -25,6 +25,7 @@ module.exports = {
         "https://cdn.myanimelist.net/img/sp/icon/apple-touch-icon-256.png"
       )
       .setTitle("Anime")
+			.setColor('#2f3136')
       .addFields(
         {
           name: "Titles: ",

@@ -9,7 +9,7 @@ module.exports = {
       slash_command: true,
       embed: {
         title: 'Snake Game',
-        color: '#5865F2',
+        color: '#2f3136',
         OverTitle: 'Game Over',
       },
       snake: { head: '🟢', body: '🟩', tail: '🟢' },

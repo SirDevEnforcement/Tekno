@@ -5,7 +5,8 @@ module.exports = {
 	description: 'Pretty funny, ngl!',
 	run: async(client, interaction, args) => {
 
-const embed = new Discord.MessageEmbed();
+const embed = new Discord.MessageEmbed()
+		.setColor('#2f3136')
 	got('https://www.reddit.com/r/memes/random/.json')
 		.then(response => {
 			const [list] = JSON.parse(response.body);
@@ -20,7 +21,6 @@ const embed = new Discord.MessageEmbed();
 
 			embed.setTitle(`${memeTitle}`);
 			embed.setURL(`${memeUrl}`);
-			embed.setColor('RANDOM');
 			embed.setImage(memeImage);
 			embed.setFooter(`👍 ${memeUpvotes} 💬 ${memeNumComments}`);
 

@@ -10,13 +10,17 @@ module.exports = {
 		required: true
 	}],
   run: async(client, interaction, args) => {
-    if(!message.author.id === '815878862075985971') return;
+    if(!interaction.user.id === '815878862075985971') return;
 
-    const command = interaction.options.getString()
+    const command = interaction.options.getString('command');
 
     child.exec(command, (err, res) => {
       if(err) return console.log(err);
-      message.channel.send({content: `\`\`\`js\n${res.slice(0, 2000)}\`\`\``})
+      interaction.reply({embeds: [
+				new Discord.MessageEmbed()
+				.setColor('#2f3136')
+				.setDescription(res.slice(0, 2000))
+			]})
           })
 
 

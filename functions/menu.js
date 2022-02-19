@@ -18,21 +18,17 @@ const create_mh = (
 
    const emo = {
 
-                "fun": "<:fun:927160213142913084>",
-                "core": "<:robot:926838334888763453>",
-                "utility": "<:discovery:926837134348939296>",
-                "moderation": "<:staff:926838334788083793>",
-                "image": '<:image:927154625033945109>',
-                "information": '<:rules:926839487953252373>',
-                "music": '<:music:927155320436961350>',
-                "profile": '<:members:926839973171302400>',
-                "nsfw": '<:textchannellocked:926837134218907648>',
-                "soundboard": '<:soundboard:927155497885384755>',
-                "animals": '<:wumpus:942865327727996948>', 
-                "anime": '<:china:942865339778215966>',
-                "activities": '<:activities:927155715796267028>',
-                "giveaways" : '<:gift:926839973158735952>',
-							  "games": "<:games:927156041714651136>"
+                "fun": "<:rocket:943484323057774612>",
+                "core": "<:bot:943484322739019778>",
+                "utility": "<:compass:943484322852266095>",
+                "moderation": "<:developer:943484323150065704>",
+                "image": '<:image:943487918566174762>',
+                "information": '<:rules:943484323200389150>',
+                "music": '<:sound:943484323145859072>',
+                "profile": '<:members:943484322906767360>',
+                "animals": '<:wumpus:943484322978103356>', 
+                "anime": '<:anime:943484322814500914>',
+		            "games": "<:plane:943484322919362641>",
             }
 
 

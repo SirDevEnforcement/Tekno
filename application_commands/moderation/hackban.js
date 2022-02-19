@@ -21,6 +21,7 @@ module.exports = {
     const embed = new MessageEmbed()
     .setTitle('Incorrect Permissions')
     .setDescription('You need the \`\`\`BAN_MEMBERS\`\`\` permission to use this command!')
+		.setColor('#2f3136')
     if(!message.member.permissions === 'BAN_MEMBERS') return interaction.reply({ embeds: [embed] });
     const target = interaction.options.getString('user')
     if (isNaN(target)) return message.reply(`Please specify an ID`);
@@ -31,7 +32,8 @@ module.exports = {
     const embed2 = new MessageEmbed()
       .setColor("GREEN")
       .setTitle('Banned')
-      .setDescription(`Success! <@${target}> was banned! \n \nReason: \`${reason}\`\n Moderator: \`${message.author.username}#${message.author.discriminator}\``);
+      .setDescription(`Success! <@${target}> was banned! \n \nReason: \`${reason}\`\n Moderator: \`${message.author.username}#${message.author.discriminator}\``)
+		.setColor('#2f3136')
     await message.reply({ embeds: [embed2] });
   }
 

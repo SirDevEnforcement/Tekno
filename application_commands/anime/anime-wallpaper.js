@@ -32,6 +32,7 @@ module.exports = {
       .setImage(wallpaper)
       .setTitle("🖼️ Anime PC Wallpaper!")
       .setDescription(`[⬇️ **__Download__**](${wallpaper})`)
+			.setColor('#2f3136')
       .setTimestamp()
 
     interaction.reply({embeds: [embed]});
