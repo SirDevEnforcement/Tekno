@@ -1,7 +1,7 @@
 const { MessageEmbed } = require("discord.js");
 module.exports = {
-  name: "embed", //the command name for the Slash Command
-  description: "Send a embed into the Chat", //the command description for Slash Command Overview
+  name: "embed",
+  description: "Send a embed into the Chat",
   options: [
 		{
 			name: 'title',
@@ -45,7 +45,7 @@ module.exports = {
 		const EmbedDescription = options.getString("description"); //same as in StringChoices //RETURNS STRING 
 		const EmbedFooter = options.getString("footer")
 		//let UserOption = options.getUser("OPTIONNAME"); //RETURNS USER OBJECT 
-		const ChannelOption = options.getChannel("in_where"); //RETURNS CHANNEL OBJECt
+		const ChannelOption = options.getChannel("channel"); //RETURNS CHANNEL OBJECt
 		//let RoleOption = options.getRole("OPTIONNAME"); //RETURNS ROLE OBJECT
 		const channel = ChannelOption && ["GUILD_PRIVATE_THREAD ", "GUILD_PUBLIC_THREAD ", "GUILD_NEWS_THREAD ", "GUILD_NEWS", "GUILD_TEXT"].includes(ChannelOption.type) ? ChannelOption : guild.channels.cache.get(channelId);
 		let embed = new MessageEmbed().setColor('#2f3136')
@@ -55,9 +55,7 @@ module.exports = {
 		.setTimestamp()
 		//update it without a response!
 		await interaction?.reply({content: `Sending the Embed...`, ephemeral: true}).catch(()=>{});
-		await channel.send({embeds: [embed]}).catch(()=>{
-			channel.send({embeds: [embed]}).catch(()=>{});
-		})
+		await channel.send({embeds: [embed]})
 		//Edit the reply
 		interaction?.editReply({content: `✅ Embed sent in ${channel}!`, ephemeral: true}).catch(()=>{});
     } catch (e) {

@@ -10,6 +10,7 @@ module.exports = async (client) => {
 
 			client.db.set('servers', client.guilds.cache.size)
 			client.db.set('users', client.guilds.cache.map(c => c.memberCount).reduce((a, b) => a + b))
+			client.db.set('total_slash', client.slashcommands.size)
 
 
         const status = [

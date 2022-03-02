@@ -157,7 +157,7 @@ module.exports = {
 
                     if (cots.includes(value.toLowerCase())) {
                         const combed = new MessageEmbed()
-                            .setTitle(`<:logo:943489573781123103> **${value.charAt(0).toUpperCase() + value.slice(1).toLowerCase()}** Commands`)
+                            .setTitle(`<:logo:947462326993449011> **${value.charAt(0).toUpperCase() + value.slice(1).toLowerCase()}** Commands`)
                             .addFields(catts)
                             .setColor(color)
 

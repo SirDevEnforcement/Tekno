@@ -1,5 +1,6 @@
 module.exports = async (client) => {
 	const express = require("express")
+	const dev_name = 'DevEnforcement'
 	const app = express()
 	app.set("views", __dirname)
 	app.set("view engine", "ejs")
@@ -7,6 +8,8 @@ module.exports = async (client) => {
 		servers: `${client.db.get('servers')}`,
 		commands: `${client.db.get('usage')}`,
 		users: `${client.db.get('users')}`,
+		total: `${client.db.get('total_slash')}`,
+		dev_name: dev_name
 	}
 	app.use(express.static("public"))
 	app.get("/", (req, res) => {
@@ -17,8 +20,12 @@ module.exports = async (client) => {
 		res.render("./public/index.ejs", args)
 	})
 
-	app.get("/faq", (req, res) => {
-		res.render("./public/faq.ejs", args)
+	app.get("/stats", (req, res) => {
+		res.render("./public/stats.ejs", args)
+	})
+
+	app.get("/team", (req, res) => {
+		res.render("./public/team.ejs", args)
 	})
 
 	app.get("/invite", (req, res) => {

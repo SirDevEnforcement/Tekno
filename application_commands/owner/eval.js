@@ -16,8 +16,7 @@ module.exports = {
       "497200251661320212",
       "585835814743834661",
       "788504211704512543",
-      "691648449967554590",
-      "381710555096023061"
+      "691648449967554590"
     ]
     if(!owners.includes(interaction.user.id)) return;
 		 const code = interaction.options.getString('code')

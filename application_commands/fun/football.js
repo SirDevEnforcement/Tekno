@@ -56,7 +56,7 @@ module.exports = {
 		}, 1000);
 
 		const filter = button => {
-			return button.user.id === message.author.id;
+			return button.user.id === interaction.user.id;
 		};
 		const button = await msg.awaitMessageComponent({ filter: filter, componentType: 'BUTTON', max: 1 });
 

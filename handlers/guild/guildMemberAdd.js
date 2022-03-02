@@ -4,7 +4,8 @@ module.exports = async(client) => {
 
 		const embed = new client.Discord.MessageEmbed()
 		.setAuthor(`${member.user.username}#${member.user.discriminator}`, member.displayAvatarURL({dynamic: true}))
-		.setDescription(`Welcome <@${member.id}> to ${member.guild.name}! You are our \`#${member.guild.memberCount}\` member!\n<:replycontinue:926841107311112222> Read the rules in **<#911569613861568612>**.\n<:replycontinue:926841107311112222> View announcements and bot updates in **<#894164132385935396>**.\n<:reply:926841107172708413> Chat in **<#894164132553699392>**!`)
+		.setDescription(`Welcome <@${member.id}> to ${member.guild.name}! You are our \`#${member.guild.memberCount}\` member!\n> <:replycont:943486573524172800> Read the rules in **<#911569613861568612>**.\n> <:replycont:943486573524172800> View announcements and bot updates in **<#894164132385935396>**.\n> <:reply:943486573360599060> Chat in **<#894164132553699392>**!`)
+			.setColor('#2f3136')
 		.setTimestamp()
 
 		const webhookClient = new client.Discord.WebhookClient({url: process.env['welcwebhook']});

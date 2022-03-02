@@ -24,35 +24,38 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 20px !important">
     <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 20px !important">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                    <a href="/invite" target="_blank">Invite</a>
+            <li class="nav-itemm active">
+                    <a class="btn btn-primary btn-lg" href="/invite" target="_blank" role="button">Invite</a>
                     </li>
-                          <li class="nav-item active">
-              <a href="/" target="_blank">Home</a>
-              </li>
         </ul>
     </div>
 </nav>
 <div class="features">
-    <div class="title">FaQ</div>
-    <div class="subtitle">Read below for our FaQ!</div>
+    <div class="title">Statistics</div>
+    <div class="subtitle"></div>
     <div class="cards">
         <div class="card" style="width: 20rem;">
             <div class="card-body">
-                <h5 class="card-title">Can I get a custom bot?</h5>
-                <p class="card-text">Ask the Developer! (Not free)</p>
+                <h5 class="card-title">Servers</h5>
+                <p class="card-text"><%=servers%></p>
             </div>
         </div>
         <div class="card" style="width: 20rem;">
             <div class="card-body">
-                <h5 class="card-title">Can I get premium?</h5>
-                <p class="card-text">No.</p>
+                <h5 class="card-title">Users</h5>
+                <p class="card-text"><%=users%></p>
+            </div>
+        </div>
+			<div class="card" style="width: 20rem;">
+            <div class="card-body">
+                <h5 class="card-title">Commands Ran</h5>
+                <p class="card-text"><%=commands%></p>
             </div>
         </div>
 </div>
     <div class="footer">
         <div class="bot-footer">
-            Copyright © DevEnforcement - 2021
+            Copyright © DevEnforcement - 2022
         </div>
         <a href="/">Home</a>
     </div>
