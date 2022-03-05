@@ -51,33 +51,32 @@ module.exports = {
         }
 
         const yesno = {
-            true: '`Yes`',
-            false: '`No`'
+            true: '```Yes```',
+            false: '```No```'
         }
 
 
         const rolePermissions = role.permissions.toArray();
         const finalPermissions = [];
         for (const permission in permissions) {
-            if (rolePermissions.includes(permission)) finalPermissions.push(`✔️ ${permissions[permission]}`);
+            if (rolePermissions.includes(permission)) finalPermissions.push(`✅ ${permissions[permission]}`);
             else finalPermissions.push(`❌ ${permissions[permission]}`);
         }
 
-        const position = `\`${interaction.guild.roles.cache.size - role.position}\`/\`${interaction.guild.roles.cache.size}\``;
+        const position = `\`\`\`${interaction.guild.roles.cache.size - role.position} / ${interaction.guild.roles.cache.size}\`\`\``;
         
         const embed = new Discord.MessageEmbed()
         
-        .setTitle(`Role Info!`)
-        .setThumbnail(interaction.guild.iconURL({dynamic: true, size: 1024}))
-        .addField('Name', `<@&${role.id}>`, true)
-        .addField('ID', `\`${role.id}\``, true)
+        .setTitle(`Role Info`)
+        .addField('Name', `\`\`\`${role.name}\`\`\``, true)
+        .addField('ID', `\`\`\`${role.id}\`\`\``, true)
         .addField('Position', position, true)
         .addField('Mentionable', yesno[role.mentionable], true)
         .addField('Bot Role', yesno[role.managed], true)
         .addField('Visible', yesno[role.hoist], true)
-        .addField('Color', `\`${role.hexColor.toUpperCase()}\``, true)
-        .addField('Creation Date', `\`${moment(role.createdAt).format('DD/MMM/YYYY')}\``, true)
-        .addField('Permissions', `\`\`\`diff\n${finalPermissions.join('\n')}\`\`\``)
+        .addField('Color', `\`\`\`${role.hexColor.toUpperCase()}\`\`\``, true)
+        .addField('Creation Date', `\`\`\`${moment(role.createdAt).format('DD/MMM/YYYY')}\`\`\``, true)
+        .addField('Permissions', `\`\`\`${finalPermissions.join('\n')}\`\`\``)
 	      .setColor('#2f3136')
 
         interaction.reply({embeds: [embed]})

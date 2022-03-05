@@ -39,6 +39,8 @@ module.exports = {
 				options, id, createdTimestamp 
 		} = interaction; 
 		const { guild } = member;
+
+			if(!interaction.member.permissions.has('ADMINISTRATOR')) return;
 		
 		//let IntOption = options.getInteger("OPTIONNAME"); //same as in IntChoices //RETURNS NUMBER 
 		const EmbedTitle = options.getString("title"); //same as in StringChoices //RETURNS STRING 

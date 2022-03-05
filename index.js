@@ -8,8 +8,6 @@ client.slashcommands = new Discord.Collection();
 client.Discord = Discord;
 client.db = require('quick.db')
 client.snipes = new Map();
-const { Moderation } = require('discord-moderation');
-module.exports = Moderation;
 client.categories = fs.readdirSync('./application_commands/');
 
 ['./guild/messageCreate', './guild/messageDelete', './client/ready', './client/antiCrash', 'slash_commands', 'interactionCreate', './guild/guildMemberAdd', 'db', './client/rateLimit', './client/guildEvents'].forEach((handler) => {

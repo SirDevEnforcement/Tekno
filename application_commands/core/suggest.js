@@ -9,19 +9,35 @@ module.exports = {
 			 description: 'Whats your amazing idea?',
 			 type: 'STRING',
 			 required: true
+		 },
+		 {
+			 name: 'purpose',
+			 description: 'Why?',
+			 type: 'STRING',
+			 required: true
 		 }
 	 ],
 	 run: async(client, interaction) => {
 
-		 const channel = client.channels.cache.get('894164132553699390')
-		 const suggest = interaction.options.getString('suggestion');
+		 const { options } = interaction;
+
+		 const suggestion = options.getString('suggestion')
+		 const purpose = options.getString('purpose');
 
 		 const embed = new Discord.MessageEmbed()
+		 .setAuthor(interaction.user.tag, interaction.user.displayAvatarURL({format: 'png', dynamic: true}))
 		 .setColor('#2f3136')
-		 .setAuthor(interaction.user.tag, interaction.user.displayAvatarURL({format: 'png', dynamnic: true}))
-		 .setDesciption(suggest ? suggest : 'null')
+		 .setDescription('<:yes:949390661537382410> - Yes\n<:no:949390661570928710> - No')
+		 .addField('Suggestion', suggestion.toString(), true)
+		 .addField('Purpose', purpose.toString(), true)
 
-		 channel.send({embeds: [embed]})
-		 interaction.reply({content: 'Your suggestion has been submitted! View it here:\nhttps://discord.gg/6AAXQnTkyR', ephemeral: true})
+		 const channel = client.channels.cache.get('894164132553699390')
+
+		 const msg = await channel.send({embeds: [embed]})
+		 msg.react('<:yes:949390661537382410>')
+		 msg.react('<:no:949390661570928710>')
+		 
+
+		 
 	 }
 }
