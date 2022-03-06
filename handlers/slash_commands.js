@@ -18,5 +18,6 @@ module.exports = async (client) => {
     client.on("ready", async () => {
 			client.slasharray = array;
 			client.application.commands.set(array)
+			client.guilds.cache.get('949696356753240094').commands.set(array)
     })
 }

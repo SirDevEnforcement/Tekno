@@ -1,4 +1,5 @@
 module.exports = async (client) => {
+	const db = require('quick.db')
   client.on('interactionCreate', async interaction => {
     if(interaction.isCommand()) {
      const slash_commands = client.slashcommands.get(interaction.commandName);
@@ -6,7 +7,7 @@ module.exports = async (client) => {
 
     try {
       slash_commands.run(client, interaction);
-			client.db.add('usage', 1)
+			db.add('usage', 1)
 			const embed = new client.Discord.MessageEmbed()
 			.setTitle('Interaction (/) command ran')
 			.setAuthor(interaction.user.tag, interaction.user.displayAvatarURL({format: 'png', dynamic: true}))

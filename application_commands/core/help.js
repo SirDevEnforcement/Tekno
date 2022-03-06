@@ -1,7 +1,9 @@
 const {
     MessageEmbed,
     Message,
-    Client
+    Client,
+	MessageButton,
+	MessageActionRow
 } = require("discord.js");
 const {
     readdirSync
@@ -44,6 +46,8 @@ module.exports = {
                 "animals": '<:wumpus:943484322978103356>', 
                 "anime": '<:anime:943484322814500914>',
 		            "games": "<:plane:943484322919362641>",
+							  "config": "<:config:950012015479513149>",
+							  "soundboard": "<:unmuted:950011999931220029>"
             }
 
             let ccate = [];
@@ -84,19 +88,17 @@ module.exports = {
                         dynamic: true
                     })
                 )
-							  .setDescription(`<:slash:943489715259203605> Use the Select Menu to get started!\n<:discord:943484322923561011> [Join Our Support Server](https://discord.gg/uEnRY7jR)\n<:link:943484322894184458> [Invite Me](https://tekno-the-bot.repl.co/invite)`)
+							  .setDescription(`<:slash:943489715259203605> Use the Select Menu to get started!`)
                 .setTimestamp()
 							.setImage('https://cdn.discordapp.com/attachments/894164132385935396/936995900792905759/banner1.png')
                 .setColor(color)
-
-
-
+			
             let menus = create_mh(ccate);
             let msg1 = await message.reply({
                 embeds: [embed],
-                components: menus.smenu,
+                components: [menus.smenu],
 							  fetchReply: true,
-            }).then((msgg) => {
+            }).then(async (msgg) => {
 
                 const menuID = menus.sid;
 

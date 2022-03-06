@@ -14,39 +14,51 @@ module.exports = {
 	 run: async(client, interaction) => {
 
 		 const user = interaction.options.getUser('user') || interaction.user;
+		 const member = interaction.options.getMember('user') || interaction.member;
 
-		 const flags = {
-	DISCORD_EMPLOYEE: 'Discord Employee',
-	DISCORD_PARTNER: 'Discord Partner',
-	BUGHUNTER_LEVEL_1: 'Bug Hunter (Level 1)',
-	BUGHUNTER_LEVEL_2: 'Bug Hunter (Level 2)',
-	HYPESQUAD_EVENTS: 'HypeSquad Events',
-	HOUSE_BRAVERY: 'House of Bravery',
-	HOUSE_BRILLIANCE: 'House of Brilliance',
-	HOUSE_BALANCE: 'House of Balance',
-	EARLY_SUPPORTER: 'Early Supporter',
-	TEAM_USER: 'Team User',
-	SYSTEM: 'System',
-	VERIFIED_BOT: 'Verified Bot',
-	VERIFIED_DEVELOPER: 'Verified Bot Developer'
-};
-     const userFlags = user.flags.toArray();
-		 const flaggs = userFlags.length ? userFlags.map(flag => flags[flag]).join(' | ') : 'None'
+		 const flags = user.flags.toArray().join(" | ")
+			.replace("EARLY_VERIFIED_DEVELOPER", "<:verifiedbotdev:944538584273276968>")
+			.replace("HOUSE_BALANCE", "<:balance:949732244136804372>")
+			.replace("HOUSE_BRILLIANCE", "<:brilliance:949732280463675443>")
+			.replace("HOUSE_BRAVERY", "<:bravery:949732280379797574>")
+			.replace("DISCORD_PARTNER", "<:partner:876963499249635328>")
+			.replace("EARLY_SUPPORTER", "<:wumpus:943484322978103356>")
+			.replace("NITRO_CLASSIC", "<:nitro:949733151964557394>")
+			.replace("PARTNERED_SERVER_OWNER", "<:partner:949732294070001694>")
+			.replace("DISCORD_EMPLOYEE", "<:staff:876963499509682176>")
+			.replace("HYPESQUAD_EVENTS", "<:event:876963497211224064>")
+			.replace("BUGHUNTER_LEVEL_2", "<:bug1:949732280757276713>")
+			.replace("BUGHUNTER_LEVEL_1", "<:bug2:949732280505602109>")
+			.replace("BOT_HTTP_INTERACTIONS", "")
+			.replace("EARLY_DEVELOPER", "<:verifiedbotdev:944538584273276968>")
+			.replace("VERIFIED_BOT", "")
+			.replace(/ +/g, " ");
+
+		 const isDev = 
+			 ['815878862075985971', '788889758931353641', '497200251661320212'].includes(user.id)
+		 const isStaff = ['691648449967554590', '815878862075985971', '78888975893135364', '497200251661320212'].includes(user.id)
+		 const roles = member.roles.cache
+			.filter(r => r.id !== interaction.guild.id)
+			.map(r => r).join(' | ') || 'None';
 
 		 
 
 		 const embed = new Discord.MessageEmbed()
-		 .setAuthor(user.username, user.displayAvatarURL({format: 'png', dynamic: true}))
+		 .setTitle(`${user.username} ${isDev ? '<:developer:943484323150065704>' : ' '} ${isStaff ? '<:moderator:944538576505430036>': ' '}`)
 		 .addField('ID', `\`\`\`${user.id}\`\`\``)
-		 .addField('Server Nickname', `\`\`\`${user.nickname || 'None'}\`\`\``, true)
+		 .addField('Server Nickname', `\`\`\`${member.nickname || 'None'}\`\`\``, true)
 		 .addField('Discriminator', `\`\`\`${user.discriminator}\`\`\``, true)
 		 .addField('Animated Avatar', `\`\`\`${user.displayAvatarURL().endsWith(['.gif', '.apng']) ? 'True' : 'False'}\`\`\``, true)
 		 .addField('Server Owner', `\`\`\`${interaction.guild.ownerId === user.id ? 'True' : 'False'}\`\`\``, true)
 		 .addField('Bot Account', `\`\`\`${user.bot ? 'True' : 'False'}\`\`\``, true)
-		 .addField('Created', `<t:${Math.floor(user.createdTimestamp / 1000)}:R>`)
-			 .addField('Badges', `\`\`\`${flaggs}\`\`\``)
+		 .addField('Bot Staff', `\`\`\`${isStaff ? 'True' : 'False'}\`\`\``, true)
+		 .addField('Created', `<t:${Math.floor(user.createdTimestamp / 1000)}:R> (<t:${Math.floor(user.createdTimestamp / 1000)}:d>)`, true)
+			 .addField('Joined Server', `<t:${Math.floor(member.joinedTimestamp / 1000)}:R> (<t:${Math.floor(member.joinedTimestamp / 1000)}:d>)`, true)
+			 .addField('Roles', roles)
+			 .addField('Badges', `${flags}`)
 		 .setThumbnail(user.displayAvatarURL({format: 'png', dynamic: true}))
 		 .setColor('#2f3136')
+		 console.log(member)
 
 		 interaction.reply({embeds: [embed]})
 		 

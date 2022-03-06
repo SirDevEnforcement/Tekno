@@ -1,7 +1,8 @@
 const chalk = require(`chalk`);
 const {
     MessageSelectMenu,
-    MessageActionRow
+    MessageActionRow,
+	MessageButton
 } = require(`discord.js`);
 
 const create_mh = (
@@ -29,6 +30,8 @@ const create_mh = (
                 "animals": '<:wumpus:943484322978103356>', 
                 "anime": '<:anime:943484322814500914>',
 		            "games": "<:plane:943484322919362641>",
+							  "config": "<:config:950012015479513149>",
+							  "soundboard": "<:unmuted:950011999931220029>"
             }
 
 
@@ -53,7 +56,7 @@ const create_mh = (
 
     select_menu = new MessageActionRow()
         .addComponents(
-            chicken
+            [chicken]
         );
 
 

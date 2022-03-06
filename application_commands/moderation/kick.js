@@ -32,7 +32,7 @@ const Discord = require('discord.js')
 			
 
 			const embed = new Discord.MessageEmbed()
-				.setAuthor('Member Kicked')
+				.setTitle('<:developer:943484323150065704> Member Kicked')
 				.setThumbnail(target.user.displayAvatarURL({ dynamic: true }))
 				.setColor('RANDOM')
 				.addField(`Member`, `\`\`\`${target.user.tag}\`\`\``)

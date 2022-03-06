@@ -1,14 +1,15 @@
 module.exports = async (client) => {
+	const db = require('quick.db')
 	const express = require("express")
 	const dev_name = 'DevEnforcement'
 	const app = express()
 	app.set("views", __dirname)
 	app.set("view engine", "ejs")
 	const args = {
-		servers: `${client.db.get('servers')}`,
-		commands: `${client.db.get('usage')}`,
-		users: `${client.db.get('users')}`,
-		total: `${client.db.get('total_slash')}`,
+		servers: `${db.get('servers')}`,
+		commands: `${db.get('usage')}`,
+		users: `${db.get('users')}`,
+		total: `${db.get('total_slash')}`,
 		dev_name: dev_name
 	}
 	app.use(express.static("public"))

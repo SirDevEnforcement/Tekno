@@ -34,7 +34,6 @@ module.exports = {
             warns[user.id].warnCount += 1;
         }
     
-    if (!user) return message.react('🚫'), message.reply('Command Usage: `warn <@USER_MENTION> <Reason>`');
 
     if (reason) {
       try {

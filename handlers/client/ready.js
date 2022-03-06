@@ -28,12 +28,6 @@ module.exports = async (client) => {
             type: 'LISTENING'
         })
 
-        const channel = client.channels.cache.get('894255857674649691')
-        channel.setName(`👤 Total Users: ${client.guilds.cache.map(c => c.memberCount).reduce((a, b) => a + b)}`)
-
-        const channel2 = client.channels.cache.get('894255835432247336')
-        channel2.setName(`📚 Total Servers: ${client.guilds.cache.size}`)
-
         console.log(`                Connected to ${chalk.green(client.user.username + '#' + client.user.discriminator)}`)
         console.log(`Watching ${chalk.red(`${client.guilds.cache.map(c => c.memberCount).reduce((a, b) => a + b)}`)} users and ${chalk.red(client.guilds.cache.size)} servers!`)
         console.log(chalk.green(`\n                  [ ﹕Statistics ﹕]\n`))

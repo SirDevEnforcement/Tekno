@@ -6,7 +6,6 @@ client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
 client.slashcommands = new Discord.Collection();
 client.Discord = Discord;
-client.db = require('quick.db')
 client.snipes = new Map();
 client.categories = fs.readdirSync('./application_commands/');
 

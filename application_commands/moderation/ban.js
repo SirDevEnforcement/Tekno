@@ -25,7 +25,7 @@ const Discord = require('discord.js')
 			if(target.id === interaction.user.id) return interaction.reply('⛔ You cannot ban yourself!')
 			if(target.permissions.has('ADMINISTRATOR')) return interaction.reply('⛔ You cannot ban this user!');
 
-			const reason = interaction.options.getString('reason');
+			const reason = interaction.options.getString('reason') || 'None'
 
 			if(reason.length > 512) return interaction.reply('⛔ This reason exceeds 512 characters');
 			
@@ -33,9 +33,8 @@ const Discord = require('discord.js')
 			
 
 			const embed = new Discord.MessageEmbed()
-				.setAuthor('Member Banned')
+				.setTitle('<:developer:943484323150065704> Member Banned')
 				.setThumbnail(target.user.displayAvatarURL({ dynamic: true }))
-				.setColor('RANDOM')
 				.addField(`Member`, `\`\`\`${target.user.tag}\`\`\``)
         .addField('Banned by', `${interaction.user.tag}`)
         .addField('Reason', `\`\`\`${reason}\`\`\``)

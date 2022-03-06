@@ -13,15 +13,10 @@ module.exports = {
 	 ],
 	 run: async(client, interaction) => {
 
-		 if(!interaction.user.permissions.has('MANAGE_CHANNELS')) return interaction.reply({content: 'You dont have enough permissions! (MANAGE_CHANNELS)', ephermal: true})
+		 if(!interaction.member.permissions.has('MANAGE_CHANNELS')) return interaction.reply({content: 'You dont have enough permissions! (MANAGE_CHANNELS)', ephermal: true})
 
-		 client.db.set(`logchannel_${interaction.guild.id}`, interaction.options.getChannel('channel')).then(async () => {
-			 const msg = await interaction.reply('Done!')
-
-			 setTimeout(async () => {
-				 await msg.delete()
-			 }, 10000)
-		 })
+		 client.db.set(`logchannel_${interaction.guild.id}`, interaction.options.getChannel('channel'))
+			 await interaction.reply('Done!')
 	
 	 }
 }

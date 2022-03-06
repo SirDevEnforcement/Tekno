@@ -29,11 +29,15 @@ module.exports = {
     const reason = interaction.options.getString('reason') || 'No Reason'
 
     interaction.guild.members.ban(target, { reason: reason.length < 1 ? 'No reason supplied.' : reason });
-    const embed2 = new MessageEmbed()
-      .setColor("GREEN")
-      .setTitle('Banned')
-      .setDescription(`Success! <@${target}> was banned! \n \nReason: \`${reason}\`\n Moderator: \`${message.author.username}#${message.author.discriminator}\``)
-		.setColor('#2f3136')
+      const embed2 = new MessageEmbed()
+				.setTitle('<:developer:943484323150065704> Member Banned')
+				.setThumbnail(target.user.displayAvatarURL({ dynamic: true }))
+				.addField(`Member`, `\`\`\`${target.user.tag}\`\`\``)
+        .addField('Banned by', `${interaction.user.tag}`)
+        .addField('Reason', `\`\`\`${reason}\`\`\``)
+				.setTimestamp()
+				.setColor('#2f3136')
+				.setFooter(`Guild: ${interaction.guild.name}`, target.user.displayAvatarURL({ dynamic: true }));
     await message.reply({ embeds: [embed2] });
   }
 
