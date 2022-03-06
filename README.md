@@ -1,6 +1,6 @@
 
 # `🤖` Tekno (Multi-purpose bot)
-> Tekno is a multi-feature discord bot, built with [discord.js](discord.js.org)
+> Tekno is a multi-feature discord bot, built with [discord.js](https://discord.js.org)
 
 ## `🔗` Links
 [Website](https://tekno-the-bot.repl.co)
