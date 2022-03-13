@@ -19,19 +19,18 @@ const create_mh = (
 
    const emo = {
 
-                "fun": "<:rocket:943484323057774612>",
-                "core": "<:bot:943484322739019778>",
-                "utility": "<:compass:943484322852266095>",
-                "moderation": "<:developer:943484323150065704>",
-                "image": '<:image:943487918566174762>',
-                "information": '<:rules:943484323200389150>',
-                "music": '<:sound:943484323145859072>',
-                "profile": '<:members:943484322906767360>',
-                "animals": '<:wumpus:943484322978103356>', 
-                "anime": '<:anime:943484322814500914>',
-		            "games": "<:plane:943484322919362641>",
-							  "config": "<:config:950012015479513149>",
-							  "soundboard": "<:unmuted:950011999931220029>"
+                "fun": "<:Tekno_Rocket:951555867365474354>",
+                "core": "<:Tekno_Robot:951526699634397234>",
+                "utility": "<:Tekno_Pencil:951526699634401290>",
+                "moderation": "<:Tekno_Moderator:951526699638587422>",
+                "information": '<:Tekno_TabButton:951526699693133854>',
+                "music": '<:Tekno_Sound:951556625192353874>',
+                "profile": '<:Tekno_Member:951526699663773888>',
+                "animals": '<:Tekno_WumpusBlurpleWave:951555877620580392>', 
+                "anime": '<:Tekno_Happy:951557629115777094>',
+		            "games": "<:Tekno_Tab:951526699638616204>",
+							  "config": "<:Tekno_Cross:951526699663761529>",
+							  "soundboard": "<:Tekno_Music:951526699751841823>"
             }
 
 
@@ -56,12 +55,12 @@ const create_mh = (
 
     select_menu = new MessageActionRow()
         .addComponents(
-            [chicken]
+            chicken
         );
 
 
     return {
-        smenu: [select_menu],
+        smenu: select_menu,
         sid: id
     }
 }

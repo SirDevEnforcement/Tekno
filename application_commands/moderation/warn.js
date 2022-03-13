@@ -38,24 +38,23 @@ module.exports = {
     if (reason) {
       try {
         const embed = new client.Discord.MessageEmbed()
-          .setTitle(`⚠️ | __**Warning issued**__`)
+          .setTitle(`<:Tekno_Moderator:951526699638587422> Warning Issued`)
           .setColor('RANDOM')
           .addField('Member', `\`\`\`${user.tag}\`\`\``)
           .addField('Moderator', `\`\`\`${message.author.tag}\`\`\``)
           .addField('Reason', `\`\`\`${reason}\`\`\``)
-          .setFooter('Moderation system powered by Tekno')
           .setTimestamp()
 				  .setColor('#2f3136')
         interaction.reply({ embeds: [embed] });
 
         const emb = new client.Discord.MessageEmbed()
-          .setTitle(`⚠️ | __**Warning issued**__`)
+          .setTitle(`<:Tekno_Moderator:951526699638587422> Warning Issued`)
           .setColor('RANDOM')
           .addField('Member', `\`\`\`${user.tag}\`\`\``)
           .addField('Moderator', `\`\`\`${message.author.tag}\`\`\``)
           .addField('Reason', `\`\`\`${reason}\`\`\``)
-          .setFooter('Moderation system powered by Tekno')
           .setTimestamp()
+				.setColor('#2f3136')
 
         if (!user.bot) user.send({embeds: [emb]});
 

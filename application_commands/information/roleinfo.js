@@ -67,13 +67,13 @@ module.exports = {
         
         const embed = new Discord.MessageEmbed()
         
-        .setTitle(`Role Info`)
+        .setTitle(`<:Tekno_Mention:951526699747663902> Role Info`)
         .addField('Name', `\`\`\`${role.name}\`\`\``, true)
         .addField('ID', `\`\`\`${role.id}\`\`\``, true)
         .addField('Position', position, true)
         .addField('Mentionable', yesno[role.mentionable], true)
         .addField('Bot Role', yesno[role.managed], true)
-        .addField('Visible', yesno[role.hoist], true)
+        .addField('Hoisted', yesno[role.hoist], true)
         .addField('Color', `\`\`\`${role.hexColor.toUpperCase()}\`\`\``, true)
         .addField('Creation Date', `\`\`\`${moment(role.createdAt).format('DD/MMM/YYYY')}\`\`\``, true)
         .addField('Permissions', `\`\`\`${finalPermissions.join('\n')}\`\`\``)

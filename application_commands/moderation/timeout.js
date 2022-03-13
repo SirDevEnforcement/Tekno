@@ -41,7 +41,7 @@ module.exports = {
 
 		const embed = new Discord.MessageEmbed()
 		.setColor('#2f3136')
-		.setTitle(`<:timeoutclock:943484323061981246> ${user.username} has been timed-out`)
+		.setTitle(`<:Tekno_Timeout:951555055767650375> ${user.username} has been timed-out`)
 		.addField('Moderator', `\`\`\`${interaction.user.tag}\`\`\``)
 		.addField('Time', `\`\`\`${time}\`\`\``)
 

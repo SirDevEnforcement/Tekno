@@ -33,7 +33,7 @@ const Discord = require('discord.js')
 			
 
 			const embed = new Discord.MessageEmbed()
-				.setTitle('<:developer:943484323150065704> Member Banned')
+				.setTitle('<:Tekno_Moderator:951526699638587422> Member Banned')
 				.setThumbnail(target.user.displayAvatarURL({ dynamic: true }))
 				.addField(`Member`, `\`\`\`${target.user.tag}\`\`\``)
         .addField('Banned by', `${interaction.user.tag}`)

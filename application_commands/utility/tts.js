@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 
 module.exports = {
    name: "tts",
-	 description: "Play something",
+	 description: "Google Text to Speech sound",
 	 options: [
 		 {
 			 name: 'text',

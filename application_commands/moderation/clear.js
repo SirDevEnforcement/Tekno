@@ -21,7 +21,7 @@ module.exports = {
 
 		 
 			 await channel.bulkDelete(amount, true).then(messages => {
-				 embed.setDescription(`Cleared \`${messages.size}\` messages.`)
+				 embed.setDescription(`<:Tekno_Messages:951543621897834536> Cleared \`${messages.size}\` messages.`)
 
 				 interaction.reply({embeds: [embed]})
 			 })

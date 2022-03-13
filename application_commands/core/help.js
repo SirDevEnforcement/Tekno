@@ -11,6 +11,7 @@ const {
 let color = "#2f3136"
 
 const create_mh = require(`../../functions/menu.js`);
+let dirr;
 
 module.exports = {
     name: "help",
@@ -35,19 +36,18 @@ module.exports = {
 
             const emo = {
 
-                "fun": "<:rocket:943484323057774612>",
-                "core": "<:bot:943484322739019778>",
-                "utility": "<:compass:943484322852266095>",
-                "moderation": "<:developer:943484323150065704>",
-                "image": '<:image:943487918566174762>',
-                "information": '<:rules:943484323200389150>',
-                "music": '<:sound:943484323145859072>',
-                "profile": '<:members:943484322906767360>',
-                "animals": '<:wumpus:943484322978103356>', 
-                "anime": '<:anime:943484322814500914>',
-		            "games": "<:plane:943484322919362641>",
-							  "config": "<:config:950012015479513149>",
-							  "soundboard": "<:unmuted:950011999931220029>"
+                "fun": "<:Tekno_Rocket:951555867365474354>",
+                "core": "<:Tekno_Robot:951526699634397234>",
+                "utility": "<:Tekno_Pencil:951526699634401290>",
+                "moderation": "<:Tekno_Moderator:951526699638587422>",
+                "information": '<:Tekno_TabButton:951526699693133854>',
+                "music": '<:Tekno_Sound:951556625192353874>',
+                "profile": '<:Tekno_Member:951526699663773888>',
+                "animals": '<:Tekno_WumpusBlurpleWave:951555877620580392>', 
+                "anime": '<:Tekno_Happy:951557629115777094>',
+		            "games": "<:Tekno_Tab:951526699638616204>",
+							  "config": "<:Tekno_Cross:951526699663761529>",
+							  "soundboard": "<:Tekno_Music:951526699751841823>"
             }
 
             let ccate = [];
@@ -65,6 +65,7 @@ module.exports = {
                 let nome = dir.toUpperCase();
 
                 let cats = new Object();
+							dirr = dir
 
                 
 
@@ -88,7 +89,7 @@ module.exports = {
                         dynamic: true
                     })
                 )
-							  .setDescription(`<:slash:943489715259203605> Use the Select Menu to get started!`)
+							  .setDescription(`<:Tekno_Slash:951526699617644555> Use the Select Menu to get started!`)
                 .setTimestamp()
 							.setImage('https://cdn.discordapp.com/attachments/894164132385935396/936995900792905759/banner1.png')
                 .setColor(color)
@@ -159,15 +160,15 @@ module.exports = {
 
                     if (cots.includes(value.toLowerCase())) {
                         const combed = new MessageEmbed()
-                            .setTitle(`<:logo:947462326993449011> **${value.charAt(0).toUpperCase() + value.slice(1).toLowerCase()}** Commands`)
+                            .setTitle(`${emo[dirr]} **${value.charAt(0).toUpperCase() + value.slice(1).toLowerCase()}** Commands`)
                             .addFields(catts)
                             .setColor(color)
 
                         await interaction.deferUpdate();
 
-                        return interaction.message.edit({
+                        return interaction.followUp({
                             embeds: [combed],
-                            components: menus.smenu
+													  ephemeral: true
                         })
                     };
 

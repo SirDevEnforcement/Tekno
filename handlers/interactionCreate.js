@@ -1,11 +1,20 @@
 module.exports = async (client) => {
-	const db = require('quick.db')
+	const db = require('quick.db');
+	const blacklisted = require('../database/blacklisted.json')
   client.on('interactionCreate', async interaction => {
     if(interaction.isCommand()) {
      const slash_commands = client.slashcommands.get(interaction.commandName);
     if (!slash_commands) return interaction.followUp({ content: "This interaction failed." });
 
-    try {
+
+			if(blacklisted.includes(interaction.user.id)) {
+				const embed = new client.Discord.MessageEmbed()
+				.setTitle('<:Tekno_StickerSad:951526699626012702> Oops!')
+				.setDescription('It seems you are **blacklisted** from using our bot!\n\nIf you wish to be unblacklisted, join our [support server](https://discord.gg/6MJcggvnvq), read the [rules](https://discord.com/channels/894164132100730880/911569613861568612/950020886654763038) and ask in [support](https://discord.com/channels/894164132100730880/894164132553699395/951885075585310771) and why you should get unblacklisted.')
+				.setColor('#2f3136')
+
+				interaction.reply({embeds: [embed], ephemeral: true})
+			} else {
       slash_commands.run(client, interaction);
 			db.add('usage', 1)
 			const embed = new client.Discord.MessageEmbed()
@@ -20,10 +29,8 @@ module.exports = async (client) => {
 			.setTimestamp()
 			.setColor('#2f3136')
 			client.channels.cache.get('894164132704714765').send({embeds: [embed]})
-    } catch (e) {
-      console.error(e)
-    }
-  } else return;
+			}
+		}
 
   })
 }

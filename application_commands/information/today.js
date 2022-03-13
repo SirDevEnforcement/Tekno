@@ -10,7 +10,7 @@ module.exports = {
         const event = events[Math.floor(Math.random() * events.length)];
         const embed = new Discord.MessageEmbed()
             .setURL(res.url)
-            .setTitle(`On this day (${res.data.date})...`)
+            .setTitle(`<:Tekno_Clock:951526699697311755> Today (${res.data.date})...`)
             .setTimestamp()
             .setDescription(`${event.year}: ${event.text}`)
             .setFooter('Tekno', client.user.displayAvatarURL())

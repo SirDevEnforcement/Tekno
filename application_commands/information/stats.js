@@ -1,3 +1,4 @@
+const { connection } = require('mongoose')
 module.exports = {
     name: "stats",
     description: "Get the bot's stats!",
@@ -11,8 +12,25 @@ module.exports = {
 			.addField('Member Count', `\`\`\`${memberCount}\`\`\``)
 			.addField('Bot Created', `\`\`\`${clientCreated}\`\`\``)
 			.addField('Bot Owner', `\`\`\`${applicationOwner}\`\`\``)
+			.addField('MongoDB Status', `\`\`\`${switchTo(connection.readyState)}\`\`\``)
 			.addField('Up Since (Uptime)', `<t:${Math.floor(client.readyTimestamp / 1000)}:R>`)
 			.setColor('#2f3136')
 			interaction.reply({embeds: [embed]})
+
+			function switchTo(val) {
+				var status = " "
+
+				switch(val) {
+					case 0 : status = '🔴 Disconnected'
+						break;
+					case 1 : status = '🟢 Connected'
+						break;
+					case 2 : status = '🟠 Connecting'
+						break;
+					case 3 : status = '🟣 Disconnecting'
+						break;
+				}
+				return status;
+			}
 		}
     }
