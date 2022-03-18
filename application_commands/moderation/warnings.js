@@ -78,6 +78,7 @@ module.exports = {
 		 const warndate = new Date(interaction.createdTimestamp).toLocaleDateString()
 
 		 if(Sub === 'add') {
+			 if(!interaction.member.permissions.has('MODERATE_MEMBERS')) return;
 
 			 
 DB.findOne({ GuildID: interaction.guild.id, UserID: target.id, UserTag: target.user.tag }, async(err, data) => {

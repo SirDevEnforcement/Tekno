@@ -1,11 +1,13 @@
 module.exports = async (client) => {
-	const db = require('quick.db');
+	const DB = require('../Schemas/CustomCommandDB')
+	const db = require('quick.db')
 	const blacklisted = require('../database/blacklisted.json')
   client.on('interactionCreate', async interaction => {
     if(interaction.isCommand()) {
      const slash_commands = client.slashcommands.get(interaction.commandName);
-    if (!slash_commands) return interaction.followUp({ content: "This interaction failed." });
 
+
+			if(slash_commands) {
 
 			if(blacklisted.includes(interaction.user.id)) {
 				const embed = new client.Discord.MessageEmbed()
@@ -29,6 +31,14 @@ module.exports = async (client) => {
 			.setTimestamp()
 			.setColor('#2f3136')
 			client.channels.cache.get('894164132704714765').send({embeds: [embed]})
+			}
+			} else {
+				// CUSTOM COMMANDS
+
+				const command = await DB.findOne({commandName: interaction.commandName})
+
+				interaction.reply({content: `${command.Response ? command.Response : 'No Response found'}`})
+				console.log(command)
 			}
 		}
 

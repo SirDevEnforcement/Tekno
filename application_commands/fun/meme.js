@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const got = require('got');
+const fetch = require('node-fetch')
 module.exports = {
 	name: 'meme',
 	description: 'Pretty funny, ngl!',
@@ -7,7 +7,7 @@ module.exports = {
 
 const embed = new Discord.MessageEmbed()
 		.setColor('#2f3136')
-	got('https://www.reddit.com/r/memes/random/.json')
+	fetch('https://www.reddit.com/r/memes/random/.json')
 		.then(response => {
 			const [list] = JSON.parse(response.body);
 			const [post] = list.data.children;

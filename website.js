@@ -1,6 +1,7 @@
 module.exports = async (client) => {
 	const db = require('quick.db')
 	const express = require("express")
+	const ejs = require('ejs')
 	const dev_name = 'DevEnforcement'
 	const app = express()
 	app.set("views", __dirname)
@@ -30,7 +31,7 @@ module.exports = async (client) => {
 	})
 
 	app.get("/invite", (req, res) => {
-		res.redirect("https://discord.com/api/oauth2/authorize?client_id=913472906913267793&permissions=139523361014&scope=bot%20applications.commands")
+		res.redirect("https://discord.com/api/oauth2/authorize?client_id=913472906913267793&permissions=1619168951798&scope=bot%20applications.commands")
 	})
 
 

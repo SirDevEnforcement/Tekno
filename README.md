@@ -1,13 +1,5 @@
-
 # `🤖` Tekno (Multi-purpose bot)
-> Tekno is a multi-feature discord bot, built with [discord.js](https://discord.js.org)
-
-## `🔗` Links
-[Website](https://tekno-the-bot.repl.co)
-
-[Invite](https://tekno-the-bot.repl.co/invite)
-
-[FaQ](https://tekno-the-bot.repl.co/invite)
+> [`Website`](https://tekno-the-bot.repl.co)
 
 ## `⚠` Requirements
 
@@ -31,7 +23,7 @@ After installation finishes follow configuration instructions then run `node ind
 
 Run `/help` to see all of my commands
 
-## `🤝` Contributing
+## `🤝` Contributing / Downloading
 
 1. [Fork the repository](https://github.com/sirdevenforcement/tekno/fork)
 2. Clone your fork: `git clone https://github.com/your-username/tekno.git`
@@ -41,6 +33,5 @@ Run `/help` to see all of my commands
 6. Push to the branch: `git push origin my-new-feature`
 7. Submit a pull request
 
-## `📝` Credits
-
-Will be updated soon
+# NOTE
+> It is recommended you use replit for this bot, as that is its main IDE + has replit-only aspects, such as `process.env[x]`
