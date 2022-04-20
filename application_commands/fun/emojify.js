@@ -45,5 +45,10 @@ module.exports = {
 
 		interaction.reply(emojified);
 
+			client.modlogs({
+			 Member: interaction.user,
+			 Action: 'EMOJIFY (Slash Command)',
+		 }, interaction)
+
     }
 };

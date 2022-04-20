@@ -81,6 +81,11 @@ module.exports = {
 
         interaction.reply({embeds: [embed]})
 
+	 client.modlogs({
+			 Member: interaction.user,
+			 Action: 'ROLE_INFO (Slash Command)',
+		 }, interaction)
+
         
     }
 }

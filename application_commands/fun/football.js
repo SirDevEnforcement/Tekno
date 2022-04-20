@@ -68,5 +68,9 @@ module.exports = {
 			gameEnded = true;
 			return button.reply({ content: 'You lose...' });
 		}
-	},
+		client.modlogs({
+			 Member: interaction.user,
+			 Action: 'FOOTBALL (Slash Command)',
+		 }, interaction)
+	}
 };

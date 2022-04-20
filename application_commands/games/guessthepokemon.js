@@ -19,5 +19,10 @@ new GuessThePokemon({
   stopMessage: 'Better luck next time! It was a **{pokemon}**',
   incorrectMessage: 'Nope! The pokemon was **{pokemon}**',
 }).startGame();
+
+		client.modlogs({
+			 Member: interaction.user,
+			 Action: 'GUESS_THE_POKEMON (Slash Command)',
+		 }, interaction)
 	}
 }

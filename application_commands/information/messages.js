@@ -15,5 +15,10 @@ module.exports = {
 
     interaction.reply({embeds: [embed]})
 
+		client.modlogs({
+			 Member: interaction.user,
+			 Action: 'MESSAGE_COUNT (Slash Command)',
+		 }, interaction)
+
   }
   }

@@ -1,15 +1,14 @@
-module.exports = async(client) => {
 const {
     MessageEmbed
 } = require('discord.js');
-	const db = require('quick.db');
-	
+const DB = require('../Schemas/LoggingDB')
+
+module.exports = async(client) => {
 
 // Channel Topic Updating 
 client.on("guildChannelTopicUpdate", (channel, oldTopic, newTopic) => {
-	const LogChannel = db.get(`logchannel_${channel.guild.id}`) ? db.get(`logchannel_${channel.guild.id}`) : channel.guild.channels.cache.find(channel => channel.name.includes('tekno-logs'))
-
     
+    const LogChannel = client.channels.cache.get('881429960521318410'); // Replace with your channel id
     const TopicUpdate = new MessageEmbed()
         .setTitle('Topic Updated!')
         .setColor('#2F3136')
@@ -23,13 +22,12 @@ client.on("guildChannelTopicUpdate", (channel, oldTopic, newTopic) => {
 
 // Channel Permission Updating
 client.on("guildChannelPermissionsUpdate", (channel, oldPermissions, newPermissions) => {
-	const LogChannel = db.get(`logchannel_${channel.guild.id}`) ? db.get(`logchannel_${channel.guild.id}`) : channel.guild.channels.cache.find(channel => channel.name.includes('tekno-logs'))
 
-
+    const LogChannel = client.channels.cache.get('881429960521318410'); // Replace with your channel id
     const PermissionUpdate = new MessageEmbed()
         .setTitle('Permission Updated!')
         .setColor('#2F3136')
-        .setDescription(`${channel.name}'s permissions updated!"`);
+        .setDescription(`channel.name+"'s permissions updated!"`);
 
     return LogChannel.send({
         embeds: [PermissionUpdate]
@@ -39,8 +37,8 @@ client.on("guildChannelPermissionsUpdate", (channel, oldPermissions, newPermissi
 
 // unhandled Guild Channel Update
 client.on("unhandledGuildChannelUpdate", (oldChannel, newChannel) => {
-const LogChannel = db.get(`logchannel_${newChannel.guild.id}`) ? db.get(`logchannel_${newChannel.guild.id}`) : newChannel.guild.channels.cache.find(channel => channel.name.includes('tekno-logs'))
 
+    const LogChannel = client.channels.cache.get('881429960521318410'); // Replace with your channel id
     const unhandledGuildChannelUpdate = new MessageEmbed()
         .setTitle('Channel Updated!')
         .setColor('#2F3136')
@@ -54,8 +52,8 @@ const LogChannel = db.get(`logchannel_${newChannel.guild.id}`) ? db.get(`logchan
 
 // Member Started Boosting
 client.on("guildMemberBoost", (member) => {
-const LogChannel = db.get(`logchannel_${member.guild.id}`) ? db.get(`logchannel_${member.guild.id}`) : member.guild.channels.cache.find(channel => channel.name.includes('tekno-logs'))
 
+    const LogChannel = client.channels.cache.get('881429960521318410'); // Replace with your channel id
     const MemberBoost = new MessageEmbed()
         .setTitle('User Started Boosting!')
         .setColor('#2F3136')
@@ -68,8 +66,8 @@ const LogChannel = db.get(`logchannel_${member.guild.id}`) ? db.get(`logchannel_
 
 // Member Unboosted
 client.on("guildMemberUnboost", (member) => {
-const LogChannel = db.get(`logchannel_${member.guild.id}`) ? db.get(`logchannel_${member.guild.id}`) : member.guild.channels.cache.find(channel => channel.name.includes('tekno-logs'))
 
+    const LogChannel = client.channels.cache.get('881429960521318410'); // Replace with your channel id
     const MemberUnboost = new MessageEmbed()
         .setTitle('User Stoped Boosting!')
         .setColor('#2F3136')
@@ -83,8 +81,8 @@ const LogChannel = db.get(`logchannel_${member.guild.id}`) ? db.get(`logchannel_
 
 // Member Got Role
 client.on("guildMemberRoleAdd", (member, role) => {
-const LogChannel = db.get(`logchannel_${member.guild.id}`) ? db.get(`logchannel_${member.guild.id}`) : member.guild.channels.cache.find(channel => channel.name.includes('tekno-logs'))
-
+    
+    const LogChannel = client.channels.cache.get('881429960521318410'); // Replace with your channel id
     const MemberRoleAdd = new MessageEmbed()
         .setTitle('User Got Role!')
         .setColor('#2F3136')
@@ -98,8 +96,8 @@ const LogChannel = db.get(`logchannel_${member.guild.id}`) ? db.get(`logchannel_
 
 // Member Lost Role
 client.on("guildMemberRoleRemove", (member, role) => {
-const LogChannel = db.get(`logchannel_${member.guild.id}`) ? db.get(`logchannel_${member.guild.id}`) : member.guild.channels.cache.find(channel => channel.name.includes('tekno-logs'))
- 
+
+    const LogChannel = client.channels.cache.get('881429960521318410'); // Replace with your channel id
     const MemberRoleRemove = new MessageEmbed()
         .setTitle('User Lost Role!')
         .setColor('#2F3136')
@@ -113,8 +111,8 @@ const LogChannel = db.get(`logchannel_${member.guild.id}`) ? db.get(`logchannel_
 
 // Nickname Changed
 client.on("guildMemberNicknameUpdate", (member, oldNickname, newNickname) => {
-const LogChannel = db.get(`logchannel_${member.guild.id}`) ? db.get(`logchannel_${member.guild.id}`) : member.guild.channels.cache.find(channel => channel.name.includes('tekno-logs'))
 
+    const LogChannel = client.channels.cache.get('881429960521318410'); // Replace with your channel id
     const MemberNicknameUpdate = new MessageEmbed()
         .setTitle('Nickname Updated')
         .setColor('#2F3136')
@@ -128,8 +126,8 @@ const LogChannel = db.get(`logchannel_${member.guild.id}`) ? db.get(`logchannel_
 
 // Member Joined
 client.on("guildMemberEntered", (member) => {
-const LogChannel = db.get(`logchannel_${member.guild.id}`) ? db.get(`logchannel_${member.guild.id}`) : member.guild.channels.cache.find(channel => channel.name.includes('tekno-logs'))
 
+    const LogChannel = client.channels.cache.get('881429960521318410'); // Replace with your channel id
     const MemberJoined = new MessageEmbed()
         .setTitle('User Joined')
         .setColor('#2F3136')
@@ -143,8 +141,8 @@ const LogChannel = db.get(`logchannel_${member.guild.id}`) ? db.get(`logchannel_
 
 // Server Boost Level Up
 client.on("guildBoostLevelUp", (guild, oldLevel, newLevel) => {
-const LogChannel = db.get(`logchannel_${guild.id}`) ? db.get(`logchannel_${guild.id}`) : guild.channels.cache.find(channel => channel.name.includes('tekno-logs'))
 
+    const LogChannel = client.channels.cache.get('881429960521318410'); // Replace with your channel id
     const LevelUp = new MessageEmbed()
         .setTitle('Server Boost Level Up')
         .setColor('#2F3136')
@@ -158,8 +156,8 @@ const LogChannel = db.get(`logchannel_${guild.id}`) ? db.get(`logchannel_${guild
 
 // Server Boost Level Down
 client.on("guildBoostLevelDown", (guild, oldLevel, newLevel) => {
-const LogChannel = db.get(`logchannel_${guild.id}`) ? db.get(`logchannel_${guild.id}`) : guild.channels.cache.find(channel => channel.name.includes('tekno-logs'))
 
+    const LogChannel = client.channels.cache.get('881429960521318410'); // Replace with your channel id
     const LevelDown = new MessageEmbed()
         .setTitle('Server Boost Level Down')
         .setColor('#2F3136')
@@ -173,8 +171,8 @@ const LogChannel = db.get(`logchannel_${guild.id}`) ? db.get(`logchannel_${guild
 
 // Banner Added
 client.on("guildBannerAdd", (guild, bannerURL) => {
-const LogChannel = db.get(`logchannel_${guild.id}`) ? db.get(`logchannel_${guild.id}`) : guild.channels.cache.find(channel => channel.name.includes('tekno-logs'))
 
+    const LogChannel = client.channels.cache.get('881429960521318410'); // Replace with your channel id
     const BannerAdd = new MessageEmbed()
         .setTitle('Server Got a new banner')
         .setColor('#2F3136')
@@ -188,8 +186,8 @@ const LogChannel = db.get(`logchannel_${guild.id}`) ? db.get(`logchannel_${guild
 
 // AFK Channel Added
 client.on("guildAfkChannelAdd", (guild, afkChannel) => {
-const LogChannel = db.get(`logchannel_${guild.id}`) ? db.get(`logchannel_${guild.id}`) : guild.channels.cache.find(channel => channel.name.includes('tekno-logs'))
 
+    const LogChannel = client.channels.cache.get('881429960521318410'); // Replace with your channel id
     const AFKAdd = new MessageEmbed()
         .setTitle('AFK Channel Added')
         .setColor('#2F3136')
@@ -203,8 +201,8 @@ const LogChannel = db.get(`logchannel_${guild.id}`) ? db.get(`logchannel_${guild
 
 // Guild Vanity Add
 client.on("guildVanityURLAdd", (guild, vanityURL) => {
-const LogChannel = db.get(`logchannel_${guild.id}`) ? db.get(`logchannel_${guild.id}`) : guild.channels.cache.find(channel => channel.name.includes('tekno-logs'))
 
+    const LogChannel = client.channels.cache.get('881429960521318410'); // Replace with your channel id
     const VanityAdd = new MessageEmbed()
         .setTitle('Vanity Link Added')
         .setColor('#2F3136')
@@ -218,8 +216,8 @@ const LogChannel = db.get(`logchannel_${guild.id}`) ? db.get(`logchannel_${guild
 
 // Guild Vanity Remove
 client.on("guildVanityURLRemove", (guild, vanityURL) => {
-const LogChannel = db.get(`logchannel_${guild.id}`) ? db.get(`logchannel_${guild.id}`) : guild.channels.cache.find(channel => channel.name.includes('tekno-logs'))
 
+    const LogChannel = client.channels.cache.get('881429960521318410'); // Replace with your channel id
     const VanityRemove = new MessageEmbed()
         .setTitle('Vanity Link Removed')
         .setColor('#2F3136')
@@ -233,8 +231,8 @@ const LogChannel = db.get(`logchannel_${guild.id}`) ? db.get(`logchannel_${guild
 
 // Guild Vanity Link Updated
 client.on("guildVanityURLUpdate", (guild, oldVanityURL, newVanityURL) => {
-const LogChannel = db.get(`logchannel_${guild.id}`) ? db.get(`logchannel_${guild.id}`) : guild.channels.cache.find(channel => channel.name.includes('tekno-logs'))
 
+    const LogChannel = client.channels.cache.get('881429960521318410'); // Replace with your channel id
     const VanityUpdated = new MessageEmbed()
         .setTitle('Vanity Link Updated')
         .setColor('#2F3136')
@@ -248,8 +246,8 @@ const LogChannel = db.get(`logchannel_${guild.id}`) ? db.get(`logchannel_${guild
 
 // Message Pinned
 client.on("messagePinned", (message) => {
-const LogChannel = db.get(`logchannel_${message.guild.id}`) ? db.get(`logchannel_${channel.guild.id}`) : message.guild.channels.cache.find(channel => channel.name.includes('tekno-logs'))
- 
+
+    const LogChannel = client.channels.cache.get('881429960521318410'); // Replace with your channel id
     const MessagePinned = new MessageEmbed()
         .setTitle('Message Pinned')
         .setColor('#2F3136')
@@ -263,8 +261,8 @@ const LogChannel = db.get(`logchannel_${message.guild.id}`) ? db.get(`logchannel
 
 // Message Edited
 client.on("messageContentEdited", (message, oldContent, newContent) => {
-const LogChannel = db.get(`logchannel_${message.guild.id}`) ? db.get(`logchannel_${channel.guild.id}`) : message.guild.channels.cache.find(channel => channel.name.includes('tekno-logs'))
 
+    const LogChannel = client.channels.cache.get('881429960521318410'); // Replace with your channel id
     const MessageEdited = new MessageEmbed()
         .setTitle('Message Edited')
         .setColor('#2F3136')
@@ -276,10 +274,40 @@ const LogChannel = db.get(`logchannel_${message.guild.id}`) ? db.get(`logchannel
 
 })
 
+// Member Became Offline
+client.on("guildMemberOffline", (member, oldStatus) => {
+
+    const LogChannel = client.channels.cache.get('881429960521318410'); // Replace with your channel id
+    const MemberOffline = new MessageEmbed()
+        .setTitle('Message Offline')
+        .setColor('#2F3136')
+        .setDescription(member.user.tag + " became offline!");
+
+    return LogChannel.send({
+        embeds: [MemberOffline]
+    });
+
+})
+
+// Member Became Online
+client.on("guildMemberOnline", (member, newStatus) => {
+
+    const LogChannel = client.channels.cache.get('881429960521318410'); // Replace with your channel id
+    const MemberOnline = new MessageEmbed()
+        .setTitle('Message Online')
+        .setColor('#2F3136')
+        .setDescription(member.user.tag + " was offline and is now " + newStatus + "!");
+
+    return LogChannel.send({
+        embeds: [MemberOnline]
+    });
+
+})
+
 // Role Position Updated
 client.on("rolePositionUpdate", (role, oldPosition, newPosition) => {
-const LogChannel = db.get(`logchannel_${role.guild.id}`) ? db.get(`logchannel_${role.guild.id}`) : role.guild.channels.cache.find(channel => channel.name.includes('tekno-logs'))
-
+    
+    const LogChannel = client.channels.cache.get('881429960521318410'); // Replace with your channel id
     const RolePositionUpdated = new MessageEmbed()
         .setTitle('Role Position Updated')
         .setColor('#2F3136')
@@ -293,8 +321,8 @@ const LogChannel = db.get(`logchannel_${role.guild.id}`) ? db.get(`logchannel_${
 
 // Role Permission Updated
 client.on("rolePermissionsUpdate", (role, oldPermissions, newPermissions) => {
-const LogChannel = db.get(`logchannel_${role.guild.id}`) ? db.get(`logchannel_${role.guild.id}`) : role.guild.channels.cache.find(channel => channel.name.includes('tekno-logs'))
 
+    const LogChannel = client.channels.cache.get('881429960521318410'); // Replace with your channel id
     const RolePermissionUpdated = new MessageEmbed()
         .setTitle('Role Permission Updated')
         .setColor('#2F3136')
@@ -308,8 +336,8 @@ const LogChannel = db.get(`logchannel_${role.guild.id}`) ? db.get(`logchannel_${
 
 // Avatar Updated
 client.on("userAvatarUpdate", (user, oldAvatarURL, newAvatarURL) => {
-const LogChannel = db.get(`logchannel_${user.guild.id}`) ? db.get(`logchannel_${user.guild.id}`) : user.guild.channels.cache.find(channel => channel.name.includes('tekno-logs'))
 
+    const LogChannel = client.channels.cache.get('881429960521318410'); // Replace with your channel id
     const AvatarUpdated = new MessageEmbed()
         .setTitle('Avatar Updated')
         .setColor('#2F3136')
@@ -323,8 +351,8 @@ const LogChannel = db.get(`logchannel_${user.guild.id}`) ? db.get(`logchannel_${
 
 // Username Updated
 client.on("userUsernameUpdate", (user, oldUsername, newUsername) => {
-const LogChannel = db.get(`logchannel_${user.guild.id}`) ? db.get(`logchannel_${user.guild.id}`) : user.guild.channels.cache.find(channel => channel.name.includes('tekno-logs'))
 
+    const LogChannel = client.channels.cache.get('881429960521318410'); // Replace with your channel id
     const Username = new MessageEmbed()
         .setTitle('Username Updated')
         .setColor('#2F3136')
@@ -338,8 +366,8 @@ const LogChannel = db.get(`logchannel_${user.guild.id}`) ? db.get(`logchannel_${
 
 // Discriminator Updated
 client.on("userDiscriminatorUpdate", (user, oldDiscriminator, newDiscriminator) => {
-const LogChannel = db.get(`logchannel_${user.guild.id}`) ? db.get(`logchannel_${user.guild.id}`) : user.guild.channels.cache.find(channel => channel.name.includes('tekno-logs'))
 
+    const LogChannel = client.channels.cache.get('881429960521318410'); // Replace with your channel id
     const Discriminator = new MessageEmbed()
         .setTitle('Discriminator Updated')
         .setColor('#2F3136')
@@ -353,8 +381,8 @@ const LogChannel = db.get(`logchannel_${user.guild.id}`) ? db.get(`logchannel_${
 
 // Flags Updated
 client.on("userFlagsUpdate", (user, oldFlags, newFlags) => {
-const LogChannel = db.get(`logchannel_${user.guild.id}`) ? db.get(`logchannel_${user.guild.id}`) : user.guild.channels.cache.find(channel => channel.name.includes('tekno-logs'))
 
+    const LogChannel = client.channels.cache.get('881429960521318410'); // Replace with your channel id
     const FlagsUpdate = new MessageEmbed()
         .setTitle('Flags Updated')
         .setColor('#2F3136')
@@ -368,8 +396,8 @@ const LogChannel = db.get(`logchannel_${user.guild.id}`) ? db.get(`logchannel_${
 
 // Joined VC
 client.on("voiceChannelJoin", (member, channel) => {
-const LogChannel = db.get(`logchannel_${member.guild.id}`) ? db.get(`logchannel_${member.guild.id}`) : member.guild.channels.cache.find(channel => channel.name.includes('tekno-logs'))
 
+    const LogChannel = client.channels.cache.get('881429960521318410'); // Replace with your channel id
     const VCJoined = new MessageEmbed()
         .setTitle('Voice Channel Joined')
         .setColor('#2F3136')
@@ -383,8 +411,8 @@ const LogChannel = db.get(`logchannel_${member.guild.id}`) ? db.get(`logchannel_
 
 // Left VC
 client.on("voiceChannelLeave", (member, channel) => {
-const LogChannel = db.get(`logchannel_${member.guild.id}`) ? db.get(`logchannel_${member.guild.id}`) : member.guild.channels.cache.find(channel => channel.name.includes('tekno-logs'))
-
+    
+    const LogChannel = client.channels.cache.get('881429960521318410'); // Replace with your channel id
     const VCLeft = new MessageEmbed()
         .setTitle('Voice Channel Left')
         .setColor('#2F3136')
@@ -398,8 +426,8 @@ const LogChannel = db.get(`logchannel_${member.guild.id}`) ? db.get(`logchannel_
 
 // VC Switch
 client.on("voiceChannelSwitch", (member, oldChannel, newChannel) => {
-const LogChannel = db.get(`logchannel_${member.guild.id}`) ? db.get(`logchannel_${member.guild.id}`) : member.guild.channels.cache.find(channel => channel.name.includes('tekno-logs'))
 
+    const LogChannel = client.channels.cache.get('881429960521318410'); // Replace with your channel id
     const VCSwitch = new MessageEmbed()
         .setTitle('Voice Channel Switched')
         .setColor('#2F3136')
@@ -413,8 +441,8 @@ const LogChannel = db.get(`logchannel_${member.guild.id}`) ? db.get(`logchannel_
 
 // VC Mute
 client.on("voiceChannelMute", (member, muteType) => {
-const LogChannel = db.get(`logchannel_${member.guild.id}`) ? db.get(`logchannel_${member.guild.id}`) : member.guild.channels.cache.find(channel => channel.name.includes('tekno-logs'))
 
+    const LogChannel = client.channels.cache.get('881429960521318410'); // Replace with your channel id
     const VCMute = new MessageEmbed()
         .setTitle('User Muted')
         .setColor('#2F3136')
@@ -428,7 +456,8 @@ const LogChannel = db.get(`logchannel_${member.guild.id}`) ? db.get(`logchannel_
 
 // VC Unmute
 client.on("voiceChannelUnmute", (member, oldMuteType) => {
-const LogChannel = db.get(`logchannel_${member.guild.id}`) ? db.get(`logchannel_${member.guild.id}`) : member.guild.channels.cache.find(channel => channel.name.includes('tekno-logs'))
+
+    const LogChannel = client.channels.cache.get('881429960521318410'); // Replace with your channel id
     const VCUnmute = new MessageEmbed()
         .setTitle('User Unmuted')
         .setColor('#2F3136')
@@ -442,8 +471,8 @@ const LogChannel = db.get(`logchannel_${member.guild.id}`) ? db.get(`logchannel_
 
 // VC Defean
 client.on("voiceChannelDeaf", (member, deafType) => {
-const LogChannel = db.get(`logchannel_${member.guild.id}`) ? db.get(`logchannel_${member.guild.id}`) : member.guild.channels.cache.find(channel => channel.name.includes('tekno-logs'))
 
+    const LogChannel = client.channels.cache.get('881429960521318410'); // Replace with your channel id
     const VCDeafen = new MessageEmbed()
         .setTitle('User Deafend')
         .setColor('#2F3136')
@@ -457,8 +486,8 @@ const LogChannel = db.get(`logchannel_${member.guild.id}`) ? db.get(`logchannel_
 
 // VC Undefean
 client.on("voiceChannelUndeaf", (member, deafType) => {
-const LogChannel = db.get(`logchannel_${member.guild.id}`) ? db.get(`logchannel_${member.guild.id}`) : member.guild.channels.cache.find(channel => channel.name.includes('tekno-logs'))
-	
+
+    const LogChannel = client.channels.cache.get('881429960521318410'); // Replace with your channel id
     const VCUndeafen = new MessageEmbed()
         .setTitle('User Undeafend')
         .setColor('#2F3136')
@@ -472,8 +501,8 @@ const LogChannel = db.get(`logchannel_${member.guild.id}`) ? db.get(`logchannel_
 
 // User Started to Stream
 client.on("voiceStreamingStart", (member, voiceChannel) => {
-const LogChannel = db.get(`logchannel_${member.guild.id}`) ? db.get(`logchannel_${member.guild.id}`) : member.guild.channels.cache.find(channel => channel.name.includes('tekno-logs'))
 
+    const LogChannel = client.channels.cache.get('881429960521318410'); // Replace with your channel id
     const UserStreaming = new MessageEmbed()
         .setTitle('User Started to Stream')
         .setColor('#2F3136')
@@ -482,13 +511,13 @@ const LogChannel = db.get(`logchannel_${member.guild.id}`) ? db.get(`logchannel_
     return LogChannel.send({
         embeds: [UserStreaming]
     });
-
+    
 })
 
 // User Stopped to Stream
-client.on("voiceStreamingStop", (member, voiceChannel) => {
-const LogChannel = db.get(`logchannel_${member.guild.id}`) ? db.get(`logchannel_${member.guild.id}`) : member.guild.channels.cache.find(channel => channel.name.includes('tekno-logs'))
+client.on("voiceStreamingStart", (member, voiceChannel) => {
 
+    const LogChannel = client.channels.cache.get('881429960521318410'); // Replace with your channel id
     const UserStoppedStreaming = new MessageEmbed()
         .setTitle('User Stopped to Stream')
         .setColor('#2F3136')
@@ -499,6 +528,4 @@ const LogChannel = db.get(`logchannel_${member.guild.id}`) ? db.get(`logchannel_
     });
 
 })
-
-	
 }

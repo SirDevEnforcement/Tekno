@@ -39,6 +39,11 @@ module.exports = {
 				.setColor('#2f3136')
 				.setFooter(`Guild: ${interaction.guild.name}`, target.user.displayAvatarURL({ dynamic: true }));
     await message.reply({ embeds: [embed2] });
+
+		client.modlogs({
+			 Member: interaction.user,
+			 Action: 'HACKBAN (Slash Command)',
+		 }, interaction)
   }
 
 }

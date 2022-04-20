@@ -14,31 +14,28 @@ module.exports = {
 		 .setLabel('Invite')
 		 .setStyle('LINK')
 		 .setURL('https://tekno-the-bot.repl.co/invite')
-		 .setEmoji('<:link:943484322894184458>')
+		 .setEmoji('<:Tekno_Plus:951526700066406491>')
 
 		 const button2 = new MessageButton()
 		 .setLabel('Support Server')
 		 .setStyle('LINK')
 		 .setURL('https://discord.gg/eJQvFcAbK5')
-		 .setEmoji('<:discord:943484322923561011>')
+		 .setEmoji('<:Tekno_Discord:951543783877668976>')
 
 		 const button3 = new MessageButton()
 		 .setLabel('Website')
 		 .setStyle('LINK')
 		 .setURL('https://tekno-the-bot.repl.co')
-		 .setEmoji('<:compass:943484322852266095>')
-
-		 const button4 = new MessageButton()
-		 .setLabel('Made with Discord.JS')
-		 .setStyle('PRIMARY')
-		 .setEmoji('<:djs:851461487498493952>')
-		 .setDisabled(true)
-		 .setCustomId('button_4')
+		 .setEmoji('<:Tekno_Desktop:959764498032496661>')
 
 		 const row = new MessageActionRow()
-		 .addComponents([button1, button2, button3, button4])
+		 .addComponents([button1, button2, button3])
 
 		 interaction.reply({embeds: [embed], components: [row]})
+		 client.modlogs({
+			 Member: interaction.user,
+			 Action: 'LINKS (Slash Command)',
+		 }, interaction)
 	
 	 }
 }

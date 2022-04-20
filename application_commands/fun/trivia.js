@@ -11,6 +11,11 @@ module.exports = {
   time: 60,
   blockmsg: '{user} can only use these buttons'
       })
+
+		 client.modlogs({
+			 Member: interaction.user,
+			 Action: 'TRIVIA (Slash Command)',
+		 }, interaction)
 		 
 	
 	 }

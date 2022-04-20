@@ -12,6 +12,11 @@ module.exports = {
    time: 60,
    blockmsg: '{user} can only use these buttons'
  })
+
+		 client.modlogs({
+			 Member: interaction.user,
+			 Action: 'WOULD_YOU_RATHER (Slash Command)',
+		 }, interaction)
 	
 	 }
 }

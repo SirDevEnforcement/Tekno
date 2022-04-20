@@ -33,5 +33,10 @@ new Connect4({
   cancelMessage: 'Looks like they refused to have a game of Connect4. \:(',
   timeEndMessage: 'Since the opponent didnt answer, i dropped the game!',
 }).startGame()
+
+		client.modlogs({
+			 Member: interaction.user,
+			 Action: 'CONNECT4 (Slash Command)',
+		 }, interaction)
 	}
 }

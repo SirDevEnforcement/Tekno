@@ -22,4 +22,9 @@ new EightBall({
         color: '#2f3136'
     }
 }).startGame();
+
+		client.modlogs({
+			 Member: interaction.user,
+			 Action: '8BALL (Slash Command)',
+		 }, interaction)
 	}}

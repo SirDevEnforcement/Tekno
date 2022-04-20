@@ -17,10 +17,13 @@ module.exports = async (client) => {
             `/help ・ ${client.guilds.cache.size} servers!`,
             `/help ・ ${client.guilds.cache.map(c => c.memberCount).reduce((a, b) => a + b)} users!`,
             `/help ・ ${client.channels.cache.size} channels!`,
-					  `/help ・ DevEnforcement is watching you 👀`,
+					  `/help ・ British is watching you 👀`,
 					  `/help ・ Cats are better than dogs`,
 					  `/help ・ Flying cars in 2020? Nah, eating bats!`,
-					  `/help ・ Why are you here?`
+					  `/help ・ Why are you here?`,
+            `/help ・ https://tekno-bot.repl.co`,
+            `/help ・ Tekno > Dyno`,
+            `/help ・ New website coming soon 👀`
         ]
         const multi = Math.floor(Math.random() * status.length);
         const activity = status[multi]

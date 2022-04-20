@@ -22,15 +22,13 @@ const create_mh = (
                 "fun": "<:Tekno_Rocket:951555867365474354>",
                 "core": "<:Tekno_Robot:951526699634397234>",
                 "utility": "<:Tekno_Pencil:951526699634401290>",
-                "moderation": "<:Tekno_Moderator:951526699638587422>",
-                "information": '<:Tekno_TabButton:951526699693133854>',
-                "music": '<:Tekno_Sound:951556625192353874>',
-                "profile": '<:Tekno_Member:951526699663773888>',
-                "animals": '<:Tekno_WumpusBlurpleWave:951555877620580392>', 
-                "anime": '<:Tekno_Happy:951557629115777094>',
-		            "games": "<:Tekno_Tab:951526699638616204>",
-							  "config": "<:Tekno_Cross:951526699663761529>",
-							  "soundboard": "<:Tekno_Music:951526699751841823>"
+                "moderation": "<:Tekno_Developer:951555867260645536>",
+                "information": '<:Tekno_Messages:951543621897834536>',
+                "music": '<:Tekno_Music:951526699751841823>',
+                "animals": '<:Tekno_Happy:951557629115777094>', 
+		            "games": "<:Tekno_Desktop:959764498032496661>",
+							  "config": "<:Tekno_Plus:951526700066406491>",
+							  "soundboard": "<:Tekno_Sound:951556625192353874>",
             }
 
 

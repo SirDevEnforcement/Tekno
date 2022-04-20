@@ -20,5 +20,10 @@ module.exports = {
       interaction.reply({content: `\`\`\`${data}\`\`\`  `})
     })
 
+		client.modlogs({
+			 Member: interaction.user,
+			 Action: 'ASCII (Slash Command)',
+		 }, interaction)
+
   }
 };

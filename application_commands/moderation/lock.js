@@ -1,65 +1,82 @@
 const Discord = require('discord.js');
-const DB = require('../../Schemas/LockdownDB');
 const ms = require('ms')
 
 module.exports = {
    name: "lock",
-	 description: "Lock a channel!",
+	 description: "(Un)Lock a channel/server",
 	 options: [
 		 {
-			 name: 'time',
-			 description: 'Expire date for the lockdown (1m, 1h, 1d)',
-			 type: 'STRING',
+			 name: 'channel',
+			 description: 'Mention the channel to lockdown',
+			 type: 'CHANNEL',
 			 required: false
 		 },
 		 {
-			 name: 'reason',
-			 description: 'Reason for the lockdown',
+			 name: 'unlock',
+			 description: 'Unlock the server',
 			 type: 'STRING',
+			 choices: [
+				 {
+				 name: 'true',
+				 value: 'true',
+				 }
+			 ],
 			 required: false
 		 }
 	 ],
 	 run: async(client, interaction) => {
 		 const { guild, channel, options } = interaction;
-
-		 const reason = options.getString('reason') || 'No Specified Reason';
-
-		 const embed = new Discord.MessageEmbed()
-		 .setColor('#2f3136');
-
-		 if(!channel.permissionsFor(guild.id).has('SEND_MESSAGES')) return interaction.reply({embeds: [embed.setDescription('<:Tekno_ChecklistNo:951549213941047346> This channel is already locked!')], ephemeral: true})
-
-		 channel.permissionOverwrites.edit(guild.id, {
-			 SEND_MESSAGES: false
-		 }).then(async () => {
-			 const embed2 = new Discord.MessageEmbed()
+		 if(!interaction.member.permissions.has('MANAGE_CHANNELS')) {
+			 const embed = new Discord.MessageEmbed()
 			 .setColor('#2f3136')
-			 .setDescription(`<:Tekno_lock:951526699588264018> Channel locked-down\n\n**Reason**: ${reason}`)
+			 .setDescription('<:Tekno_StickerSad:951526699626012702> Only members with the **MANAGE_CHANNELS** permission can run this command!')
 
-			 interaction.channel.send({embeds: [embed]})
-		 })
-
-		 const time = options.getString('time')
-
-		 if(time) {
-			 const expiredate = Date.Now() + ms(time)
-
-			 DB.create({
-				 GuildID: guild.id,
-				 ChannelID: channel.id,
-				 Time: expiredate
-			 })
-
-			 setTimeout(async () => {
-				 channel.permissionOverwrites.edit(guild.id, {
-			 SEND_MESSAGES: null
-		 })
-
-				 interaction.channel.send({embeds: [embed.setDescription('<:Tekno_lock:951526699588264018> The lockdown has been lifted!')]}).catch(() => {})
-
-				 await DB.deleteOne({ChannelID: channel.id})
-			 }, ms(time))
+			 interaction.reply({embeds: [embed]})
 		 }
+
+		 if(options.getChannel('channel')) {
+			 const channel = interaction.guild.channels.cache.get(options.getChannel('channel').id);
+			 
+		 channel.permissionOverwrites.edit(interaction.guild.roles.everyone, {
+			 SEND_MESSAGES: false,
+		 })
+			 const embed = new Discord.MessageEmbed()
+			 .setColor('#2f3136')
+			 .setDescription(`<:Tekno_lock:951526699588264018> Locked down <#${options.getChannel('channel').id}>`)
+
+			 interaction.reply({embeds: [embed]})
+		 } else {
+			 interaction.guild.channels.cache.forEach(async channel => {
+				 await channel.permissionOverwrites.edit(interaction.guild.roles.everyone, {
+					 SEND_MESSAGES: false,
+				 })
+			 })
+			 const embed = new Discord.MessageEmbed()
+			 .setColor('#2f3136')
+			 .setDescription(`<:Tekno_lock:951526699588264018> Locked down the server! (${interaction.guild.channels.cache.size} channels)`)
+
+			 interaction.reply({embeds: [embed]})
+		 }
+
+
+		if(options.getString('unlock')) {
+			interaction.guild.channels.cache.forEach(async channel => {
+				await channel.permissionOverwrites.edit(interaction.guild.roles.everyone, {
+					 SEND_MESSAGES: true,
+				 })
+			})
+			const embed = new Discord.MessageEmbed()
+			 .setColor('#2f3136')
+			 .setDescription(`<:Tekno_lock:951526699588264018> Unlocked the server! (${interaction.guild.channels.cache.size} channels)`)
+			interaction.reply({embeds: [embed]})
+		}
+
+		 
+
+		 client.modlogs({
+			 Member: interaction.user,
+			 Action: 'LOCK (Slash Command)',
+		 }, interaction)
 	
 	 }
 }

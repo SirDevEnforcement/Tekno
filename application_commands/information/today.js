@@ -17,5 +17,10 @@ module.exports = {
 			.setColor('#2f3136')
         return interaction.reply({embeds: [embed]})
 
+			client.modlogs({
+			 Member: interaction.user,
+			 Action: 'TODAY (Slash Command)',
+		 }, interaction)
+
   })
   }}

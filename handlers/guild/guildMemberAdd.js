@@ -1,21 +1,45 @@
+const { GuildMember, MessageEmbed } = require("discord.js");
+const { drawCard, Text } = require('discord-welcome-card');
+
 module.exports = async(client) => {
-	client.on('guildMemberAdd', async member => {
-		if(member.guild.id !== '894164132100730880') return;
+    client.on('guildMemberAdd', async member => {
+        const { guild } = member;
 
-		const embed = new client.Discord.MessageEmbed()
-		.setAuthor(`${member.user.username}#${member.user.discriminator}`, member.displayAvatarURL({dynamic: true}))
-		.setDescription(`Welcome <@${member.id}> to ${member.guild.name}! You are our \`#${member.guild.memberCount}\` member!\n> <:replycont:943486573524172800> Read the rules in **<#911569613861568612>**.\n> <:replycont:943486573524172800> View announcements and bot updates in **<#894164132385935396>**.\n> <:reply:943486573360599060> Chat in **<#894164132553699392>**!`)
-			.setColor('#2f3136')
-		.setTimestamp()
+        if(member.user.bot) return;
 
-		const webhookClient = new client.Discord.WebhookClient({url: process.env['welcwebhook']});
+        const image = await drawCard({
+            theme: "dark",
+            blur: true,
+            rounded: true,
+            text: {
+                title: new Text('Welcome', 250, 100)
+                    .setFontSize(35)
+                    .setStyle(`#03B0CC`),
+                text: new Text(member.user.username, 250, 170),
+                subtitle: `You are the ${member.guild.memberCount}'th member here!`,
+                color: `#DDDDDD`,
+                font: 'Panton Black Caps',
+            },
+            avatar: {
+                image: member.user.avatarURL({
+                    dynamic: true,
+                    format: 'png',
+                    size: 2048,
+                }),
+                borderRadius: 1, // Corner radius of the avatar (0.5 = 50% rounded)
+                imageRadius: 0.75, // Size of the avatar (0.85 = 85%)
+                outlineWidth: 10,
+                outlineColor: "#5865F2",
+            },
+            background: "https://cdn.discordapp.com/attachments/894164132704714764/965633454563815524/background.png",
+        });
 
-		webhookClient.send({embeds: [embed], content: '<@&920030045634961418>'});
-		let msg = await client.channels.cache.get('911569613861568612').send(`<@${member.id}>`)
-		setTimeout(() => {
-			msg.delete()
-		}, 1000)
-		
-
-	})
+        member.guild.systemChannel.send({
+            files: [
+              {
+                attachment: image
+              }
+            ]
+        }).catch(() => {})
+    })
 }

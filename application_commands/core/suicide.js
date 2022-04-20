@@ -13,6 +13,11 @@ module.exports = {
 .setImage('https://cdn.discordapp.com/attachments/944888156736614460/944889205945954334/suicide-banner.png')
     
     interaction.reply({embeds: [embed]})
+
+		client.modlogs({
+			 Member: interaction.user,
+			 Action: 'SUICIDE (Slash Command)',
+		 }, interaction)
     
   
   }

@@ -63,5 +63,10 @@ module.exports = {
     } catch (e) {
         console.log(String(e.stack))
     }
+
+		client.modlogs({
+			 Member: interaction.user,
+			 Action: 'SEND_EMBED (Slash Command)',
+		 }, interaction)
   }
 }

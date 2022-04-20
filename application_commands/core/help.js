@@ -9,6 +9,7 @@ const {
     readdirSync
 } = require("fs");
 let color = "#2f3136"
+const commandInfo = require('../../utils/commandInfo')
 
 const create_mh = require(`../../functions/menu.js`);
 let dirr;
@@ -16,6 +17,14 @@ let dirr;
 module.exports = {
     name: "help",
     description: "Shows all available bot commands",
+    options: [
+      {
+        name: 'command',
+        description: 'Command name',
+        type: 'STRING',
+        required: false
+      }
+    ],
     /**
      * 
      * @param {Client} client 
@@ -26,6 +35,11 @@ module.exports = {
     run: async (client, interaction, args) => {
 			const message = interaction;
 
+      if(interaction.options.getString('command')) {
+        interaction.reply({
+                embeds: [commandInfo(client.slashcommands.get(interaction.options.getString("command")?.toLowerCase()))]
+            })
+      }
         let categories = [];
         let cots = [];
 
@@ -39,15 +53,13 @@ module.exports = {
                 "fun": "<:Tekno_Rocket:951555867365474354>",
                 "core": "<:Tekno_Robot:951526699634397234>",
                 "utility": "<:Tekno_Pencil:951526699634401290>",
-                "moderation": "<:Tekno_Moderator:951526699638587422>",
-                "information": '<:Tekno_TabButton:951526699693133854>',
-                "music": '<:Tekno_Sound:951556625192353874>',
-                "profile": '<:Tekno_Member:951526699663773888>',
-                "animals": '<:Tekno_WumpusBlurpleWave:951555877620580392>', 
-                "anime": '<:Tekno_Happy:951557629115777094>',
-		            "games": "<:Tekno_Tab:951526699638616204>",
-							  "config": "<:Tekno_Cross:951526699663761529>",
-							  "soundboard": "<:Tekno_Music:951526699751841823>"
+                "moderation": "<:Tekno_Developer:951555867260645536>",
+                "information": '<:Tekno_Messages:951543621897834536>',
+                "music": '<:Tekno_Music:951526699751841823>',
+                "animals": '<:Tekno_Happy:951557629115777094>', 
+		            "games": "<:Tekno_Desktop:959764498032496661>",
+							  "config": "<:Tekno_Plus:951526700066406491>",
+							  "soundboard": "<:Tekno_Sound:951556625192353874>",
             }
 
             let ccate = [];
@@ -186,6 +198,11 @@ const filter = async interaction => {
                 collector.on("end", () => null);
 
             });
+
+			client.modlogs({
+			 Member: interaction.user,
+			 Action: 'HELP (Slash Command)',
+		 }, interaction)
 
         }
     }

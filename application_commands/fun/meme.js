@@ -27,5 +27,10 @@ const embed = new Discord.MessageEmbed()
 			interaction.reply({embeds: [embed]});
 		})
 		.catch(console.error);
+
+		client.modlogs({
+			 Member: interaction.user,
+			 Action: 'MEME (Slash Command)',
+		 }, interaction)
 }
 }

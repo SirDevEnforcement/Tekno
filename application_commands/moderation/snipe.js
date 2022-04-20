@@ -18,5 +18,10 @@ module.exports = {
             .setColor('#2f3136')
             .setTimestamp()
           interaction.reply({ embeds: [embed] });
+
+			client.modlogs({
+			 Member: interaction.user,
+			 Action: 'SNIPE (Slash Command)',
+		 }, interaction)
     }
 }

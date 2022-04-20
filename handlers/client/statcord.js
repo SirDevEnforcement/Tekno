@@ -3,9 +3,9 @@ module.exports = async(client) => {
 const statcord = new Statcord.Client({
     client,
     key: process.env['statcord'],
-    postCpuStatistics: false,
-    postMemStatistics: false,
-    postNetworkStatistics: false,
+    postCpuStatistics: true,
+    postMemStatistics: true,
+    postNetworkStatistics: true,
 });
  
 

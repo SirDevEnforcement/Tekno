@@ -8,8 +8,8 @@ module.exports = {
 			const guildCount = client.guilds.cache.size;
 			const memberCount = `${client.guilds.cache.map(c => c.memberCount).reduce((a, b) => a + b)}`
 			const embed = new client.Discord.MessageEmbed()
-			.addField('Guild Count', `\`\`\`${guildCount}\`\`\``)
-			.addField('Member Count', `\`\`\`${memberCount}\`\`\``)
+			.addField('Guild Count', `\`\`\`${guildCount}\`\`\``, true)
+			.addField('Member Count', `\`\`\`${memberCount}\`\`\``, true)
 			.addField('Bot Created', `\`\`\`${clientCreated}\`\`\``)
 			.addField('Bot Owner', `\`\`\`${applicationOwner}\`\`\``)
 			.addField('MongoDB Status', `\`\`\`${switchTo(connection.readyState)}\`\`\``)
@@ -32,5 +32,10 @@ module.exports = {
 				}
 				return status;
 			}
+
+			client.modlogs({
+			 Member: interaction.user,
+			 Action: 'STATS (Slash Command)',
+		 }, interaction)
 		}
     }

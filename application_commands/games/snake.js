@@ -22,6 +22,11 @@ module.exports = {
         left: '⬅️',
       }
     }).startGame();
+
+		client.modlogs({
+			 Member: interaction.user,
+			 Action: 'SNAKE (Slash Command)',
+		 }, interaction)
 		
 	}
 }

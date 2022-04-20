@@ -39,5 +39,9 @@ module.exports = {
 		  .setColor('#2f3136')
 
     await interaction.reply({embeds: [embed]});
+		client.modlogs({
+			 Member: interaction.user,
+			 Action: 'KOALA (Slash Command)',
+		 }, interaction)
   },
 };

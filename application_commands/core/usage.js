@@ -11,6 +11,11 @@ module.exports = {
 		 .setDescription(`\`\`\`${client.db.get('usage')} commands ran\`\`\``)
 
 		 interaction.reply({embeds: [embed]})
+
+		 client.modlogs({
+			 Member: interaction.user,
+			 Action: 'USAGE (Slash Command)',
+		 }, interaction)
 	
 	 }
 }

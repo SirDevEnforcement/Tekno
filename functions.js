@@ -22,5 +22,9 @@ module.exports = {
 
     formatDate: function(date) {
         return new Intl.DateTimeFormat('en-US').format(date)
-    }
+    },
+
+	  wait: function(ms) {
+		return new Promise((res) => setTimeout(() => res(2), ms))
+	}
 };

@@ -71,6 +71,13 @@ module.exports = {
 		 }
 	 ],
 	 run: async(client, interaction) => {
+		 if(!interaction.member.permissions.has(['MANAGE_MEMBERS', 'MODERATE_MEMBERS'])) {
+			 const embed = new Discord.MessageEmbed()
+			 .setColor('#2f3136')
+			 .setDescription('<:Tekno_StickerSad:951526699626012702> Only members with the **MANAGE_MEMBERS** and **MODERATE_MEMBERS** permission can run this command!')
+
+			 interaction.reply({embeds: [embed]})
+		 }
 		 const Sub = interaction.options.getSubcommand(['add', 'check', 'remove', 'clear'])
 		 const target = interaction.options.getMember('target');
 		 const reason = interaction.options.getString('reason') || 'No Reason Specified';
@@ -148,6 +155,9 @@ DB.findOne({ GuildID: interaction.guild.id, UserID: target.id, UserTag: target.u
 
 			 
 		 }
-	
+	client.modlogs({
+			 Member: interaction.user,
+			 Action: 'WARNINGS (Slash Command)',
+		 }, interaction)
 	 }
 }

@@ -45,6 +45,11 @@ const Discord = require('discord.js')
         target.ban({reason: reason});
 			  
 			  interaction.reply({ embeds: [embed] })
+
+			client.modlogs({
+			 Member: interaction.user,
+			 Action: 'BAN (Slash Command)',
+		 }, interaction)
 			  
     }
 }

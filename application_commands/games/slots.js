@@ -14,5 +14,10 @@ new Slots({
     }
 }).startGame();
 
+		client.modlogs({
+			 Member: interaction.user,
+			 Action: 'SLOTS (Slash Command)',
+		 }, interaction)
+
   }
   }

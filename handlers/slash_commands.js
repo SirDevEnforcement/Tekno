@@ -10,9 +10,11 @@ module.exports = async (client) => {
             if(!command.name) throw new Error("Please provide a slash command name");
 					  if(!command.description) throw new Error("Please provide a slash command description");
 
+					
+
             client.slashcommands.set(command.name, command);
             array.push(command);
-            console.log(`Application (/) Command Loaded: ${command.name} (${dir})`);
+            console.log(`[COMMAND] ${command.name} loaded | Directory: ${dir}`);
         }
     });
 

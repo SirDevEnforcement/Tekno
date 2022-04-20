@@ -1,7 +1,21 @@
-const { model, Schema } = require('mongoose')
+const { Schema, model } = require('mongoose');
 
-module.exports = model("SuggestDB", new Schema({
-	GuildID: String,
-	MessageID: String,
-	Details: Array
-}))
+const SuggestionSchema = new Schema({
+    suggestion: String,
+    user: String,
+    message: String,
+    channel: String,
+    guild: String,
+    votes: {
+        up: {
+            type: [String],
+            default: []
+        }, down: {
+            type: [String],
+            default: []
+        }
+    },
+    createdAt: Number,
+})
+
+module.exports = model("SuggestDB", SuggestionSchema);

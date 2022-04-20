@@ -1,4 +1,6 @@
 module.exports = async (client) => {
+	const Timeout = new Set()
+	const humanizeDuration = require("humanize-duration")
 	const DB = require('../Schemas/CustomCommandDB')
 	const db = require('quick.db')
 	const blacklisted = require('../database/blacklisted.json')
@@ -16,8 +18,17 @@ module.exports = async (client) => {
 				.setColor('#2f3136')
 
 				interaction.reply({embeds: [embed], ephemeral: true})
-			} else {
+			}
+				if (slash_commands.timeout) {
+                if (Timeout.has(`${interaction.user.id}${slash_commands.name}`)) {
+                    return interaction.reply({ content: `You need to wait **${humanizeDuration(slash_commands.timeout, { round: true })}** to use command again`, ephemeral: true })
+                }
+				}
       slash_commands.run(client, interaction);
+					Timeout.add(`${interaction.user.id}${slash_commands.name}`)
+            setTimeout(() => {
+                Timeout.delete(`${interaction.user.id}${slash_commands.name}`)
+            }, slash_commands.timeout)
 			db.add('usage', 1)
 			const embed = new client.Discord.MessageEmbed()
 			.setTitle('Interaction (/) command ran')
@@ -31,16 +42,8 @@ module.exports = async (client) => {
 			.setTimestamp()
 			.setColor('#2f3136')
 			client.channels.cache.get('894164132704714765').send({embeds: [embed]})
-			}
-			} else {
-				// CUSTOM COMMANDS
-
-				const command = await DB.findOne({commandName: interaction.commandName})
-
-				interaction.reply({content: `${command.Response ? command.Response : 'No Response found'}`})
-				console.log(command)
-			}
 		}
 
-  })
-}
+  }
+		})
+	}

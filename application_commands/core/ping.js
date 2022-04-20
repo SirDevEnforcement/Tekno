@@ -1,8 +1,7 @@
 module.exports = {
     name: "ping",
     description: "Test the bot's latency",
-
-
+	  timeout: 2000,
     run: async (client, interaction) => {
 			const embed = new client.Discord.MessageEmbed()
 			.setColor('#2f3136')
@@ -17,6 +16,10 @@ module.exports = {
 					.addField(`Client Latency`, `\`\`\`${client.ws.ping}ms\`\`\``)
 
 					interaction.editReply({embeds: [embed2]})
+			client.modlogs({
+			 Member: interaction.user,
+			 Action: 'PING (Slash Command)',
+		 }, interaction)
 			
     }
 }

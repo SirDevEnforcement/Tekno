@@ -1,6 +1,6 @@
 module.exports = async(client) => {
 	client.on('guildCreate', async guild => {
-		guild.commands.set(client.slasharray);
+		client.guilds.cache.get(guild.id).commands.set(client.slasharray)
 		const channel = client.channels.cache.get('894164132704714765')
 		const embed = new client.Discord.MessageEmbed()
 		.setTitle('Joined a Server')

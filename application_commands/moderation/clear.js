@@ -13,6 +13,13 @@ module.exports = {
 	 ],
 	 run: async(client, interaction) => {
 		 const { channel, options } = interaction;
+		 if(!interaction.member.permissions.has('MANAGE_MESSAGES')) {
+			 const embed = new Discord.MessageEmbed()
+			 .setColor('#2f3136')
+			 .setDescription('<:Tekno_StickerSad:951526699626012702> Only members with the **MANAGE_MESSAGES** permission can run this command!')
+
+			 interaction.reply({embeds: [embed]})
+		 }
 
 		 const amount = options.getNumber("amount");
 
@@ -24,6 +31,11 @@ module.exports = {
 				 embed.setDescription(`<:Tekno_Messages:951543621897834536> Cleared \`${messages.size}\` messages.`)
 
 				 interaction.reply({embeds: [embed]})
+
+				 client.modlogs({
+			 Member: interaction.user,
+			 Action: 'CLEAR (Slash Command)',
+		 }, interaction)
 			 })
 		 }
 	

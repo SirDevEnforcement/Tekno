@@ -40,5 +40,10 @@ module.exports = {
             message.reply({content: 'An error occured while trying to moderate the nickname of that user.'})
             console.log(err)
           }
+
+			client.modlogs({
+			 Member: interaction.user,
+			 Action: 'MOD-NICK (Slash Command)',
+		 }, interaction)
         }
     }

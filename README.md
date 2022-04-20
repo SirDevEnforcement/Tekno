@@ -1,5 +1,5 @@
 # `🤖` Tekno (Multi-purpose bot)
-> [`Website`](https://tekno-the-bot.repl.co)
+> [`Website`](https://tekno-the-bot.repl.co) || [`Invite`](https://tekno-the-bot.repl.co/invite)
 
 ## `⚠` Requirements
 

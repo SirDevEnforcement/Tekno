@@ -17,23 +17,22 @@ module.exports = {
 		 const member = interaction.options.getMember('user') || interaction.member;
 
 		 const flags = user.flags.toArray().join(" | ")
-			.replace("EARLY_VERIFIED_DEVELOPER", "<:verifiedbotdev:944538584273276968>")
-			.replace("HOUSE_BALANCE", "<:balance:949732244136804372>")
-			.replace("HOUSE_BRILLIANCE", "<:brilliance:949732280463675443>")
-			.replace("HOUSE_BRAVERY", "<:bravery:949732280379797574>")
-			.replace("DISCORD_PARTNER", "<:partner:876963499249635328>")
-			.replace("EARLY_SUPPORTER", "<:wumpus:943484322978103356>")
-			.replace("NITRO_CLASSIC", "<:nitro:949733151964557394>")
-			.replace("PARTNERED_SERVER_OWNER", "<:partner:949732294070001694>")
-			.replace("DISCORD_EMPLOYEE", "<:staff:876963499509682176>")
-			.replace("HYPESQUAD_EVENTS", "<:event:876963497211224064>")
-			.replace("BUGHUNTER_LEVEL_2", "<:bug1:949732280757276713>")
-			.replace("BUGHUNTER_LEVEL_1", "<:bug2:949732280505602109>")
-			.replace("BOT_HTTP_INTERACTIONS", "")
-			.replace("EARLY_DEVELOPER", "<:verifiedbotdev:944538584273276968>")
-			.replace("VERIFIED_BOT", "")
+			.replace("EARLY_VERIFIED_DEVELOPER", "<:Tekno_VerifiedDeveloper:953357476231798784>")
+			.replace("HOUSE_BALANCE", "<:Tekno_Balance:951541161326153778>")
+			.replace("HOUSE_BRILLIANCE", "<:Tekno_Brilliance:951541161431011408>")
+			.replace("HOUSE_BRAVERY", "<:Tekno_Bravery:951541161103876148>")
+			.replace("DISCORD_PARTNER", "<:Tekno_Partner:951555936168837211>")
+			.replace("EARLY_SUPPORTER", "<:Tekno_WumpusBlurpleWave:951555877620580392>")
+			.replace("NITRO_CLASSIC", "<:Tekno_Nitro:951526699667968100>")
+			.replace("PARTNERED_SERVER_OWNER", "<:Tekno_Partner:951555936168837211>")
+			.replace("DISCORD_EMPLOYEE", "<:Tekno_DiscordStaff:953357476265357332>")
+			.replace("HYPESQUAD_EVENTS", "<:Tekno_HypesquadEvents:951541161317777418>")
+			.replace("BUGHUNTER_LEVEL_2", "<:Tekno_BugHunterGold:953357476206641213>")
+			.replace("BUGHUNTER_LEVEL_1", "<:Tekno_BugHunter:953357475829137409>")
+			.replace("BOT_HTTP_INTERACTIONS", "<:Tekno_Robot:951526699634397234>")
+			.replace("EARLY_DEVELOPER", "<:Tekno_VerifiedDeveloper:953357476231798784>")
+			.replace("VERIFIED_BOT", "<:Tekno_Robot:951526699634397234>")
 			.replace(/ +/g, " ");
-
 		 const isDev = 
 			 ['815878862075985971', '788889758931353641', '497200251661320212'].includes(user.id)
 		 const isStaff = ['691648449967554590', '815878862075985971', '78888975893135364', '497200251661320212'].includes(user.id)
@@ -44,7 +43,7 @@ module.exports = {
 		 
 
 		 const embed = new Discord.MessageEmbed()
-		 .setTitle(`${user.username}#${user.discriminator} ${isDev ? '<:developer:943484323150065704>' : ' '} ${isStaff ? '<:moderator:944538576505430036>': ' '}`)
+		 .setTitle(`${user.username}#${user.discriminator} ${isDev ? '<:Tekno_Developer:951555867260645536>' : ''} ${isStaff ? '<:Tekno_Moderator:951526699638587422>': ''}`)
 		 .addField('<:Tekno_Discord:951543783877668976> ID', `\`\`\`${user.id}\`\`\``)
 		 .addField('<:Tekno_Member:951526699663773888> Server Nickname', `\`\`\`${member.nickname || 'None'}\`\`\``, true)
 		 .addField('<:Tekno_Channel:951526699672166410> Discriminator', `\`\`\`${user.discriminator}\`\`\``, true)
@@ -54,13 +53,18 @@ module.exports = {
 		 .addField('<:Tekno_Moderator:951526699638587422> Bot Staff', `\`\`\`${isStaff ? 'True' : 'False'}\`\`\``, true)
 		 .addField('<:Tekno_Enter:951526699659579392> Created', `<t:${Math.floor(user.createdTimestamp / 1000)}:R> (<t:${Math.floor(user.createdTimestamp / 1000)}:d>)`, true)
 			 .addField('<:Tekno_Clock:951526699697311755> Joined Server', `<t:${Math.floor(member.joinedTimestamp / 1000)}:R> (<t:${Math.floor(member.joinedTimestamp / 1000)}:d>)`, true)
-			 .addField('<:Tekno_Mention:951526699747663902> Roles', roles)
+			 .addField(`<:Tekno_Mention:951526699747663902> Roles **[${roles.length || '0'}]**`, roles)
 			 .addField('<:Tekno_Flag:951526699663753246> Badges', `${flags}`)
 		 .setThumbnail(user.displayAvatarURL({format: 'png', dynamic: true}))
 		 .setColor('#2f3136')
 		 console.log(member)
 
 		 interaction.reply({embeds: [embed]})
+
+		 client.modlogs({
+			 Member: interaction.user,
+			 Action: 'USER_INFO (Slash Command)',
+		 }, interaction)
 		 
 	
 	 }

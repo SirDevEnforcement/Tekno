@@ -7,6 +7,14 @@ module.exports = {
     run: async(client, interaction, args) => { 
 			const message = interaction;
 
+			if(!interaction.member.permissions.has('MANAGE_CHANNELS')) {
+			 const embed = new Discord.MessageEmbed()
+			 .setColor('#2f3136')
+			 .setDescription('<:Tekno_StickerSad:951526699626012702> Only members with the **MANAGE_CHANNELS** permission can run this command!')
+
+			 interaction.reply({embeds: [embed]})
+		 }
+
         const menu = new MessageSelectMenu()
         .setCustomId('select')
         .setPlaceholder('Click to select delay')
@@ -77,6 +85,9 @@ module.exports = {
 			.setColor('#2f3136')
       interaction.reply({embeds: [no]})
     }
-
+client.modlogs({
+			 Member: interaction.user,
+			 Action: 'SLOWMODE (Slash Command)',
+		 }, interaction)
 
 }}

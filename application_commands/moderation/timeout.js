@@ -19,6 +19,14 @@ module.exports = {
 		const fetch = require('node-fetch');
 		const ms = require('ms');
 		const time = interaction.options.getString('time')
+
+		if(!interaction.member.permissions.has('MODERATE_MEMBERS')) {
+			 const embed = new client.Discord.MessageEmbed()
+			 .setColor('#2f3136')
+			 .setDescription('<:Tekno_StickerSad:951526699626012702> Only members with the **MODERATE_MEMBERS** permission can run this command!')
+
+			 interaction.reply({embeds: [embed]})
+		 }
 		
 		const user = interaction.options.getUser('target')
 		const milliseconds = ms(time);
@@ -39,12 +47,16 @@ module.exports = {
 			},
 		});
 
-		const embed = new Discord.MessageEmbed()
+		const embed = new client.Discord.MessageEmbed()
 		.setColor('#2f3136')
 		.setTitle(`<:Tekno_Timeout:951555055767650375> ${user.username} has been timed-out`)
 		.addField('Moderator', `\`\`\`${interaction.user.tag}\`\`\``)
 		.addField('Time', `\`\`\`${time}\`\`\``)
 
 		interaction.reply({embeds: [embed]})
-	},
+		client.modlogs({
+			 Member: interaction.user,
+			 Action: 'TIMEOUT (Slash Command)',
+		 }, interaction)
+	}
 };

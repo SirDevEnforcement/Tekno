@@ -19,6 +19,11 @@ module.exports = {
 
 		 interaction.channel.send({embeds: [embed]})
 		 interaction.reply({content: 'Done!', ephemeral: true})
+
+		 client.modlogs({
+			 Member: interaction.user,
+			 Action: 'CONFESS (Slash Command)',
+		 }, interaction)
 	
 	 }
 }

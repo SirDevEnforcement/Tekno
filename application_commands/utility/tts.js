@@ -26,7 +26,10 @@ let channel = interaction.member.voice.channel
 		 interaction.reply({embeds: [embed], ephemeral: true})
 
 sound.tts(channel, interaction.options.getString('text')) //Text
-
+client.modlogs({
+			 Member: interaction.user,
+			 Action: 'TEXT_TO_SPEECH (Slash Command)',
+		 }, interaction)
 	
 	 }
 }
