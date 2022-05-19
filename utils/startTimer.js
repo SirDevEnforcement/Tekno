@@ -1,4 +1,3 @@
-
 const timers = require('../Schemas/TimerDB');
 
 module.exports = (client, timer) => {

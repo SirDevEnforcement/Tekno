@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+m const Discord = require("discord.js");
 const fs = require('fs');
 const DB = require('./Schemas/ModLogsDB')
 const client = new Discord.Client({ intents: 32767 });
@@ -12,7 +12,7 @@ client.editsnipes = new Map()
 client.db = require('quick.db');
 client.categories = fs.readdirSync('./application_commands/');
 
-['./guild/messageCreate', './guild/messageDelete', './client/ready', './client/antiCrash', 'slash_commands', 'interactionCreate', 'db', './client/rateLimit', './client/guildEvents', './guild/banned-words', './client/statcord', 'modlogs', './client/statscount', 'distube', 'events', './guild/messageUpdate', 'pollInteractionCreate', 'suggestionInteractionCreate', './guild/tags', './guild/guildMemberAdd', './guild/guildMemberRemove'].forEach((handler) => {
+['./guild/messageCreate', './guild/messageDelete', './client/ready', './client/antiCrash', 'slash_commands', 'interactionCreate', 'db', './client/rateLimit', './client/guildEvents', './guild/banned-words', './client/statcord', 'modlogs', './client/statscount', 'distube', 'events', './guild/messageUpdate', 'pollInteractionCreate', 'suggestionInteractionCreate', './guild/tags', './guild/guildMemberAdd', './guild/guildMemberRemove', './guild/messageReactionAdd'].forEach((handler) => {
 	require(`./handlers/${handler}`)(client)
 	console.log(`[HANDLER] ${handler} loaded`)
 })

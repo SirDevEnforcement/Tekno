@@ -11,7 +11,7 @@ module.exports = async(client) => {
 	.addField('Instigator', `\`\`\`${interaction.user.username} (${interaction.id})\`\`\``)
 	.addField('Action', `\`\`\`${Action}\`\`\``)
 	.setTimestamp()
-	channel.send({embeds: [embed]})
+	channel?.send({embeds: [embed]})
 }
 }
 						)

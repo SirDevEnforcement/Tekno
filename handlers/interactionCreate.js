@@ -11,6 +11,15 @@ module.exports = async (client) => {
 
 			if(slash_commands) {
 
+        if(slash_commands.permissions) {
+          if(!interaction.user.permissions.has(slash_commands.permissions)) {
+            const embed = new client.Discord.MessageEmbed()
+            .setColor('#2f3136')
+            .setDescription(`You need the \`${slash_commands.permissions}\` to run this command!`)
+            interaction.reply({embeds: [embed]})
+          }
+        }
+
 			if(blacklisted.includes(interaction.user.id)) {
 				const embed = new client.Discord.MessageEmbed()
 				.setTitle('<:Tekno_StickerSad:951526699626012702> Oops!')

@@ -162,5 +162,13 @@ module.exports = async (client) => {
 		web.send({embeds: [embed]})
 	})
 
+  app.get('/gif-or-video', (req, res) => {
+    res.render('./public/what.ejs', args)
+  })
+
+  app.get('*', (req, res) => {
+  res.render("./public/error.ejs");
+});
+
 	app.listen(5000)
 }

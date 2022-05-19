@@ -32,7 +32,7 @@ module.exports = {
 			 .setDescription('<:Tekno_StickerSad:951526699626012702> Only members with the **MANAGE_CHANNELS** permission can run this command!')
 
 			 interaction.reply({embeds: [embed]})
-		 }
+		 } else {
 
 		 if(options.getChannel('channel')) {
 			 const channel = interaction.guild.channels.cache.get(options.getChannel('channel').id);
@@ -70,6 +70,7 @@ module.exports = {
 			 .setDescription(`<:Tekno_lock:951526699588264018> Unlocked the server! (${interaction.guild.channels.cache.size} channels)`)
 			interaction.reply({embeds: [embed]})
 		}
+   }
 
 		 
 

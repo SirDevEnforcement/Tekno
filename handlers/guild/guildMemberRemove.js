@@ -36,7 +36,7 @@ module.exports = async(client) => {
 
 
 
-        member.guild.systemChannel.send({
+        member.guild.systemChannel?.send({
             files: [
               {
                 attachment: image

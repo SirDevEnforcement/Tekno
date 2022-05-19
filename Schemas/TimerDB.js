@@ -3,11 +3,11 @@ const { Schema, model } = require('mongoose');
 const Timer = new Schema({
     id: String,
     user: String,
-    channel: String, // for emergency conditions
+    channel: String,
     reason: String,
-    guild: String, // kinda useless, but might come handy for stats? 
-    time: String, // kinda useless, but might come handy for stats?
-    createdAt: String, // kinda useless, but might come handy for stats?
+    guild: String,
+    time: String,
+    createdAt: String,
     endAt: String,
 })
 

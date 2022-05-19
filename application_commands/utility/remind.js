@@ -13,7 +13,7 @@ module.exports = {
             type: 3,
         }, {
             name: "reason",
-            description: "Reason for this timeout, no?",
+            description: "Reason for this timeout",
             required: false,
             type: 3,
         }],

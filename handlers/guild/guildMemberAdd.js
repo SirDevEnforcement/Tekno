@@ -34,7 +34,7 @@ module.exports = async(client) => {
             background: "https://cdn.discordapp.com/attachments/894164132704714764/965633454563815524/background.png",
         });
 
-        member.guild.systemChannel.send({
+        member.guild.systemChannel?.send({
             files: [
               {
                 attachment: image

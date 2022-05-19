@@ -27,7 +27,7 @@ module.exports = {
 		 const embed = new Discord.MessageEmbed()
 		 .setAuthor(interaction.user.tag, interaction.user.displayAvatarURL({format: 'png', dynamic: true}))
 		 .setColor('#2f3136')
-		 .setDescription('<:Tekno_Tick:951526699386961994> - Yes\n<:Tekno_Cross:951526699663761529> - No')
+		 .setDescription('<:Tekno_Tick:958422667613048843> - Yes\n<:Tekno_Cross:958422697459728484> - No')
 		 .addField('Suggestion', suggestion.toString(), true)
 		 .addField('Purpose', purpose.toString(), true)
 
