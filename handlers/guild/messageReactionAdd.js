@@ -2,12 +2,11 @@ const DB = require("../../Schemas/CookiesDB");
 
 module.exports = async(client) => {
   client.on('messageReactionAdd', async reaction => {
-        if(user.bot) return;
         if(reaction.message.channel.type == "DM") return;
         if(reaction.message.author.bot) return;
         if(reaction.message.author.id == user.id) return;
 
-        if(reaction.emoji.name === "🍪") {
+        if(reaction.emoji.name === "🍪" || reaction.emoji.name === ":cookie:") {
             const { guildId, author } = reaction.message;
 
             if(client.cookiescooldowns.has(`${guildId}||${user.id}||${author.id}`)) return;

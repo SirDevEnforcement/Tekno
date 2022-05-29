@@ -1,6 +1,5 @@
 const Discord = require("discord.js");
-const Guild = require("../../Schemas/LoggingDB");//require our log model
-const mongoose = require("mongoose");
+const Guild = require("../../Schemas/LoggingDB");
 
 module.exports = {
   name: "setlogchannel",
@@ -14,14 +13,11 @@ module.exports = {
     }
   ],
   run: async (client, interaction) => {
-
-    const message = interaction;
-
-    if (!message.member.permissions.has("MANAGE_GUILD"))
-      return message.reply("You do not have permission to use this command.")
+    if(!interaction.member.permissions.has('MANAGE_GUILD'))
+      return interacton.reply("You do not have permission to use this command.")
 
     const channel = await interaction.options.getChannel('channel');
-    const guild1 = message.guild;
+    const guild1 = interaction.guild;
     let webhookid;
     let webhooktoken;
     await channel
@@ -34,44 +30,43 @@ module.exports = {
       });
    
     if (!channel)
-      return message.reply(
+      return interaction.reply(
           "I cannot find that channel. Please mention a channel within this server."
-        )// if the user do not mention a channel
-        .then(m => m.delete({ timeout: 5000 }));
+        )
     
-    await Guild.findOne(//will find data from database
+    await Guild.findOne(
       {
-        guildID: message.guild.id
+        guildID: interaction.guild.id
       },
       async (err, guild) => {
         if (err) console.error(err);
-        if (!guild) {// what the bot should do if there is no data found for the server
+        if (!guild) {
           const newGuild = new Guild({
-            guildID: message.guild.id,
-            guildName: message.guild.name,
+            guildID: interaction.guild.id,
+            guildName: interaction.guild.name,
             logChannelID: channel.id,
             webhookid: webhookid,
             webhooktoken: webhooktoken
           });
 
           await newGuild
-            .save() //save the data to database(mongodb)
+            .save() 
             .then(result => console.log(result))
             .catch(err => console.error(err));
 
-          return message.reply(
+          return interaction.reply(
             `The log channel has been set to ${channel}`
           );
         } else {
           guild
-            .updateOne({ //if data is found then update it with new one
+            .updateOne({ 
               logChannelID: channel.id,
               webhooktoken: webhooktoken,
               webhookid: webhookid
             })
             .catch(err => console.error(err));
 
-          return message.reply(
+          return interaction.reply(
             `The log channel has been updated to ${channel}`
           );
         }
